@@ -1,0 +1,37 @@
+\documentclass[a4paper, 12pt]{memoir}
+
+\input{../packages.tex}
+
+\title{general relativity}
+\date{\today}
+
+\newcommand{\subt}{how to physics in a curved spacetime.}
+
+\begin{document}
+
+\frontmatter
+
+\input{../titlepage.tex}
+
+\tableofcontents
+
+\mainmatter
+
+\input{../python.tex}
+
+\chapter*{Abstract}
+
+    In these notes, we will study general relativity.
+    
+\input{gr1_g.tex}
+\input{gr1_gw.tex}
+
+\backmatter
+
+\nocite{casadio}
+
+\clearpage
+\phantomsection
+\printbibliography
+
+\end{document}

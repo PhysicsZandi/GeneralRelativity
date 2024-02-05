@@ -1,0 +1,421 @@
+\part{Einstein field equations}
+
+\chapter{Principles of general relativity}
+
+    In this chapter, we will briefly review all the underline principles that led Einstein to formulate its theory: principle of general relativity, principles of equivalence and principle of general covariance.
+
+\section{Principle of general relativity}
+
+    All physics measurements are local, since they are performed by apparati in a finite spatial and temporal extension. Therefore, by means of differential geometry, we need to write equations that take the same form in any arbitrary (local) reference frame and they must be independent of that. 
+    \begin{princ}[of general relativity]
+        The laws of physics are the same in all reference frame.
+    \end{princ}
+    This implies that physical laws must be written in terms of tensors. Observers are physical apparati that move along trajectories in spacetime and we can cover a portion of spacetime with a reference frame starting from that.
+    
+\section{Principles of equivalence}
+
+    All fundamental forces are described by charges of opposite sign, therefore they can be neglected using zero charge objects. However, we cannot do that with gravity since it is always attractive. The only way to eliminate gravity is considering a free-falling observer.
+    \begin{princ}[of equivalence (weak)]
+        The gravitational mass $m_g$ is equal to the inertial mass $m_i$.
+    \end{princ}
+    \begin{princ}[of equivalence (Einstein)]
+        Motion in a uniform gravitational field is equal to free fall.
+    \end{princ}
+    In other words, we cannot distinguish by a local experiment, if we are in a uniform gravitation field or if we are free-falling.
+    \begin{princ}[of equivalence (strong)]
+        There always exists a local reference frame in which all gravitational effects vanish.
+    \end{princ}
+    This means that inertial frames are free-falling reference frames and they can be defined only in a small neighbourhood of a point. In fact, for these frames, the metric reduces to Minkowski and we can use Killing vectors tangent to these trajectories to build a local reference frame in each point, which is a Gaussian normal frame. 
+
+\section{Principle of general covariance}
+    
+    Consequently, for inertial frames, we have $\pounds_\mu \simeq \partial_\mu \simeq \nabla_\mu$ and we restore special relativity. 
+    \begin{princ}[of general covariance]
+        The laws of physics in a general reference frame are obtained by special relativity by replacing differential geometry quantities (metric, indices, covariant derivatives).
+    \end{princ}
+    This can be made because of the local flatness theorem.
+
+\chapter{Einstein field equations}
+
+    In this chapter, we will study what are test particles and what are the sources of gravity. Furthermore, we will derive the Einstein field equation.ì by physics analogy.
+
+\section{Test particles}
+
+    Consider a massive test particle of $4$-velocity $u^\mu = dx^\mu / d\tau$, which is not subjected to any force, in a free-falling frame. Therefore, we can use special relativity and write down the relativistic Newton's law
+    \begin{equation*}
+        \dvd{x^\alpha}{\tau} = 0 ~,
+    \end{equation*}
+    where $t = \gamma \tau$ is the proper time. Moreover, in a local inertial frame $\Gamma^\alpha_{\mu\nu} \sim g_{\mu\nu,\beta} \sim \eta_{\mu\nu,\beta} = 0$, hence
+    \begin{equation*}
+        \dvd{x^\alpha}{\tau} + \Gamma^\alpha_{\mu\nu} \dv{x^\mu}{\tau} \dv{x^\nu}{\tau} = 0 ~.
+    \end{equation*}
+    This is exactly the geodesic equation 
+    \begin{equation*}
+        u^\mu \nabla_\mu u^\alpha = 0 ~.
+    \end{equation*}
+    \begin{proof}
+        In fact, 
+        \begin{equation*}
+            u^\mu \nabla_\mu u^\alpha = \underbrace{u^\mu \partial_\mu}_{d/d\tau} u^\alpha + \Gamma^\alpha_{\mu\nu} u^\mu u^\nu = \dvd{x^\alpha}{\tau} + \Gamma^\alpha_{\mu\nu} \dv{x^\mu}{\tau} \dv{x^\nu}{\tau} = 0 ~.
+        \end{equation*}
+    \end{proof}
+    
+    \noindent This derivation only applies in a point, but since it is frame independent, it implies that test particles follow geodesics. In a different frame, Christoffel symbols will not be zero and we can interpret them as a gravitational potential $\Gamma^\alpha_{\mu\nu} \sim g_{\mu\nu,\beta}$.
+
+    We can generalise this result also for massless particles, like light. In fact, given the light-cone property $g(\underline u, \underline u)$, which is conserved along a geodesic
+    \begin{equation*}
+        \nabla_{\underline u} g(\underline u, \underline u) = 0 ~,
+    \end{equation*}
+    we can prove that it implies that it also follows geodesic equation
+    \begin{equation*}
+        u^\mu \nabla_\mu u^\alpha = 0 ~.
+    \end{equation*}
+    \begin{proof}
+        In fact 
+        \begin{equation*}
+        \begin{aligned}
+            0 & = \nabla_{\underline u} g(\underline u, \underline u) = \nabla_{u^\mu \partial_\mu} g(\underline u, \underline u) = u^\mu \nabla_\mu g(\underline u, \underline u) \\ & = u^\mu g( \nabla_\mu \underline u, \underline u) + u^\mu \nabla_\mu g(\underline u, \nabla_\mu \underline u) = 2 u^\mu g(\nabla_\mu \underline u, \underline u) = 2 (u^\mu \nabla_\mu u^\alpha) u_\alpha  ~.
+        \end{aligned}
+        \end{equation*}
+    \end{proof}
+
+    \noindent Therefore, light follows geodesic, even though we cannot identify the proper time as an affine parameter. 
+
+\section{Sources}
+
+    The metric has $10$ independent components, since it is a symmetric $4 \times 4$ matrix. We need $10$ ten partial differential partial equations at second order. The Einstein tensor could be a valid candidate
+    \begin{equation*}
+        G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} ~,
+    \end{equation*}
+    because it is constructed by contractions of the Riemann tensor. Furthermore, it satisfies the Bianchi identity
+    \begin{equation*}
+        \nabla_\mu G^{\mu\nu} = \nabla_\nu G^{\mu\nu} = 0 ~.
+    \end{equation*}
+    This implies that the actually degrees of freedom is $6$. 
+
+    The source part of the equation must satisfy the same properties: symmetric and Bianchi identity. By the principle of equivalence, gravitational interactions depends on proper mass, and by special relativity, mass is equivalent to energy. Therefore, the source of gravity is energy. The energy-momentum tensor is a valid candidate. For a perfect fluid, which is a fluid that depends only on proper energy density $\rho$ and proper pressure $p$, with co-moving $4$-velocity $u^\mu$, it becomes 
+    \begin{equation*}
+        T^{\mu\nu} = (p + \rho) u^\mu u^\nu + p g^{\mu\nu} ~.
+    \end{equation*}
+    In matrix notation 
+    \begin{equation*}
+        T^{\mu\nu} = \begin{bmatrix}
+            \rho & 0 \\ 0 & p g^{ij} \\ 
+        \end{bmatrix} ~, \quad T^\mu_{\phantom \mu \nu} = \begin{bmatrix}
+            - \rho & 0 & 0 & 0 \\ 
+            0 & p & 0 & 0 \\ 
+            0 & 0 & p & 0 \\ 
+            0 & 0 & 0 & p \\ 
+        \end{bmatrix}
+    \end{equation*}
+    Notice that pressure is orthogonal to $u^\mu$.
+    \begin{proof}
+        In fact,
+        \begin{equation*}
+            (u^\mu u^\nu + g^{\mu\nu}) u_\mu = u^\nu \underbrace{u^\mu u_\mu}_{-1} + u^\nu = - u^\nu + u^\nu = 0 ~.
+        \end{equation*}
+    \end{proof}
+
+    The $4$-current $j^\mu = (\rho, p^i)$ satisfies the continuity equation 
+    \begin{equation*}
+        \partial_\mu j^\mu = 0 ~, \quad \partial_t \rho + \underline \nabla \cdot \underline p = 0~,
+    \end{equation*}
+    which physically means that energy is conserved.
+
+    The Bianchi identity of the energy-momentum tensor can be decomposed into the conservation of energy and the Euler equation for fluids.
+    \begin{proof}
+        In fact, 
+        \begin{equation*}
+        \begin{aligned}
+            0 = \partial_\mu T^{\mu\nu} & = \partial_\mu ((p+\rho) u^\mu u^\nu + p g^{\mu\nu}) \\ & = \partial_\mu (p + \rho) u^\mu u^\nu + (p + \rho) (\partial_\mu u^\mu) u^\nu + (p + \rho) u^\mu (\partial_\mu u^\nu)  + (\partial_\mu p) g^{\mu\nu} \\ & = u^\mu u^\nu \partial_\mu (p + \rho) + (p + \rho) (u^\nu \partial_\mu u^\mu + u^\mu \partial_\mu u^\nu) + \partial^\nu p ~.
+        \end{aligned}
+        \end{equation*}
+        Considering $u^\mu = (1, u^i)$, for the temporal index, we have 
+        \begin{equation*}
+        \begin{aligned}
+            \partial_\mu T^{\mu 0} & = u^\mu \underbrace{u^0}_1 \partial_\mu (p + \rho) + (p + \rho) (\underbrace{u^0}_1 \partial_\mu u^\mu + u^\mu \partial_\mu \underbrace{u^0}_1) + \partial^0 p \\ & = u^\mu \partial_\mu (p + \rho) + (p + \rho) \partial_\mu u^\mu  + \partial^0 p = \partial_\mu ((p + \rho)u^\mu) - \dot p \\ & = \partial_0 (p + \rho) + \partial_i ((p + \rho) u^i) - \dot p ~,
+        \end{aligned}
+        \end{equation*}
+        which in the non-relativistic limit $|p| \ll \rho$ becomes 
+        \begin{equation*}
+            \partial_0 (p + \rho) + \partial_i ((p + \rho) u^i) - \dot p \simeq \partial_0 \rho + \partial_i (\rho u^i) = 0 ~.
+        \end{equation*}
+        This is the conservation of energy for a fluid.
+        For the spatial indices, we have 
+        \begin{equation*}
+        \begin{aligned}
+            \partial_\mu T^{\mu i} & = u^\mu u^i \partial_\mu (p + \rho) + (p + \rho) (u^i \partial_\mu u^\mu + u^\mu \partial_\mu u^i) + \partial^i p \\ & = \underbrace{u^0}_1 u^i \partial_0 (p + \rho) + u^j u^i \partial_j (p + \rho) + (p + \rho) (u^i \partial_0 \underbrace{u^0}_1 + \underbrace{u^0}_1 \partial_0 u^i) \\ & \qquad + (p + \rho) (u^i \partial_j u^j + u^j \partial_j u^i) + \partial^i p \\ & = u^i \partial_0 (p + \rho) + u^j u^i \partial_j (p + \rho) + (p + \rho) \partial_0 u^i + (p + \rho) (u^i \partial_j u^j + u^j \partial_j u^i) + \partial^i p \\ & = u^i (\underbrace{\partial_0 \rho + \partial_j(\rho u^j)}_0 ) +  u^i (\partial_0 p + \partial_j(p u^j) ) + (p + \rho) \partial_0 u^i + (p+\rho)(u^i \partial_j u^j + u^j \partial_j u^i ) + \partial^i p \\ & = u^i (\partial_0 p + \partial_j(p u^j) ) + (p + \rho) \partial_0 u^i + (p+\rho)(u^i \partial_j u^j + u^j \partial_j u^i ) + \partial^i p ~,
+        \end{aligned}
+        \end{equation*}
+        which in the non-relativistic limit $|p| \ll \rho$ and $u^i \ll c$ becomes 
+        \begin{equation*}
+            \rho \partial_0 u^i + \rho u^j \partial_j u^i + \partial^i p = 0 ~,
+        \end{equation*}
+        This is the Euler equation for a fluid.
+    \end{proof}
+
+    Putting together, we have 
+    \begin{equation*}
+        G_{\mu \nu} \propto T_{\mu\nu} ~.
+    \end{equation*}
+    The proportionality constant can be found using dimensional analysis and the Newtonian limit. Finally, we find
+    \begin{equation*}
+        G_{\mu\nu} = 8 \pi G_N T_{\mu\nu} ~.
+    \end{equation*}
+
+\section{Gravity and geometry}
+
+    The non-linear Einstein field equations tell us that matter curves spacetime, but it follows also geodesic. This means that gravity can be thought as geometry. For example, it can be proved that for dust, i.e.~$p=0$, that the geodesic equation follows from the continuity equation. 
+    \begin{proof}
+        In fact, the energy-momentum tensor is
+        \begin{equation*}
+            T^{\mu\nu} = \rho u^\mu u^\nu 
+        \end{equation*}
+        and the continuity equation becomes 
+        \begin{equation*}
+        \begin{aligned}
+            0 = \nabla_\mu T^{\mu\nu} = \nabla_\mu (\rho u^\mu u^\nu) = \nabla_\mu (\rho u^\mu u^\nu) = (\nabla_\mu \rho) u^\mu u^\nu + \rho (\nabla_\mu u^\mu) u^\nu + (\rho \nabla_\mu u^\nu) u^\mu ~.
+        \end{aligned}
+        \end{equation*}     
+        Now, we multiply for $u_\nu$ and we obtain 
+        \begin{equation*}
+        \begin{aligned}
+            0 = (\nabla_\mu T^{\mu\nu}) u_\nu & = (\nabla_\mu \rho) u^\mu \underbrace{u^\nu u_\nu}_{-1} + \rho (\nabla_\mu u^\mu) \underbrace{u^\nu u_\nu}_{-1} + \rho (\nabla_\mu u^\nu) u^\mu u_\nu \\ & = - (\nabla_\mu \rho) u^\mu - \rho (\nabla_\mu u^\mu) + \rho \underbrace{(\nabla_\mu u^\nu) u_\nu}_0 u^\mu = - \nabla_\mu (\rho u^\mu) ~,
+        \end{aligned}
+        \end{equation*}
+        where we have used the fact that
+        \begin{equation*}
+            0 = \rho \nabla_\mu (u_\nu u^\nu) = 2 \rho (\nabla_\mu u^\nu) u_\nu ~.
+        \end{equation*}
+        We invert the first equation  
+        \begin{equation*}
+            \rho (\nabla_\mu u^\nu) u^\mu = - (\nabla_\mu \rho) u^\mu u^\nu - \rho (\nabla_\mu u^\mu) u^\nu = - \nabla_\mu (\rho u^\mu) u^\nu = 0 ~,
+        \end{equation*}
+        which implies that
+        \begin{equation*}
+            \rho u^\mu \nabla_\mu u^\nu = 0 ~.
+        \end{equation*}
+    \end{proof}
+
+\chapter{Gravity and action}
+
+    In this chapter, we will study how to derive the Einstein field equations by an action principle and the gauge symmetries of this action by means of diffeomorphisms.
+
+\section{Einstein-Hilbert action}
+
+    In the vacuum, Einstein field equations can be obtained by an action, called the Einstein-Hilbert action 
+    \begin{equation*}
+        S = - \int d^4 x ~ \sqrt{- g} R ~.
+    \end{equation*}
+    \begin{proof}
+        We make a variation of the metric $\delta g_{\mu\nu}$, hence 
+        \begin{equation*}
+            \delta (\sqrt{-g} R) = \delta \sqrt{-g} R + \sqrt{-g} \delta R ~.
+        \end{equation*}
+        For the first term, we use the identity 
+        \begin{equation*}
+        \begin{aligned}
+            \delta \det g = \delta \exp \ln \det g = \exp \ln \det g ~ \delta \ln \det g = \det g ~ \delta \tr \ln g = \det g ~ \delta \tr (g^{-1} \delta g)  ~,
+        \end{aligned}
+        \end{equation*}
+        therefore 
+        \begin{equation}\label{proof1}
+        \begin{aligned}
+            \delta \sqrt{-g} & = \frac{1}{2 \sqrt{-g}} \delta \sqrt{-g} = - \frac{1}{2 \sqrt{-g}} (- g) ~ g^{\mu\nu} \delta g_{\mu\nu} = \frac{1}{2} \sqrt{-g} ~ g^{\mu\nu} \delta g_{\mu\nu} \\ & = \frac{1}{2} \sqrt{-g} ~ g^{\mu\nu} \delta g_{\mu\nu} = - \frac{1}{2} \sqrt{-g} ~ g_{\mu\nu} \delta g^{\mu\nu} ~.
+        \end{aligned}
+        \end{equation}
+        For the second term, 
+        \begin{equation*}
+            \delta R = \delta (g^{\mu\nu} R_{\mu\nu}) = \delta g^{\mu\nu} R_{\mu\nu} + g^{\mu\nu} \delta R_{\mu\nu}
+        \end{equation*}
+        Now, we vary the Christoffel symbols 
+        \begin{equation}\label{varch}
+        \begin{aligned}
+            \delta \Gamma^\alpha_{\mu\nu} & = \frac{1}{2} \delta (g^{\alpha \beta} (- g_{\mu\nu, \alpha} + g_{\mu\alpha,\nu} + g_{\nu \alpha, \mu} )  ) = \frac{1}{2} g^{\alpha \beta} (- \delta g_{\mu\nu, \alpha} + \delta g_{\mu\alpha,\nu} + \delta  g_{\nu \alpha, \mu} ) ~.
+        \end{aligned}
+        \end{equation}
+        Hence, 
+        \begin{equation*}
+            \delta R_{\mu\nu} = \delta \Gamma^{\alpha}_{\mu\nu;\alpha} - \delta \Gamma^{\alpha}_{\mu\alpha;\nu} ~,
+        \end{equation*}
+        and 
+        \begin{equation*}
+        \begin{aligned}
+            g^{\mu\nu} \delta R_{\mu\nu} & = g^{\mu\nu} \delta \Gamma^{\alpha}_{\mu\nu;\alpha} - \delta \Gamma^{\alpha}_{\mu\alpha;\nu} = \nabla_\alpha (g^{\mu\nu} \delta \Gamma^{\alpha}_{\mu\nu} ) - \nabla_\nu (g^{\mu\nu} \delta \Gamma^{\alpha}_{\mu\alpha}) \\ & = \nabla_\alpha (g^{\mu\nu} \delta \Gamma^{\alpha}_{\mu\nu} ) - \nabla_\alpha (g^{\mu\alpha} \delta \Gamma^{\nu}_{\mu\nu}) = \nabla_\alpha (g^{\mu\nu} \delta \Gamma^{\alpha}_{\mu\nu} - g^{\mu\alpha} \delta \Gamma^{\nu}_{\mu\nu}) ~,
+        \end{aligned}
+        \end{equation*}
+        where we have exchanged $\alpha$ and $\nu$. This term can be neglected because it is a total derivative.
+        Putting together, we obtain 
+        \begin{equation*}
+            \delta(\sqrt{-g} R) = \sqrt{-g} \Big (R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} \Big) \delta g^{\mu\nu} = \sqrt{-g} G_{\mu\nu} \delta g^{\mu\nu}
+        \end{equation*}
+        and 
+        \begin{equation*}
+            \delta S = - \int d^4 x ~ \sqrt{-g} ~ G_{\mu\nu} \delta g^{\mu\nu} ~.
+        \end{equation*}
+        Since $\delta g^{\mu\nu}$ is arbitrary, the equations of motion are 
+        \begin{equation*}
+            G_{\mu\nu} = 0 ~.
+        \end{equation*}
+    \end{proof}
+
+    Considering matter and dimensional analysis as well, the action becomes
+    \begin{equation*}
+        S = \int d^4 x ~ \sqrt{- g} \Big (- \frac{R}{16 \pi G_N} + \mathcal L_M \Big) = S_{EH} + S_M ~,
+    \end{equation*}
+    where $\mathcal L_M$ is the Lagrangian density of matter. 
+    \begin{proof}
+        We define the energy-momentum tensor 
+        \begin{equation*}
+        \begin{aligned}
+            T_{\mu\nu} & = \frac{2}{\sqrt{-g}} \dvf{S_M}{g^{\mu\nu}} = \frac{2}{\sqrt{-g}} \dvf{}{g^{\mu\nu}} (\sqrt{-g} \mathcal L_M) \\ & = \frac{2}{\sqrt{-g}} \sqrt{-g} \dvf{\mathcal L_M}{g^{\mu\nu}} + \frac{2}{\sqrt{-g}} \mathcal L_M \dvf{\sqrt{-g}}{g^{\mu\nu}} = 2 \dvf{\mathcal L_M}{g^{\mu\nu}} - \mathcal L_M g_{\mu\nu} ~,
+        \end{aligned}
+        \end{equation*}
+        where we have used~\eqref{proof1}. Moreover, the variation of the action is 
+        \begin{equation*}
+            \delta S = \int d^4 x ~ \sqrt{-g} \Big (- \frac{G_{\mu\nu}}{8 \pi G_N} + T_{\mu\nu}) \delta g^{\mu\nu} ~,
+        \end{equation*}
+        and, since $\delta g^{\mu\nu}$ is arbitrary, the equations of motion are 
+        \begin{equation*}
+            G_{\mu\nu} = 8 \pi G_N T_{\mu\nu} ~.
+        \end{equation*}
+    \end{proof}
+
+\section{Diffeomorphisms} 
+
+    Consider two charts $x = x^\mu (P)$ and $y = y^\mu (P)$, defined as
+    \begin{equation*}
+        x \colon \mathcal D_x \rightarrow \mathbb R^n ~, \quad y \colon \mathcal D_y \rightarrow \mathbb R^n ~, 
+    \end{equation*}
+    such that they do not overlap $\mathcal D_x \cap \mathcal D_y \neq \emptyset$. A diffeomorphism is a change of coordinates that can be smoothly connected with the identity 
+    \begin{equation*}
+        y^\mu (P) = x^\mu (P) + \epsilon \xi^\mu (P) ~,
+    \end{equation*}
+    where $\epsilon$ is an infinitesimal parameter and $\xi^\mu$ are components of a vector field in coordinate basis $\partial/\partial x$
+    \begin{equation*}
+        \underline \xi = \xi^\mu \partial/\partial x^\mu ~.
+    \end{equation*}
+    The coordinate basis change as 
+    \begin{equation}\label{proof2}
+        \pdv{}{y^\mu} = \pdv{x^\nu}{y^\mu} \pdv{}{x^\nu} = \Big ( \delta^\nu_{\phantom \nu \mu} + \epsilon \pdv{\xi^\nu}{x^\mu} \Big )^{-1} \pdv{}{x^\nu} = \Big (\delta^\nu_{\phantom \nu \mu} - \epsilon \pdv{\xi^\nu}{x^\mu} \Big ) \pdv{}{x^\nu} ~,
+    \end{equation}
+    whereas the dual basis as 
+    \begin{equation}\label{proof3}
+        \tilde{dy^\mu} = \pdv{y^\mu}{x^\nu} \tilde{dx^\nu} = \Big ( \delta^\mu_{\phantom \mu \nu} + \epsilon \pdv{\xi^\mu}{x^\nu} \Big ) \tilde{dx^\nu} ~.
+    \end{equation}
+
+    The variation of a scalar $\phi = f \circ x^{-1}$ is 
+    \begin{equation*}
+        \delta \phi (x^\mu) = - \xi^\mu \pdv{\phi}{x^\mu} = - \pounds_{\underline \xi} \phi ~.
+    \end{equation*}
+    This means that shifting the coordinates in the direction of $\underline \xi$ is equivalent to dragging backwards the scalar field $f$.
+    \begin{proof}
+        Consider $\phi = f \circ x^{-1}$ and $\psi = f \circ y^{-1}$. Since $f$ is a scalar, we have 
+        \begin{equation*}
+            \psi (y^\mu) = \phi(x^\mu) ~.
+        \end{equation*}
+        Using the expansions 
+        \begin{equation*}
+            \psi(x^\mu) = \phi(x^\mu) + \epsilon \delta \phi(x^\mu) ~, 
+        \end{equation*}
+        \begin{equation*}
+            \psi (y^\mu) = \psi(x^\mu + \epsilon \xi^\mu) \simeq \psi(x^\mu) + \epsilon \xi^\mu \pdv{\psi}{x^\mu} \simeq \phi(x^\mu) + \epsilon \delta \phi(x^\mu) + \epsilon \xi^\mu \pdv{\phi}{x^\mu} ~,
+        \end{equation*} 
+        we have 
+        \begin{equation*}
+            \delta \phi(x^\mu) = - \xi^\mu \pdv{\phi}{x^\mu} ~.
+        \end{equation*}
+    \end{proof}
+
+    The variation of a vector $\underline v$ is 
+    \begin{equation*}
+        \delta v^\mu = v^\nu \pdv{\xi^\mu}{x^\nu} - \xi^\nu \pdv{v^\mu}{x^\nu} = - (\pounds_{\underline \xi} \underline v)^\mu ~.
+    \end{equation*}
+    \begin{proof}
+        Since $\underline v$ is a scalar, we have 
+        \begin{equation*}
+            V^\nu (y^\mu) \pdv{}{y^\nu} = v^\nu (x^\mu) \pdv{}{x^\nu} ~.
+        \end{equation*}
+        Using~\eqref{proof2} and the expansions 
+        \begin{equation*}
+            V^\nu(x^\mu) = v^\nu(x^\mu) + \epsilon \delta v^\nu(x^\mu) ~,
+        \end{equation*}
+        \begin{equation*}
+        \begin{aligned}
+            V^\nu (y^\mu) \pdv{}{y^\nu} & = V^\nu (x^\mu + \epsilon \xi^\mu) \pdv{}{y^\nu} \simeq \Big( V^\nu (x^\mu) + \epsilon \xi^\mu \pdv{v^\nu}{x^\mu} \Big) \Big (\delta^\alpha_{\phantom \alpha \nu} - \epsilon \pdv{\xi^\alpha}{x^\nu} \Big ) \pdv{}{x^\alpha} \\ & = \Big( v^\nu (x^\mu) + \epsilon \delta v^\nu(x^\mu) + \epsilon \xi^\mu \pdv{v^\nu}{x^\mu} \Big) \Big (\delta^\alpha_{\phantom \alpha \nu} - \epsilon \pdv{\xi^\alpha}{x^\nu} \Big ) \pdv{}{x^\alpha} \\ & = v^\nu (x^\mu) \pdv{}{x^\nu} + \epsilon \delta v^\nu (x^\mu) \pdv{}{x^\nu} + \epsilon \xi^\mu \pdv{v^\nu}{x^\mu} \pdv{}{x^\nu} - \epsilon v^\nu \pdv{\xi^\alpha}{x^\nu} \pdv{}{x^\alpha} \\ & = v^\nu (x^\mu) \pdv{}{x^\nu} + \epsilon \delta v^\nu (x^\mu) \pdv{}{x^\nu} + \epsilon \xi^\mu \pdv{v^\nu}{x^\mu} \pdv{}{x^\nu} - \epsilon v^\alpha \pdv{\xi^\nu}{x^\alpha} \pdv{}{x^\nu} ~,
+        \end{aligned}
+        \end{equation*} 
+        where we have exchanged $\alpha$ and $\nu$, we have 
+        \begin{equation*}
+            \delta v^\nu (x^\mu) = v^\alpha \pdv{\xi^\nu}{x^\alpha} - \xi^\mu \pdv{v^\nu}{x^\mu} ~.
+        \end{equation*}
+    \end{proof}
+
+    The variation of the metric is  
+    \begin{equation}\label{diffeo}
+        \delta v^\mu = v^\nu \pdv{\xi^\mu}{x^\nu} - \xi^\nu \pdv{v^\mu}{x^\nu} = - (\pounds_{\underline \xi} \underline v)^\mu ~.
+    \end{equation}
+    \begin{proof}
+        Since $g$ is a scalar, we have 
+        \begin{equation*}
+            G_{\mu\nu} (y^\mu) \tilde{dy^\mu} \tilde{dy^\nu} = g_{\mu\nu} (x^\mu) \tilde{dx^\mu} \tilde{dx^\nu} ~.
+        \end{equation*}
+        Using~\eqref{proof3} and the expansions 
+        \begin{equation*}
+            G_{\mu\nu} (x^\mu) = g_{\mu\nu} (x^\mu) + \epsilon \delta g_{\mu\nu}(x^\mu) ~,
+        \end{equation*}
+        \begin{equation*}
+        \begin{aligned}
+            G_{\mu\nu} (y^\mu) \tilde{dy^\mu} \tilde{dy^\nu} & = G_{\mu\nu} (x^\mu + \epsilon \xi^\mu) \tilde{dy^\mu} \tilde{dy^\nu} \\ & =   ( G_{\mu\nu} (x^\mu) + \epsilon \xi^\alpha g_{\mu\nu,\alpha}  )   (\delta^\mu_{\phantom \mu \alpha} + \epsilon \xi^\mu_{\phantom \mu,\alpha} )   (\delta^\nu_{\phantom \nu \beta} + \epsilon \xi^\nu_{\phantom \nu,\beta}  ) \tilde{dx^\alpha} \tilde{dx^\beta} \\ & =   ( g_{\mu\nu} (x^\mu) + \epsilon \delta g_{\mu\nu}(x^\mu) + \epsilon \xi^\alpha g_{\mu\nu,\alpha}  )   (\delta^\mu_{\phantom \mu \alpha} + \epsilon \xi^\mu_{\phantom \mu,\alpha} )   (\delta^\nu_{\phantom \nu \beta} + \epsilon \xi^\nu_{\phantom \nu,\beta}  ) \tilde{dx^\alpha} \tilde{dx^\beta} \\ & = g_{\alpha \beta} \tilde{dx^\alpha} \tilde{dx^\beta} + \epsilon g_{\alpha\nu} \xi^\nu_{\phantom \nu, \beta} \tilde{dx^\alpha} \tilde{dx^\beta} + \epsilon g_{\mu\beta} \xi^\mu_{\phantom \mu, \alpha} \tilde{dx^\alpha} \tilde{dx^\beta} \\ & \qquad + \epsilon \delta g_{\alpha\beta} (x^\mu) \tilde{dx^\alpha} \tilde{dx^\beta} + \epsilon \xi^\sigma g_{\alpha\beta,\sigma} \tilde{dx^\alpha} \tilde{dx^\beta} ~,
+        \end{aligned}
+        \end{equation*} 
+        we have 
+        \begin{equation*}
+        \begin{aligned}
+            \delta g_{\alpha\beta} (x^\mu) & = - g_{\alpha\nu} \xi^\nu_{\phantom \nu, \beta} - g_{\mu\beta} \xi^\mu_{\phantom \mu, \alpha} - \xi^\sigma g_{\alpha\beta, \sigma} \\ & = - \partial_\beta (g_{\alpha\nu} \xi^\nu) -\partial_\alpha (g_{\mu\beta} \xi^\mu) + g_{\alpha\nu, \beta} \xi^\nu + g_{\mu\beta,\alpha} \xi^\mu - \xi^\sigma g_{\alpha\beta,\sigma} \\ & = - \xi_{\alpha,\beta} - \xi_{\beta,\alpha} + g_{\alpha\nu, \beta} \xi^\nu + g_{\mu\beta,\alpha} \xi^\mu - \xi^\sigma g_{\alpha\beta,\sigma} \\ & = - \xi_{\alpha,\beta} - \xi_{\beta,\alpha} + \xi^{\sigma} (- g_{\alpha\beta,\sigma} + g_{\alpha\sigma,\beta} + g_{\beta\sigma,\alpha} ) \\ & = - \xi_{\alpha,\beta} - \xi_{\beta,\alpha} + \xi_{\rho} \underbrace{g^{\rho\sigma} (- g_{\alpha\beta,\sigma} + g_{\alpha\sigma,\beta} + g_{\beta\sigma,\alpha} )}_{2 \Gamma^\rho_{\alpha\beta}} \\ & = - \xi_{\alpha,\beta} - \xi_{\beta,\alpha} +  2 \xi_{\rho} \Gamma^\rho_{\alpha\beta} = - \xi_{\alpha,\beta} + \xi_{\rho} \Gamma^\rho_{\alpha\beta} - \xi_{\beta,\alpha} + \xi_{\rho} \Gamma^\rho_{\beta\alpha} = - \xi_{\alpha;\beta} - \xi_{\beta;\alpha} ~,
+        \end{aligned}
+        \end{equation*}
+        where we have integrated by parts and used the symmetric properties.
+    \end{proof}
+
+\section{Gauge symmetries}
+
+    The Einstein-Hilbert action is invariant under these diffeomorphisms.
+    The vacuum action vanishes identically due to the Bianchi identity
+    \begin{equation*}
+        S_{EH} = \int d^4 x ~ \sqrt{-g} R ~.
+    \end{equation*}
+    \begin{proof}
+        In fact, using~\eqref{diffeo}
+        \begin{equation*}
+        \begin{aligned}
+            \delta S_{EH} & = \int d^4 x ~ \sqrt{-g} G^{\mu\nu} \delta g_{\mu\nu} = - \int d^4 x~ \sqrt{-g} G^{\mu\nu} (\nabla_\nu \xi_{\mu} + \nabla_\mu \xi_{\nu}) \\ & = \int d^4 x~ \sqrt{-g} (\xi_{\mu} \underbrace{\nabla_\nu G^{\mu\nu}}_0 + \xi_{\nu} \underbrace{\nabla_\mu G^{\mu\nu}}_0) = 0 ~,
+        \end{aligned}
+        \end{equation*}
+        where we have integrated by parts.
+    \end{proof}
+    The matter action vanishes identically due to the continuity equation
+    \begin{equation*}
+        S_{EH} = \int d^4 x ~ \sqrt{-g} \mathcal L_M ~.
+    \end{equation*}
+    \begin{proof}
+        In fact, using~\eqref{diffeo}
+        \begin{equation*}
+        \begin{aligned}
+            \delta S_{EH} & = \int d^4 x ~ \sqrt{-g} T^{\mu\nu} \delta g_{\mu\nu} = - \int d^4 x~ \sqrt{-g} T^{\mu\nu} (\nabla_\nu \xi_{\mu} + \nabla_\mu \xi_{\nu}) \\ & = \int d^4 x~ \sqrt{-g} (\xi_{\mu} \underbrace{\nabla_\nu T^{\mu\nu}}_0 + \xi_{\nu} \underbrace{\nabla_\mu T^{\mu\nu}}_0) = 0 ~,
+        \end{aligned}
+        \end{equation*}
+        where we have integrated by parts.
+    \end{proof}
+    
+    Furthermore, the Riemann tensor is invariant under diffeomorphisms.
+    \begin{proof}
+        In fact, using~\eqref{varch} and~\eqref{diffeo},
+        \begin{equation*}
+        \begin{aligned}
+            \delta R^{\mu}_{\phantom \nu\alpha\beta} & = - \delta \Gamma^\mu_{\nu\alpha,\beta} + \delta \Gamma^\mu_{\nu\beta,\alpha} \\ & = - \frac{1}{2} g^{\mu\rho} \Big (-\delta g_{\nu\alpha, \rho\beta} + \delta g_{\nu\rho,\alpha\beta} + \delta g_{\alpha\rho,\nu\beta} \Big) + \frac{1}{2} g^{\mu\rho}  \Big ( -\delta g_{\nu\beta, \rho\alpha} + \delta g_{\nu\rho,\beta\alpha} + \delta g_{\beta\rho,\nu\alpha} \Big) \\ & = \frac{1}{2} g^{\mu\rho} \Big (\delta g_{\nu\alpha, \rho\beta} - \delta g_{\nu\rho,\alpha\beta} - \delta g_{\alpha\rho,\nu\beta} -\delta g_{\nu\beta, \rho\alpha} + \delta g_{\nu\rho,\beta\alpha} + \delta g_{\beta\rho,\nu\alpha} \Big) \\ & = - \frac{1}{2} g^{\mu\rho} \Big (\cancel{\xi_{\nu,\alpha\rho\beta}} + \cancel{\xi_{\alpha,\nu\rho\beta}} - \cancel{\xi_{\nu,\rho\alpha\beta}} - \cancel{\xi_{\rho,\nu\alpha\beta}} - \cancel{\xi_{\alpha,\rho\nu\beta}} - \cancel{\xi_{\rho,\alpha\beta\nu}} \\ & \qquad - \cancel{\xi_{\nu,\beta\rho\alpha}} - \cancel{\xi_{\beta,\nu\rho\alpha}} + \cancel{\xi_{\nu,\rho\beta\alpha}} + \cancel{\xi_{\rho,\nu\beta\alpha}} + \cancel{\xi_{\beta,\rho\nu\alpha}} + \cancel{\xi_{\rho,\beta\nu\alpha}} \Big) = 0 ~,
+        \end{aligned}
+        \end{equation*}
+        where we have used the fact that partial derivatives commute.
+    \end{proof}
+    

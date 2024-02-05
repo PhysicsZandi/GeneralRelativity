@@ -1,0 +1,159 @@
+\part{Gravitational waves}
+
+\chapter{Linearised Einstein field equations}
+
+    In this chapter, we will study the weak-field limit, in order to find the linearised Einstein field equations in the De Donder gauge. With the addition of non-relativistic limit, we will recover the experimentally tested Newtonian laws (gravity and second law of dynamics). 
+
+\section{Linearised Einstein field equations}
+
+    Consider the weak field limit, in which local curvature is small. This means that there exists a reference frame such that
+    \begin{equation*}
+        g_{\mu\nu} = \eta_{\mu\nu} + \epsilon h_{\mu\nu} ~,
+    \end{equation*}
+    where $\epsilon$ is an infinitesimal parameter. The linearised Einstein field equations in first order in $\epsilon$ are 
+    \begin{equation*}
+        \eta_{\mu\nu} \Box h - \Box h_{\mu\nu} - \partial_\mu \partial_\nu h - \eta_{\mu\nu} \partial^\alpha \partial^\beta h_{\alpha\beta}  + \partial^\beta \partial_\nu h_{\mu\beta} + \partial^\beta \partial_\mu h_{\nu\beta} = 16 \pi G_N \epsilon T_{\mu\nu} ~.
+    \end{equation*}
+    \begin{proof}
+        The Christoffel symbols in first order in $\epsilon$ are
+        \begin{equation}\label{proof4}
+        \begin{aligned}
+            \Gamma^\alpha_{\mu\nu} & = \frac{1}{2} g^{\alpha\beta} (g_{\mu\beta, \nu} + g_{\nu\beta,\mu} - g_{\mu\nu,\beta}) \\ & = \frac{1}{2} g^{\alpha\beta} (\cancel{\eta_{\mu\beta, \nu}} + \epsilon h_{\mu\beta, \nu} + \cancel{\eta_{\nu\beta,\mu}} + \epsilon h_{\nu\beta,\mu} - \cancel{\eta_{\mu\nu,\beta} }- \epsilon h_{\mu\nu,\beta} ) \\ & = \frac{\epsilon}{2} g^{\alpha\beta} (h_{\mu\beta, \nu} + h_{\nu\beta,\mu} - h_{\mu\nu,\beta}) \\ & \simeq \frac{\epsilon}{2} (\eta^{\alpha\beta} - \epsilon h^{\alpha\beta}) (h_{\mu\beta, \nu} + h_{\nu\beta,\mu} - h_{\mu\nu,\beta}) \\ & \simeq \frac{1}{2} (\epsilon \eta^{\alpha\beta} - \cancel{\epsilon^2 h^{\alpha\beta}}) (h_{\mu\beta, \nu} + h_{\nu\beta,\mu} - h_{\mu\nu,\beta}) \\ & \simeq \frac{\epsilon}{2} \eta^{\alpha\beta} (h_{\mu\beta, \nu} + h_{\nu\beta,\mu} - h_{\mu\nu,\beta}) ~,
+        \end{aligned}
+        \end{equation}
+        where we have Taylor expanded the inverse of the metric 
+        \begin{equation*}
+            g^{\alpha\beta} = (g_{\alpha\beta})^{-1} = (\eta_{\alpha\beta} + \epsilon h_{\alpha\beta})^{-1} \simeq \eta_{\alpha\beta} - \epsilon h_{\alpha\beta}  ~.
+        \end{equation*}
+        The Riemann tensor in first order in $\epsilon$ is 
+        \begin{equation*}
+        \begin{aligned}
+            R^\mu_{\phantom \mu \nu\alpha\beta} & = \Gamma^\mu_{\nu\beta,\alpha} - \Gamma^\mu_{\nu\alpha,\beta} + \Gamma^\lambda_{\nu\beta} \Gamma^\mu_{\lambda\alpha} - \Gamma^\lambda_{\nu\alpha} \Gamma^\mu_{\lambda\beta} \\ & \simeq \Gamma^\mu_{\nu\beta,\alpha} - \Gamma^\mu_{\nu\alpha,\beta} \\ & = \partial_\alpha (\frac{\epsilon}{2} \eta^{\mu\lambda} (h_{\nu\lambda, \beta} + h_{\beta\lambda,\nu} - h_{\nu\beta,\lambda}) ) - \partial_\beta (\frac{\epsilon}{2} \eta^{\mu\lambda} (h_{\nu\lambda, \alpha} + h_{\alpha\lambda,\nu} - h_{\nu\alpha,\lambda})) \\ & = \frac{\epsilon}{2} \cancel{\eta^{\mu\lambda}_{\phantom{\mu\lambda} , \alpha}} (h_{\nu\lambda, \beta} + h_{\beta\lambda,\nu} - h_{\nu\beta,\lambda}) + \frac{\epsilon}{2} \eta^{\mu\lambda} (\cancel{h_{\nu\lambda, \beta\alpha}} + h_{\beta\lambda,\nu\alpha} - h_{\nu\beta,\lambda\alpha}) \\ & \qquad - \frac{\epsilon}{2} \cancel{\eta^{\mu\lambda}_{\phantom{\mu\lambda} , \beta}} (h_{\nu\lambda, \alpha} + h_{\alpha\lambda,\nu} - h_{\nu\alpha,\lambda}) - \frac{\epsilon}{2} \eta^{\mu\lambda} (\cancel{h_{\nu\lambda, \alpha\beta}} + h_{\alpha\lambda,\nu\beta} - h_{\nu\alpha,\lambda\beta}) \\ & = \frac{\epsilon}{2} \eta^{\mu\lambda} (h_{\beta\lambda,\nu\alpha} - h_{\nu\beta,\lambda\alpha}) - \frac{\epsilon}{2} \eta^{\mu\lambda} (h_{\alpha\lambda,\nu\beta} - h_{\nu\alpha,\lambda\beta}) \\ & = \frac{\epsilon}{2} \eta^{\mu\lambda} (h_{\beta\lambda,\nu\alpha} - h_{\nu\beta,\lambda\alpha} - h_{\alpha\lambda,\nu\beta} + h_{\nu\alpha,\lambda\beta}) ~.
+        \end{aligned}
+        \end{equation*}
+        The Ricci tensor in first order in $\epsilon$ is 
+        \begin{equation*}
+        \begin{aligned}
+            R_{\nu\beta} & = R^\mu_{\phantom \mu \nu\mu\beta} \\ & = \frac{\epsilon}{2} \eta^{\mu\lambda} ( h_{\beta\lambda,\nu\mu} - h_{\nu\beta,\lambda\mu} - h_{\mu\lambda,\nu\beta} + h_{\nu\mu,\lambda\beta}) \\ & = \frac{\epsilon}{2} \eta^{\mu\lambda} (\partial_\nu \partial_\mu h_{\beta\lambda} - \partial _\lambda \partial_\mu h_{\nu\beta} - \partial_\nu \partial_\beta h_{\mu\lambda} + \partial_\lambda \partial_\beta h_{\nu\mu}) \\ & = \frac{\epsilon}{2} (\partial_\nu \partial^\mu h_{\beta\mu} - \partial^\mu \partial_\mu h_{\nu\beta} - \partial_\nu \partial_\beta h^\mu_{\phantom \mu \mu} + \partial^\mu \partial_\beta h_{\nu\mu}) \\ & = \frac{\epsilon}{2} (  \partial^\mu \partial_\beta h_{\nu\mu} + \partial^\mu \partial_\nu h_{\beta\mu} - \partial_\nu \partial_\beta h - \Box h_{\nu\beta} ) ~,
+        \end{aligned}
+        \end{equation*}
+        where we have set $\lambda = \mu$.
+        The Ricci scalar in first order in $\epsilon$ is 
+        \begin{equation*}
+        \begin{aligned}
+            R & = R^\nu_{\phantom \nu \nu} \\ & = \eta^{\nu \beta} R_{\nu \beta} \\ & = \frac{\epsilon}{2} \eta^{\nu \beta} ( \partial^\mu \partial_\beta h_{\nu\mu} + \partial^\mu \partial_\nu h_{\beta\mu} - \partial_\nu \partial_\beta h - \Box h_{\nu\beta}) \\ & = \frac{\epsilon}{2} ( \partial^\mu \partial^\nu h_{\nu\mu} + \partial^\mu \partial^\beta h_{\beta\mu} - \partial_\nu \partial^\nu h - \Box h^\nu_{\phantom \nu \nu}) \\ & = \frac{\epsilon}{2} (2 \partial^\mu \partial^\nu h_{\nu\mu} - 2 \Box h) \\ & = \epsilon (\partial^\mu \partial^\nu h_{\nu\mu}- \Box h) ~,
+        \end{aligned}
+        \end{equation*}
+        where we have set $\beta = \nu$.
+        Finally, the Einstein tensor in first order in $\epsilon$ is 
+        \begin{equation*}
+        \begin{aligned}
+            G_{\mu\nu} & = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} \\ & = \frac{\epsilon}{2} (\partial^\beta \partial_\nu h_{\mu\beta} + \partial^\beta \partial_\mu h_{\nu\beta} - \partial_\mu \partial_\nu h - \Box h_{\mu\nu} ) - \frac{1}{2} \epsilon (\partial^\alpha \partial^\beta h_{\alpha\beta } - \Box h ) g_{\mu\nu} \\ & = \frac{\epsilon}{2} ( \eta_{\mu\nu} \Box h - \Box h_{\mu\nu} - \partial_\mu \partial_\nu h - \eta_{\mu\nu} \partial^\alpha \partial^\beta h_{\alpha\beta} + \partial^\beta \partial_\nu h_{\mu\beta} + \partial^\beta \partial_\mu h_{\nu\beta} ) ~.
+        \end{aligned}
+        \end{equation*}
+        The linearised Einstein field equations are 
+        \begin{equation*}
+            G_{\mu\nu} = 8 \pi G_N T_{\mu\nu} ~,
+        \end{equation*}
+        \begin{equation*}
+            \frac{\epsilon}{2} ( \eta_{\mu\nu} \Box h - \Box h_{\mu\nu} - \partial_\mu \partial_\nu h - \eta_{\mu\nu} \partial^\alpha \partial^\beta h_{\alpha\beta}  + \partial^\beta \partial_\nu h_{\mu\beta} + \partial^\beta \partial_\mu h_{\nu\beta} ) = 8 \pi G_N \epsilon \epsilon T_{\mu\nu} ~,
+        \end{equation*}
+        \begin{equation*}
+            \eta_{\mu\nu} \Box h - \Box h_{\mu\nu} - \partial_\mu \partial_\nu h - \eta_{\mu\nu} \partial^\alpha \partial^\beta h_{\alpha\beta}  + \partial^\beta \partial_\nu h_{\mu\beta} + \partial^\beta \partial_\mu h_{\nu\beta} = 16 \pi G_N \epsilon T_{\mu\nu} ~,
+        \end{equation*}
+        where we have expanded ${T'}_{\mu\nu} = T^{(0)}_{\mu\nu} + \epsilon T_{\mu\nu}$ and noticed that $T_{\mu\nu}^{(0)} = 0$, because the Minkowski metric solves Einstein equations. 
+    \end{proof}
+
+    Since the metric is invariant under a gauge symmetry, following by the Bianchi identity, we can choose a suitable gauge fixing to simplify these equations: the De Donder gauge 
+    \begin{equation*}
+        \partial^\mu h_{\mu\nu} = \frac{1}{2} \partial_\nu h ~.
+    \end{equation*}
+    Therefore, the linearised Einstein field equations becomes
+    \begin{equation*}
+        - \Box h_{\mu\nu} = 16 \pi G_N (T_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} T) ~.
+    \end{equation*}
+    \begin{proof}
+        In fact, the right side 
+        \begin{equation*}
+        \begin{aligned}
+            G_{\mu\nu} & = \eta_{\mu\nu} \Box h - \Box h_{\mu\nu} - \partial_\mu \partial_\nu h - \eta_{\mu\nu} \partial^\alpha \partial^\beta h_{\alpha\beta}  + \partial^\beta \partial_\nu h_{\mu\beta} + \partial^\beta \partial_\mu h_{\nu\beta} \\ & = \eta_{\mu\nu} \partial^\alpha \partial_\alpha h - \partial^\alpha \partial_\alpha h_{\mu\nu} - \partial_\mu \partial_\nu h - \eta_{\mu\nu} \partial^\alpha \partial^\beta h_{\alpha\beta}  + \partial^\beta \partial_\nu h_{\mu\beta} + \partial^\beta \partial_\mu h_{\nu\beta} \\ & = \eta_{\mu\nu} \partial^\alpha \partial_\alpha h - \partial^\alpha \partial_\alpha h_{\mu\nu} - \partial_\mu \partial_\nu h - \eta_{\mu\nu} \partial^\alpha \underbrace{\partial^\beta h_{\beta\alpha}}_{\frac{1}{2} \partial_\alpha h}  + \partial_\nu \underbrace{\partial^\beta h_{\beta\mu}}_{\frac{1}{2} \partial_\mu h} +  \partial_\mu \underbrace{\partial^\beta h_{\beta\nu}}_{\frac{1}{2} \partial_\nu h} \\ & = \eta_{\mu\nu} \partial^\alpha \partial_\alpha h - \partial^\alpha \partial_\alpha h_{\mu\nu} - \partial_\mu \partial_\nu h - \frac{1}{2} \eta_{\mu\nu} \partial^\alpha \partial_\alpha h  + \frac{1}{2} \partial_\mu h + \frac{1}{2} \partial_\mu \partial_\nu h \\ & = \eta_{\mu\nu} \partial^\alpha \partial_\alpha h - \partial^\alpha \partial_\alpha h_{\mu\nu} - \cancel{\partial_\mu \partial_\nu h} - \frac{1}{2} \eta_{\mu\nu} \partial^\alpha \partial_\alpha h  + \cancel{\frac{1}{2} \partial_\nu \partial_\mu h} + \cancel{\frac{1}{2} \partial_\mu \partial_\nu h } \\ & = - \Box h_{\mu\nu} + \frac{1}{2} \eta_{\mu\nu} \Box h ~.
+        \end{aligned}
+        \end{equation*}
+        Hence,
+        \begin{equation*}
+            \Box h_{\mu\nu} + \frac{1}{2} \eta_{\mu\nu} \Box h = 16 \pi G_N T_{\mu\nu} ~.
+        \end{equation*} 
+        Furthermore, the trace of the Einstein tensor is 
+        \begin{equation*}
+        \begin{aligned}
+            \eta^{\mu\nu} G_{\mu\nu} & = \eta^{\mu\nu} (\eta_{\mu\nu} \Box h - \Box h_{\mu\nu} - \partial_\mu \partial_\nu h - \eta_{\mu\nu} \partial^\alpha \partial^\beta h_{\alpha\beta} + \partial^\beta \partial_\nu h_{\mu\beta} + \partial^\beta \partial_\mu h_{\nu\beta}) \\ & = \underbrace{\eta^{\mu\nu}\eta_{\mu\nu}}_4 \Box h - \Box \underbrace{\eta^{\mu\nu} h_{\mu\nu}}_h - \eta^{\mu\nu}\partial_\mu \partial_\nu h - \underbrace{\eta^{\mu\nu} \eta_{\mu\nu}}_4 \partial^\alpha \partial^\beta h_{\alpha\beta} + \eta^{\mu\nu} \partial^\beta \partial_\nu h_{\mu\beta} + \eta^{\mu\nu} \partial^\beta \partial_\mu h_{\nu\beta} \\ & = 4 \Box h - \Box h - \partial^\nu \partial_\nu h - 4 \partial^\alpha \partial^\beta h_{\alpha\beta} + \partial^\beta \partial^\mu h_{\mu\beta} + \partial^\beta \partial^\nu h_{\nu\beta} \\ & = 2 \Box h - 2 \partial^\nu \underbrace{\partial^\mu h_{\mu\nu}}_{\frac{1}{2} \partial_\nu h} \\ & = \Box h ~,
+        \end{aligned}
+        \end{equation*}
+        which is equal to 
+        \begin{equation*}
+            16 \pi G_N \underbrace{\eta^{\mu\nu} T_{\mu\nu}}_T = 16 \pi G_N T ~.
+        \end{equation*}
+        Putting together
+        \begin{equation*}
+            - \Box h_{\mu\nu} + \frac{1}{2} \eta_{\mu\nu} \Box h = 16 \pi G_N T_{\mu\nu} ~,
+        \end{equation*}
+        \begin{equation*}
+            - \Box h_{\mu\nu} + \frac{1}{2} \eta_{\mu\nu} (16 \pi G_N T) = 16 \pi G_N T_{\mu\nu} ~,
+        \end{equation*}
+        \begin{equation*}
+            - \Box h_{\mu\nu} = 16 \pi G_N \Big ( T_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} T) ~.
+        \end{equation*}
+    \end{proof}
+
+\section{Newtonian regime}
+
+    In order to recover the full Newtonian regime, we need also to ask that the matter source is static and the only non-vanishing component of the energy momentum tensor is
+    \begin{equation*}
+        T^{\mu\nu} \simeq T_{00} = - T ~.
+    \end{equation*}
+    Therefore, we recover the Poisson equation
+    \begin{equation*}
+        \nabla^2 V_N = 4 \pi G_N \rho
+    \end{equation*}
+    where $h_{00} = - 2 V_N$ and $G_N$ is indeed the Newton constant.
+    \begin{proof}
+        In fact 
+        \begin{equation*}
+            T^{00} (\underline x) = (\rho + p) u^0 u^0 + p \eta^{00} = \rho (\underline x) ~.
+        \end{equation*}
+        Hence, 
+        \begin{equation*}
+            \Box h_{00} (\underline x) \simeq \nabla^2 h_{00} (\underline x) = - 8 \pi G_N T_{00} (\underline x) = - 8 \pi G_N \rho(\underline x) ~.
+        \end{equation*}
+        We identify $h_{00} = - 2 V_N$ and we obtain 
+        \begin{equation*}
+            \nabla^2 V_N = 4 \pi G_N \rho ~.
+        \end{equation*}
+    \end{proof}
+    
+    Furthermore, if we consider the non-relativistic limit, in which particles are not static, but move slower $u^i = \epsilon v^i \ll c$. The geodesic equation becomes 
+    \begin{equation*}
+        \dvd{x^i}{t} \simeq - \pdv{V_N}{x^i} ~.
+    \end{equation*}
+    \begin{proof}
+        We expand the $4$-velocity $u^\mu = (1, \epsilon v^i)$ so that 
+        \begin{equation*}
+            \dvd{x^\mu}{\tau} = \epsilon \Big (0, \dv{v^i}{t} \Big) = \epsilon \Big (0, \dvd{x^i}{t} \Big) ~.
+        \end{equation*}
+        Using~\eqref{proof4}, we find 
+        \begin{equation*}
+        \begin{aligned}
+            \Gamma^\beta_{\mu\nu} \dv{x^\mu}{\tau} \dv{x^\nu}{\tau} & = \frac{\epsilon}{2} \eta^{\alpha\beta} (- h_{\mu\nu,\alpha} + h_{\mu\alpha,\nu} + h_{\nu\alpha,\mu} ) \dv{x^\mu}{\tau} \dv{x^\nu}{\tau} \\ & = \frac{\epsilon}{2} \eta^{\alpha\beta} (- h_{\mu\nu,\alpha} + h_{\mu\alpha,\nu} + h_{\nu\alpha,\mu} ) \delta^{\mu}_{\phantom \mu 0} \delta^{\nu}_{\phantom \nu 0} \\ & = \frac{\epsilon}{2} \eta^{\alpha\beta} (- h_{00,\alpha} + \underbrace{h_{0\alpha,0}}_0 + \underbrace{h_{0\alpha,0}}_0 ) \\ & = - \frac{\epsilon}{2} \eta^{\alpha\beta} h_{00, \alpha}
+        \end{aligned}
+        \end{equation*}
+        where we have neglected terms of higher order. Putting together 
+        \begin{equation*}
+            \dvd{x^\alpha}{\tau} + \Gamma^\alpha \dv{x^\mu}{\tau} \dv{x^\nu}{\tau} \simeq \epsilon \Big ( \dvd{x^i}{t} + \frac{1}{2} h_{00,i} \Big)
+        \end{equation*}
+        and using $h_{00} = - 2 V_N$, we find 
+        \begin{equation*}
+            \dvd{x^i}{t} \simeq - \pdv{V_N}{x^i} ~.
+        \end{equation*}
+    \end{proof}
+
+\chapter{Gravitational waves}
