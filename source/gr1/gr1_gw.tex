@@ -189,7 +189,26 @@
     \begin{equation*}
         \Box h^T_{\mu\nu} = 0 ~.
     \end{equation*}
-    However
+    However, we notice that there is still a residual gauge, always inside the De Donder one. In fact, if we make another diffeomorphism transformation
+    \begin{equation*}
+        \tilde h_{\mu\nu} = h_{\mu\nu} + \xi_{\mu,\nu} + \xi_{\nu,\mu} ~,
+    \end{equation*}
+    where $\xi^\mu$ is a harmonic, i.e.~$\Box \xi^\mu = 0$, we find that both the equations of motion and the transverse gauge are still satisfied.
+    \begin{proof}
+        For the equations of motion, we have 
+        \begin{equation*}
+            \Box \tilde h^T_{\mu\nu} = \Box \tilde h_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} \Box \tilde h = \Box h_{\mu\nu} + \underbrace{\Box \xi_{\mu,\nu}}_0 + \underbrace{\Box \xi_{\nu,\mu}}_0 - \frac{1}{2} \eta_{\mu\nu} \Box h - \frac{1}{2} \eta_{\mu\nu} \eta^{\mu\nu} \underbrace{\Box \xi_{\mu,\nu}}_0 - \frac{1}{2} \eta_{\mu\nu} \eta^{\mu\nu} \underbrace{\Box \xi_{\nu,\mu}}_0 = \Box h_{\mu\nu}
+            
+            
+            
+            = 0 ~.
+        \end{equation*}
+        For the transverse gauge, we have 
+        \begin{equation*}
+            \partial^\mu \tilde h^T_{\mu\nu} = \partial^\mu h^T_{\mu\nu} + \partial^\mu \xi_{\mu,\nu} + \partial^\mu \xi_{\mu,\mu} 
+        \end{equation*}
+    \end{proof}
+
 
 
 
