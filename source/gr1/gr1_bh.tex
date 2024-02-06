@@ -1,6 +1,574 @@
 \part{Black holes}
 
-\chapter{Exterior Schwarzschild metric}
+\chapter{Exterior Schwarzschild metric} 
+
+    In this chapter, we will solve the Einstein field equation for a symmetric static solution and will find the exterior Schwarzschild metric.
+
+\section{Schwarzschild metric}
+
+    Consider a spherical symmetric source. We are interested in the outside region, where $T^{\mu\nu} = 0$. The Einstein field equations become
+    \begin{equation*}
+        G_{\mu\nu} = 0 ~.
+    \end{equation*}
+    It is possible to prove that they correspond to 
+    \begin{equation*}
+        R_{\mu\nu} = 0 ~.
+    \end{equation*}
+    \begin{proof}
+        In fact, we take the trace 
+        \begin{equation*}
+            g^{\mu\nu} G_{\mu\nu} = g^{\mu\nu} (R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R) = R - 2 R = 0 ~,
+        \end{equation*}
+        hence, 
+        \begin{equation*}
+            G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} \underbrace{R}_0 = R_{\mu\nu} ~.
+        \end{equation*}
+    \end{proof}
+
+    We can exploit the symmetries to simplify the metric. We assumed a static metric, which means that there exists a time-like Killing vector 
+    \begin{equation*}
+        \underline K_t = \pdv{}{t} ~.
+    \end{equation*}
+    We also assumed spherical symmetry, which means that there exist three space-like Killing vectors
+    \begin{equation*}
+        \underline K_i = \dv{}{\theta_i} ~,
+    \end{equation*}
+    where $i = 1,2,3$. These spatial vectors must be conserved in time, therefore 
+    \begin{equation*}
+        [\underline K_t, \underline K_i] = 0 ~,
+    \end{equation*}
+    and we can write down the metric with temporal part orthogonal to the spatial one with the latter in polar coordinates
+    \begin{equation*}
+        g_{\mu\nu} = \begin{bmatrix}
+            - A(r) & 0 & 0 & 0 \\
+            0 & B(r) & 0 & 0 \\
+            0 & 0 & C(r) & 0 \\
+            0 & 0 & 0 & C(r) \sin^2 \theta \\
+        \end{bmatrix} = \begin{bmatrix}
+            - A(r) & 0 & 0 & 0 \\
+            0 & B(r) & 0 & 0 \\
+            0 & 0 & r^2 & 0 \\
+            0 & 0 & 0 & r^2 \sin^2 \theta \\
+        \end{bmatrix} ~,
+    \end{equation*}
+    \begin{equation*}
+        ds^2 = - A(r) dt^2 + B(r) dr^2 + C(r) (d\theta^2 + \sin^2 \theta d\phi^2 ) = - A(r) dt^2 + B(r) dr^2 + r^2 d\Omega^2 ~,
+    \end{equation*}
+    where we have used the rescaling freedom to set $C(r) = r^2$. In this way, $r$ becomes the areal radius, since the area of a sphere is given by 
+    \begin{equation*}
+        S(r) = \int d\theta^2 = r^2 \int_0^\pi d \theta \sin \theta \int_0^{2\pi} d\phi = 4 \pi r^2 ~.
+    \end{equation*}
+    Notice that the proper radius is instead 
+    \begin{equation}\label{prad}
+        R(r) = \int_0^r dx ~ \sqrt{g_{rr}} = \int_0^r dx ~ \sqrt{B} ~.
+    \end{equation}
+
+    In order to find a chart, we need to take into account also the domain of the coordinates. We reasonably set $t \in \mathbb R$, $\theta \in [0, \pi]$ and $\phi \in [0, 2\pi[$. However, we cannot say anything about $r$. We need to find the manifold, not only the metric. In fact, it can be possible that this chart does not cover the entire manifold.
+
+\section{Computations}
+
+    Now, we compute the Einstein's field equations. 
+    The metric is 
+    \begin{equation*}
+        g_{\mu\nu} = \begin{bmatrix}
+            A & 0 & 0 & 0 \\
+            0 & B & 0 & 0 \\
+            0 & 0 & r^2 & 0 \\
+            0 & 0 & 0 & r^2 \sin^2 \theta \\
+        \end{bmatrix} ~,
+    \end{equation*}
+    whereas its inverse is 
+    \begin{equation*}
+        g^{\mu\nu} = \begin{bmatrix}
+            \frac{1}{A} & 0 & 0 & 0 \\
+            0 & \frac{1}{B} & 0 & 0 \\
+            0 & 0 & \frac{1}{r^2} & 0 \\
+            0 & 0 & 0 & \frac{1}{r^2 \sin^2 \theta} \\
+        \end{bmatrix} ~.
+    \end{equation*}
+    The derivative with respect to $r$ is 
+    \begin{equation*}
+        g_{\mu\nu, 1} = \begin{bmatrix}
+            A' & 0 & 0 & 0 \\
+            0 & B' & 0 & 0 \\
+            0 & 0 & 2 r & 0 \\
+            0 & 0 & 0 & 2 r \sin^2 \theta \\
+        \end{bmatrix} ~,
+    \end{equation*}
+    whereas its inverse is 
+    \begin{equation*}
+        g_{\mu\nu, 2} = \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 2 r^2 \sin \theta \cos \theta \\
+        \end{bmatrix} ~.
+    \end{equation*}
+
+    The Christoffel symbols induced by the metric are
+    \begin{equation*}
+        \Gamma^k_{ij} = \frac{1}{2} g^{kl} (g_{il,j} + g_{jl,i} - g_{ij,l}) ~.
+    \end{equation*}
+    \begin{proof}
+        The $0$-th Christoffel symbols are
+        \begin{equation*}
+            \Gamma^0_{00} = \frac{1}{2} g^{0l} (g_{0l,0} + g_{0l,0} - g_{00,l}) = \frac{1}{2} g^{00} (g_{00,0} + g_{00,0} - g_{00,0}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{11} = \frac{1}{2} g^{0l} (g_{1l,1} + g_{1l,1} - g_{11,l}) =  \frac{1}{2} g^{00} (g_{10,1} + g_{10,1} - g_{11,0}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{22} = \frac{1}{2} g^{0l} (g_{2l,2} + g_{2l,2} - g_{22,l}) =  \frac{1}{2} g^{00} (g_{20,2} + g_{20,2} - g_{22,0}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{33} = \frac{1}{2} g^{0l} (g_{3l,3} + g_{3l,3} - g_{33,l}) =  \frac{1}{2} g^{00} (g_{30,3} + g_{30,3} - g_{33,0}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{01} = \Gamma^0_{10} = \frac{1}{2} g^{0l} (g_{1l,0} + g_{0l,1} - g_{10,l}) = \frac{1}{2} \underbrace{g^{00}}_{\frac{1}{A}} (g_{10,0} + \underbrace{g_{00,1}}_{A'} - g_{10,0}) = \frac{A'}{2A} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{02} = \Gamma^0_{20} = \frac{1}{2} g^{0l} (g_{2l,0} + g_{0l,2} - g_{20,l}) = \frac{1}{2} g^{00} (g_{20,0} + g_{00,2} - g_{20,0}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{03} = \Gamma^0_{30} = \frac{1}{2} g^{0l} (g_{3l,0} + g_{0l,3} - g_{30,l}) = \frac{1}{2} g^{00} (g_{30,0} + g_{00,3} - g_{30,0}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{12} = \Gamma^0_{21} = \frac{1}{2} g^{0l} (g_{2l,1} + g_{1l,2} - g_{21,l}) = \frac{1}{2} g^{00} (g_{20,1} + g_{10,2} - g_{21,0}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{13} = \Gamma^0_{31} = \frac{1}{2} g^{0l} (g_{3l,1} + g_{1l,3} - g_{31,l}) = \frac{1}{2} g^{00} (g_{30,1} + g_{10,3} - g_{31,0}) ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^0_{23} = \Gamma^0_{32} = \frac{1}{2} g^{0l} (g_{3l,2} + g_{2l,3} - g_{32,l}) = \frac{1}{2} g^{00} (g_{30,2} + g_{20,3} - g_{32,0}) = 0 ~.
+        \end{equation*}
+        The $1$-st Christoffel symbols are 
+        \begin{equation*}
+            \Gamma^1_{00} = \frac{1}{2} g^{1l} (g_{0l,0} + g_{0l,0} - g_{00,l}) =  \frac{1}{2} \underbrace{g^{11}}_{\frac{1}{B}} (g_{01,0} + g_{01,0} - \underbrace{g_{00,1}}_{A'}) = - \frac{A'}{2B} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{11} = \frac{1}{2} g^{1l} (g_{1l,1} + g_{1l,1} - g_{11,l}) =  \frac{1}{2} \underbrace{g^{11}}_{\frac{1}{B}} (\underbrace{g_{11,1}}_{B'} + g_{11,1} - g_{11,1}) = \frac{B'}{2B} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{22} = \frac{1}{2} g^{1l} (g_{2l,2} + g_{2l,2} - g_{22,l}) =  \frac{1}{2} \underbrace{g^{11}}_{\frac{1}{B}} (g_{21,2} + g_{21,2} - \underbrace{g_{22,1}}_{2r}) = -\frac{r}{B} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{33} = \frac{1}{2} g^{1l} (g_{3l,3} + g_{3l,3} - g_{33,l}) =  \frac{1}{2} \underbrace{g^{11}}_{\frac{1}{B}} (g_{31,3} + g_{31,3} - \underbrace{g_{33,1}}_{2 r \sin^2 \theta}) = - \frac{r \sin^2 \theta}{B} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{01} = \Gamma^1_{10} = \frac{1}{2} g^{1l} (g_{1l,0} + g_{0l,1} - g_{10,l}) =  \frac{1}{2} g^{11} (g_{11,0} + g_{01,1} - g_{10,1}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{02} = \Gamma^1_{20} = \frac{1}{2} g^{1l} (g_{2l,0} + g_{0l,2} - g_{20,l}) =  \frac{1}{2} g^{11} (g_{21,0} + g_{01,2} - g_{20,1}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{03} = \Gamma^1_{30} = \frac{1}{2} g^{1l} (g_{3l,0} + g_{0l,3} - g_{30,l}) =  \frac{1}{2} g^{11} (g_{31,0} + g_{01,3} - g_{30,1}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{12} = \Gamma^1_{21} = \frac{1}{2} g^{1l} (g_{2l,1} + g_{1l,2} - g_{21,l}) =  \frac{1}{2} g^{11} (g_{21,1} + g_{11,2} - g_{21,1}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{13} = \Gamma^1_{31} = \frac{1}{2} g^{1l} (g_{3l,1} + g_{1l,3} - g_{31,l}) =  \frac{1}{2} g^{11} (g_{31,1} + g_{11,3} - g_{31,1}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{23} = \Gamma^1_{32} = \frac{1}{2} g^{1l} (g_{3l,2} + g_{2l,3} - g_{32,l}) =  \frac{1}{2} g^{11} (g_{31,2} + g_{21,3} - g_{32,1}) = 0 ~.
+        \end{equation*}
+        The $2$-nd Christoffel symbols are
+        \begin{equation*}
+            \Gamma^2_{00} = \frac{1}{2} g^{2l} (g_{0l,0} + g_{0l,0} - g_{00,l}) =  \frac{1}{2} g^{22} (g_{02,0} + g_{02,0} - g_{00,2}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{11} = \frac{1}{2} g^{2l} (g_{1l,1} + g_{1l,1} - g_{11,l}) =  \frac{1}{2} g^{22} (g_{12,1} + g_{12,1} - g_{11,2}) = 0 ~, 
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{22} = \frac{1}{2} g^{2l} (g_{2l,2} + g_{2l,2} - g_{22,l}) =  \frac{1}{2} g^{22} (g_{22,2} + g_{22,2} - g_{22,2}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{33} = \frac{1}{2} g^{2l} (g_{3l,3} + g_{3l,3} - g_{33,l}) =  \frac{1}{2} \underbrace{g^{22}}_{\frac{1}{r^2}} (g_{32,3} + g_{32,3} - \underbrace{g_{33,2}}_{2 r^2 \sin \theta \cos \theta}) = - \sin \theta \cos \theta ~, 
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{01} = \Gamma^2_{10} = \frac{1}{2} g^{2l} (g_{1l,0} + g_{0l,1} - g_{10,l}) =  \frac{1}{2} g^{22} (g_{12,0} + g_{02,1} - g_{10,2}) = 0 ~, 
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{02} = \Gamma^2_{20} = \frac{1}{2} g^{2l} (g_{2l,0} + g_{0l,2} - g_{20,l}) =  \frac{1}{2} g^{22} (g_{22,0} + g_{02,2} - g_{20,2}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{03} = \Gamma^2_{30} = \frac{1}{2} g^{2l} (g_{3l,0} + g_{0l,3} - g_{30,l}) =  \frac{1}{2} g^{22} (g_{32,0} + g_{02,3} - g_{30,2}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{12} = \Gamma^2_{21} = \frac{1}{2} g^{2l} (g_{2l,1} + g_{1l,2} - g_{21,l}) =  \frac{1}{2} \underbrace{g^{22}}_{\frac{1}{r^2}} (\underbrace{g_{22,1}}_{2r} + g_{12,2} - g_{21,2}) = \frac{1}{r} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{13} = \Gamma^2_{31} = \frac{1}{2} g^{2l} (g_{3l,1} + g_{1l,3} - g_{31,l}) =  \frac{1}{2} g^{22} (g_{32,1} + g_{12,3} - g_{31,2}) = 0 ~, 
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{23} = \Gamma^2_{32} = \frac{1}{2} g^{2l} (g_{3l,2} + g_{2l,3} - g_{32,l}) =  \frac{1}{2} g^{22} (g_{32,2} + g_{22,3} - g_{32,2}) = 0 ~. 
+        \end{equation*}
+        The $3$-rd Christoffel symbols are
+        \begin{equation*}
+            \Gamma^3_{00} = \frac{1}{2} g^{3l} (g_{0l,0} + g_{0l,0} - g_{00,l}) = \frac{1}{2} g^{33} (g_{03,0} + g_{03,0} - g_{00,3}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{11} = \frac{1}{2} g^{3l} (g_{1l,1} + g_{1l,1} - g_{11,l}) = \frac{1}{2} g^{33} (g_{13,1} + g_{13,1} - g_{11,3}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{22} = \frac{1}{2} g^{3l} (g_{2l,2} + g_{2l,2} - g_{22,l}) = \frac{1}{2} g^{33} (g_{23,2} + g_{23,2} - g_{22,3}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{33} = \frac{1}{2} g^{3l} (g_{3l,3} + g_{3l,3} - g_{33,l}) = \frac{1}{2} g^{33} (g_{33,3} + g_{33,3} - g_{33,3}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{01} = \Gamma^3_{10} = \frac{1}{2} g^{3l} (g_{1l,0} + g_{0l,1} - g_{10,l}) = \frac{1}{2} g^{33} (g_{13,0} + g_{03,1} - g_{10,3}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{02} = \Gamma^3_{20} = \frac{1}{2} g^{3l} (g_{2l,0} + g_{0l,2} - g_{20,l}) = \frac{1}{2} g^{33} (g_{23,0} + g_{03,2} - g_{20,3}) = 0 ~, 
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{03} = \Gamma^3_{30} = \frac{1}{2} g^{3l} (g_{3l,0} + g_{0l,3} - g_{30,l}) = \frac{1}{2} g^{33} (g_{33,0} + g_{03,3} - g_{30,3}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{12} = \Gamma^3_{21} = \frac{1}{2} g^{3l} (g_{2l,1} + g_{1l,2} - g_{21,l}) = \frac{1}{2} g^{33} (g_{23,1} + g_{13,2} - g_{21,3}) = 0 ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{13} = \Gamma^3_{31} = \frac{1}{2} g^{3l} (g_{3l,1} + g_{1l,3} - g_{31,l}) = \frac{1}{2} \underbrace{g^{33}}_{\frac{1}{r^2 \sin^2 \theta}} (\underbrace{g_{33,1}}_{2 r \sin^2 \theta} + g_{13,3} - g_{31,3}) = \frac{1}{r} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{23} = \Gamma^3_{32} = \frac{1}{2} g^{3l} (g_{3l,2} + g_{2l,3} - g_{32,l}) = \frac{1}{2} \underbrace{g^{33}}_{\frac{1}{r^2 \sin^2 \theta}} (\underbrace{g_{33,2}}_{2 r^2 \sin \theta \cos \theta} + g_{23,3} - g_{32,3}) = \frac{\cos \theta}{\sin \theta} ~.
+        \end{equation*}
+        Hence, the non-zero Christoffel symbols are 
+        \begin{equation*}
+            \Gamma^0_{01} = \Gamma^0_{10} = \frac{A'}{2A} ~, \quad \Gamma^1_{00} = - \frac{A'}{2B} ~, \quad \Gamma^1_{11} = \frac{B'}{2B} ~, \quad \Gamma^1_{22} = - \frac{r}{B} ~, \quad \Gamma^1_{33} = - \frac{r \sin^2 \theta}{B} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{33} = - \sin\theta \cos\theta ~, \quad \Gamma^2_{12} =  \Gamma^2_{21} = \frac{1}{r} ~, \quad \Gamma^3_{13} = \Gamma^3_{31} = \frac{1}{r} ~, \quad \Gamma^3_{23} = -\frac{\cos \theta}{\sin \theta} ~. 
+        \end{equation*}
+        The derivatives are 
+        \begin{equation*}
+            \Gamma^0_{01,1} = \Gamma^0_{10,1} = \pdv{}{r} \Big (\frac{A'}{2A} \Big) = \frac{A''A - (A')^2}{2A^2} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{00,1} = \pdv{}{r} \Big ( - \frac{A'}{2B} \Big) = - \frac{A'' B - A' B'}{2B^2} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{11,1} = \pdv{}{r} \Big (\frac{B'}{2B} \Big) = \frac{B''B - (B')^2}{2B^2} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{22,1} = \pdv{}{r} \Big (- \frac{r}{B} \Big) = -\frac{B - r B'}{B^2} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{33,1} = \pdv{}{r} \Big ( - \frac{r \sin^2 \theta}{B} \Big) = - \sin^2 \theta \frac{B - rB'}{B^2} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^1_{33,2} = \pdv{}{\theta} \Big ( - \frac{r \sin^2 \theta}{B} \Big) = - \frac{2 r \sin \theta \cos \theta}{B^2} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{33,2} = \pdv{}{\theta} ( \sin \theta \cos \theta ) = \cos^2 \theta - \sin^2 \theta ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^2_{12,1} = \Gamma^2_{21,1} = \pdv{}{r} \Big ( \frac{1}{r}\Big)  = - \frac{1}{r^2} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{13,1} = \Gamma^3_{31,1} = \pdv{}{r} \Big ( \frac{1}{r} \Big) = - \frac{1}{r^2} ~,
+        \end{equation*}
+        \begin{equation*}
+            \Gamma^3_{23,2} = \pdv{}{\theta} \cot \theta = - \frac{1}{\sin^2 \theta} ~.
+        \end{equation*}
+        The Ricci tensor is 
+        \begin{equation*}
+            R_{ij} = \Gamma^k_{ij,k} - \Gamma^k_{ik,j} + \Gamma^a_{ij} \Gamma^k_{ak} - \Gamma^a_{ik} \Gamma^k_{aj} ~.
+        \end{equation*}
+        Its components are
+        \begin{equation*}
+        \begin{aligned}
+            R_{00} & = \Gamma^k_{00,k} - \Gamma^k_{0k,0} + \Gamma^a_{00} \Gamma^k_{ak} - \Gamma^a_{0k} \Gamma^k_{a0} \\ & =  \Gamma^1_{00,1} + \Gamma^1_{00} \Gamma^0_{10} + \Gamma^1_{00} \Gamma^1_{11} + \Gamma^1_{00} \Gamma^2_{12} + \Gamma^1_{00} \Gamma^3_{13} - \Gamma^0_{01} \Gamma^1_{00} - \Gamma^1_{00} \Gamma^0_{10} \\ & = - \frac{A''B - A' B'}{2B^2} - \cancel{\frac{A'}{2B} \frac{A'}{2A}} - \frac{A'}{2B} \frac{B'}{2B} - \frac{A'}{2rB} - \frac{A'}{2rB} + \frac{A'}{2A} \frac{A'}{2B} + \cancel{\frac{A'}{2B} \frac{A'}{2A}} \\ & = - \frac{A''}{2B} + \frac{A'B'}{4B^2} - \frac{A'}{rB} + \frac{(A')^2}{4 AB} ~,
+        \end{aligned}
+        \end{equation*}
+        \begin{equation*}
+        \begin{aligned}
+            R_{11} & = \Gamma^k_{11,k} - \Gamma^k_{1k,1} + \Gamma^a_{11} \Gamma^k_{ak} - \Gamma^a_{1k} \Gamma^k_{a1} \\ & = \cancel{\Gamma^1_{11,1}} - \Gamma^0_{10,1} - \cancel{\Gamma^1_{11,1} } - \Gamma^2_{12,1} - \Gamma^3_{13,1} + \Gamma^1_{11} \Gamma^0_{10} + \cancel{\Gamma^1_{11} \Gamma^1_{11}} \\ & \quad  + \Gamma^1_{11} \Gamma^2_{12}  + \Gamma^1_{11} \Gamma^3_{13} - \Gamma^0_{10} \Gamma^0_{01}  - \cancel{\Gamma^1_{11} \Gamma^1_{11}}  - \Gamma^2_{12} \Gamma^2_{21} - \Gamma^3_{13} \Gamma^3_{31}  \\ & = - \frac{A''A - (A'^2)}{2A^2} + \cancel{\frac{1}{r^2}} + \cancel{\frac{1}{r^2}} + \frac{B'}{2B} \frac{A'}{2A} + \frac{B'}{2rB} + \frac{B'}{2rB} - \frac{(A')^2}{4A^2} - \cancel{\frac{1}{r^2}} - \cancel{\frac{1}{r^2}} \\ & = - \frac{A''}{2A} + \frac{(A')^2}{4A^2} + \frac{B'A'}{4AB} + \frac{B'}{rB} ~, 
+        \end{aligned}
+        \end{equation*}
+        \begin{equation*}
+        \begin{aligned}
+            R_{22} & = \Gamma^k_{22,k} - \Gamma^k_{2k,2} + \Gamma^a_{22} \Gamma^k_{ak} - \Gamma^a_{2k} \Gamma^k_{a2} \\ & = \Gamma^1_{22,1} - \Gamma^3_{23,2} + \Gamma^1_{22} \Gamma^0_{10} + \Gamma^1_{22} \Gamma^1_{11} + \cancel{\Gamma^1_{22} \Gamma^2_{12}} \\ & \quad + \Gamma^1_{22} \Gamma^3_{13} - \cancel{\Gamma^1_{22} \Gamma^2_{12}} - \Gamma^2_{21} \Gamma^1_{22} - \Gamma^3_{23} \Gamma^3_{32} \\ & = - \frac{B-rB'}{B^2} + \frac{1}{\sin^2 \theta}  - \frac{r}{B} \frac{A'}{2A} - \frac{r}{B} \frac{B'}{2B} - \cancel{\frac{r}{B} \frac{1}{r}} + \cancel{\frac{1}{r} \frac{r}{B}} - \cot^2 \theta \\ & = 1 - \frac{1}{B} + \frac{rB'}{2B^2} - \frac{rA'}{2AB} ~, 
+        \end{aligned}
+        \end{equation*}
+        \begin{equation*}
+        \begin{aligned}
+            R_{33} & = \Gamma^k_{33,k} - \Gamma^k_{3k,3} + \Gamma^a_{33} \Gamma^k_{ak} - \Gamma^a_{3k} \Gamma^k_{a3} \\ & =\Gamma^1_{33,1} + \Gamma^2_{33,2} + \Gamma^1_{33} \Gamma^0_{10} + \Gamma^1_{33} \Gamma^1_{11} + \Gamma^1_{33} \Gamma^2_{12} + \cancel{\Gamma^2_{33} \Gamma^3_{23}} + \cancel{\Gamma^1_{33} \Gamma^3_{13}} - \cancel{\Gamma^1_{33} \Gamma^3_{13} } - \cancel{\Gamma^2_{33} \Gamma^3_{23}} - \Gamma^3_{31} \Gamma^1_{33} - \Gamma^3_{32} \Gamma^2_{33} \\ & = - \sin^2 \theta \frac{B-rB'}{B^2} + \cancel{\cos^2 \theta} - \sin^2 \theta - \frac{r \sin^2 \theta}{B} \frac{A'}{2A} - \frac{r \sin^2 \theta}{B} \frac{B'}{2B} - \cancel{\frac{r \sin^2 \theta}{B} \frac{1}{r}} \\ & \quad - \cancel{\frac{1}{r} \frac{r \sin^2 \theta}{B}} - \cancel{\frac{\cos \theta}{\sin \theta} \sin \theta \cos \theta} \\ & = \sin^2 \theta - \sin^2 \theta \frac{1}{B} + \sin^2 \theta \frac{rB'}{2B^2} - \sin^2 \theta \frac{rA'}{2AB} \\ & = \sin^2 \theta R_{22} ~.
+        \end{aligned}
+        \end{equation*}
+        Finally, we find a system of differential equations 
+        \begin{equation*}
+        \begin{aligned}
+            & R_{00} = - \frac{A''}{2B} + \frac{(A')^2}{4 AB} + \frac{A'B'}{4B^2} - \frac{A'}{rB}  = 0 ~,
+            \\ & R_{11} = - \frac{A''}{2A} + \frac{(A')^2}{4A^2} + \frac{B'A'}{4AB} + \frac{B'}{rB} = 0 ~,
+            \\ & R_{22} = 1 - \frac{1}{B} + \frac{rB'}{2B^2} - \frac{rA'}{2AB} = 0 ~,
+            \\ & R_{33} = \sin^2 \theta R_{22} = 0 ~.
+        \end{aligned}
+        \end{equation*}
+        We notice that
+        \begin{equation*}
+        \begin{aligned}
+            0 & = \frac{B}{A} R_{00} - R_{11} \\ & = - \cancel{\frac{B}{A} \frac{A''}{2B}} + \cancel{\frac{B}{A} \frac{(A')^2}{4 AB}} + \cancel{ \frac{B}{A} \frac{A'B'}{4B^2}} - \frac{B}{A} \frac{A'}{rB} + \cancel{\frac{A''}{2A}} - \cancel{\frac{(A')^2}{4A^2}} - \cancel{\frac{B'A'}{4AB}} - \frac{B'}{rB} \\ & = - \frac{A'}{rA} - \frac{B'}{rB} ~.
+        \end{aligned}
+        \end{equation*}
+        Hence 
+        \begin{equation*}
+            0 = A' B + B' A = (AB)' ~,
+        \end{equation*}
+        which implies, after a time rescaling, that 
+        \begin{equation*}
+            A = - B^{-1} ~.
+        \end{equation*}
+        Therefore, the third equation becomes 
+        \begin{equation*}
+            0 = 1 - \frac{1}{B} + \frac{rB'}{2B^2} - \frac{rA'}{2AB} = 1 + A - rA, ~,
+        \end{equation*}
+        or, equivalently, 
+        \begin{equation*}
+            (rA)' = 1 ~. 
+        \end{equation*}
+        Its solution is 
+        \begin{equation*}
+            A = 1 + \frac{2K}{r} ~.
+        \end{equation*}
+    \end{proof}
+
+    The constant $K$ can be found by considering the Newtonian limit and it is 
+    \begin{equation*}
+        K = G_N M ~.
+    \end{equation*}
+    \begin{proof}
+        In fact, by looking at the Newton equation
+        \begin{equation*}
+            \dvd{x^i}{t} = \frac{1}{2} h_{00,i}
+        \end{equation*}
+        and comparing it to 
+        \begin{equation*}
+            A = g_{00} = 1 + \frac{2K}{r} = \eta_{00} + h_{00} ~,
+        \end{equation*}
+        we find 
+        \begin{equation*}
+            h_{00} = \frac{2K}{r} = - 2 V_N = \frac{2 G_N M}{r} ~,
+        \end{equation*}
+        where $V_N$ is the gravitational potential. Hence, 
+        \begin{equation*}
+            K = G_N M~. 
+        \end{equation*}
+    \end{proof}
+
+    At last, we have obtained the exterior Schwarzschild metric 
+    \begin{equation*}
+        g_{\mu\nu} = \begin{bmatrix}
+            - (1 - \frac{2 G_N M}{r}) & 0 & 0 & 0 \\
+            0 & (1 - \frac{2 G_N M}{r})^{-1} & 0 & 0 \\
+            0 & 0 & r^2 & 0 \\
+            0 & 0 & 0 & r^2 \sin^2 \theta \\
+        \end{bmatrix} ~, 
+    \end{equation*}
+    \begin{equation*}
+        ds^2 = g_{\mu\nu} dx^\mu dx^\nu = - \Big (1 - \frac{2 G_N M}{r} \Big ) dt^2 + \Big (1 - \frac{2 G_N M}{r} \Big )^{-1} dr^2 + r^2 d\theta^2 + r^2 \sin^2 \theta d\phi^2 ~.
+    \end{equation*}
+    The quantity $R_H = 2 G_N M$ is called the Schwarzschild radius. Notice that at spatial infinity, the metric becomes the Minkowski one, a property called the Minkowski flatness.
+
+    There is a theorem, due to Birkhoff, that helps us understand why we do not have $A(t, r)$. 
+    \begin{theorem}[Birkhoff]
+        A spherically symmetric metric which solves the vacuum Einstein field equations is static.
+    \end{theorem}
+
+\section{Areal radius}
+
+    Static observes are inertial at spatial infinity $r \gg R_H$, and they differ from it the more they approach $R_H$. The proper radius of a sphere~\eqref{prad} is 
+    \begin{equation*}
+        R(r) = r \sqrt{1 - \frac{r_H}{r}} + \frac{r_H}{2} \ln \Big (\frac{2r}{r_H} \Big( 1 + \sqrt{1 - \frac{r_H}{r}} - 1 \Big)) ~.
+    \end{equation*}
+    \begin{proof}
+        Maybe in the future.
+    \end{proof}
+
+\section{Radial geodesics}
+
+    Since the Schwarzschild metric does not carry dependence of the source size, we can suppose that $r_S \ll R_H$ and the metric becomes for $r \rightarrow R_H$, $g_{tt} = 0$ and $g_{rr} \rightarrow \infty$. Furthermore, the signs of $g_{tt}$ and $g_{rr}$ change across $r = R_H$. The Killing vector $\underline K_t$ is defined everywhere but $\underline K_r$ is not defined. This means that for inside and outside $R_H$, we maybe need two different manifolds, with the same coordinates $(t, r, \theta, \phi)$ but different domains $r \in (0, R_H)$ for inside and $r \in (R_H, \infty)$ for outside. Notice that we need to find a chart that covers $R_H$. Therefore, we need to study a test particle that travels from outside to inside. 
+
+    Consider the action of an infalling massive test particle
+    \begin{equation*}
+        S = m \int_0^\tau d\tau ~ \sqrt{-g_{\mu\nu} \dot x^\mu \dot x^\nu} = m \int_0^\tau d\tau ~ \sqrt{2T} ~,
+    \end{equation*}
+    where 
+    \begin{equation*}
+        2 T = (1 - \frac{2 G_N M}{r} \Big ) \dot t^2 - (1 - \frac{2 G_N M}{r} \Big )^{-1} \dot r^2 - r^2 \dot \theta^2 - r^2 \sin^2 \theta \dot \phi^2 = 1 ~.
+    \end{equation*}
+    The Euler-Lagrange equations are 
+    \begin{equation*}
+        \dv{}{\tau} \Big ( \pdv{T}{\dot x^\mu} \Big) - \pdv{T}{x^\mu} = 0~,
+    \end{equation*}
+    because
+    \begin{equation*}
+        \delta S = m \delta \int_0^\tau d\tau ~ \sqrt{2T} = m \int_0^\tau d\tau \frac{\delta T}{\sqrt{2T}} = m \delta \int_0^\tau d\tau ~ T ~.
+    \end{equation*}
+    Since the Lagrangian does not depend on $t$ and $\phi$, we can define two conserved quantities: energy 
+    \begin{equation*}
+        E = \pdv{T}{\dot t} = (1 - \frac{2 G_N M}{r} \Big ) \dot t ~,
+    \end{equation*}
+    and angular momentum 
+    \begin{equation*}
+        L = \pdv{T}{\dot \phi} = - r^2 \sin^2 \theta \dot \phi ~.
+    \end{equation*}
+    Notice that the energy reduces to $1$ in the weak-field limit. By means of the Killing vectors $\underline K_i$, we can rotate the reference frame in order to have $\theta = \pi/2$. In fact, the Euler-Lagrange equation for $\theta$ are identically satisfied
+    \begin{equation*}
+        0 = \dv{}{\tau} \Big ( \pdv{T}{\dot \theta} \Big) - \pdv{T}{\theta} = \ddot \theta - \sin \theta \cos \theta \dot \phi^2 ~.
+    \end{equation*}
+    Now, consider the simple case $\phi = 0$ of radially in-falling particles. The energy equation becomes
+    \begin{equation*}
+        2T = (1 - \frac{2 G_N M}{r} \Big )^{-1} (E^2 - \dot r^2) = 1 ~,
+    \end{equation*}
+    where we have set $\theta = \pi/2$ and $\phi = 0$. We solve this equation and we find 
+    \begin{equation*}
+        \dot t = (1 - \frac{2 G_N M}{r} \Big )^{-1} E ~,
+    \end{equation*}
+    which implies that 
+    \begin{equation*}
+        \dv{t}{\tau} \sim \frac{1}{r - R_H} ~.
+    \end{equation*}
+    Physically, it means that an asymptotically inertial observer at spatial infinity will take an infinite amount of coordinate time to see a particle falling radially. Now, we invert the energy equation  
+    \begin{equation*}
+        \dot r^2 = \frac{2G_N M}{r} + (E^2 - 1) ~,
+    \end{equation*}
+    and we derive it 
+    \begin{equation*}
+        \ddot r = - \frac{G_N M}{r^2} ~.
+    \end{equation*}
+    It is similar to the Newton law, but it is not valid for $r > 0$. It can be solved by an ansatz
+    \begin{equation*}
+        r = r_0 \Big (\frac{\tau}{\tau_0} \Big )^\alpha ~,
+    \end{equation*}
+    with initial condition $r(\tau_0) = \infty$ and $\dot r(\tau) = 0$. $\alpha$ turns out to be $2/3$.
+    \begin{proof}
+        In fact, 
+        \begin{equation*}
+            \ddot r = r_0 \tau_0^{-\alpha} \alpha (\alpha-1) \tau^{\alpha - 2} = - \frac{G_N M}{r^2} = - G_N M r_0^{-2} \tau^{2\alpha}_0 \tau^{-2\alpha} ~.
+        \end{equation*}
+    \end{proof}
+    Notice that, if we have two radially in-falling particles, starting at the same distance $r_0$ with the same velocity, they will measure the same proper time. Their arc distance is proportional to $r=r(\tau)$. Therefore, the equation will measure the tidal forces perpendicular to the falling line, since it is proportional to the geodesics. These forces diverges for $r \rightarrow 0$. By making a variation of the equation, we find 
+    \begin{equation*}
+        \delta \ddot r \simeq \frac{G_N M}{r^3} \delta r ~.
+    \end{equation*}
+    This phenomenom is called spaghettification. 
+
+    The geodesics for massless particle can be found by setting $ds^2 = d\theta^2 = d\phi^2 = 0$. Hence 
+    \begin{equation*}
+        \dv{r}{t} = \pm \Big (1 - \frac{2 G_N M}{r} \Big) ~.
+    \end{equation*}
+    where the plus means that it is falling and minus it is climbing.
+
+\section{Gravitational red-shift}
+
+    Consider a radial geodesic for photons, i.e.~$T = 0$. Since the metric varies significally from Minkowski only near $r \simeq R_H$, we cannot put an experimental apparatus there. However, we can look at the signal that comes from an in-falling probe, starting from far away.
+
+    Since there exists a time-like Killing vector $\underline K_t$, its energy is conserved along a geodesic
+    \begin{equation*}
+        E = - K^\mu_t u_\mu ~,
+    \end{equation*}
+    where $u^\mu$ is the $4$-velocity of a particle along the geodesic, parametrised by $\lambda$.
+    \begin{proof}
+        In fact
+        \begin{equation*}
+            \dv{E}{\lambda} = - u^\nu \nabla_\nu (K^\mu_t u_\mu) = - K^\mu_t \underbrace{u^\nu \nabla_\nu u_\mu}_0 + u^\nu u^\mu \nabla_\nu K_{t\mu} = 0 ~,
+        \end{equation*}
+        where we have used $d/d\lambda = u^\nu \nabla_\nu$, the geodesic equation and the Killing equation. 
+    \end{proof}
+    Therefore, the $4$-velocity for a static observer $U^\mu$ is 
+    \begin{equation*}
+        U^\mu = \frac{K^\mu_t}{\sqrt{-K^\nu_t K_{t\nu}}} ~.
+    \end{equation*}
+    Notice that $U^\mu$ is normalised at $U^\mu U_\mu = -1$ whereas $\underline K_t$ not. The energy measured by this static observer is 
+    \begin{equation*}
+        \omega = - U^\mu u_\mu = - \frac{K^\mu_t u_\mu}{\sqrt{-K^\nu_t K_{t\nu}}} = \frac{E}{|K_t|} ~.
+    \end{equation*}
+    Now consider a photon which crosses two different static observer at points $r_1$ and $r_2$. They will measure photon's energies 
+    \begin{equation*}
+        \frac{\omega_1}{\omega_2} = \frac{|K_t (r_2)|}{|K_t(r_1)|} ~.
+    \end{equation*}
+    In particular, at constant $r$, we have 
+    \begin{equation*}
+        U^\mu = (\dot t(r), 0, 0, 0) = \dot t K^\mu_t ~,
+    \end{equation*}
+    and 
+    \begin{equation*}
+        \frac{\omega_1}{\omega_2} = \frac{\dot t(r_1)}{\dot t(r_2)} = \sqrt{ \frac{1 - R_H / r_1}{1 - R_H/r_1}} < 1 ~,
+    \end{equation*}
+    where we assumed $r_1 > r_2$. Physically, it means that the photon seems to lose energy as it climbs. If we add also the relativistic Doeppler effect, due to the velocity $v_2$, we have the complete formula 
+    \begin{equation*}
+        \omega_1 \simeq \omega_s \sqrt{\frac{1-v_2}{1+v_2}} \sqrt{ \frac{1 - R_H / r_1}{1 - R_H/r_1}} ~.
+    \end{equation*}
+    The gravitational effect depends on the geometry, whereas the Doeppler effect depends on the initial conditions.
+
+    Consider a probe sent radially towards the source and a static observer at $r_0 \gg R_H$. The probe emits signals of frequency $\omega_s$ at fixed intervals $\Delta \tau_s$, constant since the probe is an inertial frame. The points of emission are $S_n = (\tau_n = n \Delta \tau_s, r_n)$, whereas the point of detection are $O_n = (t_n, r_0)$. The equations of an in-falling probe are
+    \begin{equation*}
+        \dv{r_s}{\tau} = - \sqrt{\frac{R_H}{r_s} - 1 + E^2} ~, \quad \dvd{r_s}{\tau} = - \frac{R_H}{2 r_s^2} ~,
+    \end{equation*}
+    where $E^2 = 1 - R_H/r_0 \simeq 1$. Therefore 
+    \begin{equation*}
+        \dv{r_s}{\tau} \simeq - sqrt{\frac{R_H}{r_s}} ~, \quad \dv{t}{\tau} = \Big ( 1 - \frac{R_H}{r_s} \Big)^{-1} E \simeq \Big ( 1 - \frac{R_H}{r_s} \Big)^{-1} ~.
+    \end{equation*}
+    The out-going signal is 
+    \begin{equation*}
+        \dv{r_\gamma}{t} = 1 - \frac{2 G_N M}{r_\gamma} ~, \quad \omega_n = \omega_n' \sqrt{\frac{1 - R_H/r_n}{1 - R_H/r_0}} \simeq \omega_n' \sqrt{1 - \frac{R_H}{r_n}} ~,
+    \end{equation*}
+    where $\omega_n'$ is the frequency measured by a static observer in $r_n$. The interval of detection is composed by two phenomena: in-falling probe $\Delta t_n^{(1)}$ and the difference in travel time $\Delta t_n^{(2)}$. The former is given by 
+    \begin{equation*}
+        \Delta t_n^{(1)} = \frac{\Delta \tau_s}{1 - R_H/r_n} ~.
+    \end{equation*}
+    For the latter, the radial difference is 
+    \begin{equation*}
+        \delta r_n = r_n - r_{n-1} = \int_{r_{n-1}}^{r_n} d\tau \dv{r_s}{\tau} \simeq - \int_{\tau_{n-1}}^{\tau_n} d\tau \sqrt{\frac{R_H}{r_s(\tau)}} \simeq \sqrt{\frac{R_H}{r_s(\tau)}}  \Delta \tau_s ~,
+    \end{equation*}
+    hence
+    \begin{equation*}
+    \begin{aligned}
+        \Delta t_n^{(2)} & = t_n - t_{n-1} = \int_{r_n}^{r_0} dr_\gamma \dv{t}{r_\gamma} - \int_{r_{n-1}}^{r_0} dr_\gamma \dv{t}{r_\gamma} = - \int_{r_{n-1}}^{r_n} dr_\gamma \dv{t}{r_\gamma} \\ & = - \int_{r_{n-1}}^{r_n} dr_\gamma \Big ( 1 - \frac{R_H}{r_\gamma} \Big)^{-1} \simeq - \Big ( 1 - \frac{R_H}{r_\gamma} \Big)^{-1} \Delta r_n \simeq \sqrt{\frac{R_H}{r_n}} \frac{\Delta \tau_s}{1 - R_H/r_n} ~.
+    \end{aligned}
+    \end{equation*}
+    Puttin together, we have 
+    \begin{equation*}
+        \Delta t_n = \Delta t_n^{(1)} + \Delta t_n^{(2)} \simeq \Big (1 + \sqrt{\frac{R_H}{r_n}}) \frac{\Delta \tau_s}{1 - R_H/r_n} ~.
+    \end{equation*}
+    Physically, it means that the observer will receive less pulse per unit of time. 
+
+    If the probe remained at fixed radius, we would have only the first term 
+    \begin{equation*}
+        \Delta_n^{(1)} = \frac{\Delta T_s}{\sqrt{1 - R_H/r_n}} ~,
+    \end{equation*}
+    where we have used $\Delta \tau_s = \Delta T_s$.  If we interpret $\Delta T_s = 1 / \omega_2$, we recover the gravitational red-shift for $r_0 = r_1 \gg R_H$. 
+
+    Using the total red-shift
+    \begin{equation*}
+        \omega_n \simeq \omega_s \sqrt{\frac{1-v_n}{1+v_n}} \sqrt{1 - \frac{R_H}{r_n}} ~,
+    \end{equation*}
+    we can estimate the velocity with respect to the local static observer 
+    \begin{equation*}
+        v_n = \dv{r_s}{T} \Big \vert_{t_n} = \dv{r_s}{\tau} \dv{\tau}{t} \dv{t}{T} \Big \vert_{t_n} \simeq \sqrt{\frac{R_H}{r_n} \Big (1 - \frac{R_H}{r_n} \Big )} ~.
+    \end{equation*}
+    In particular, for $r_s \rightarrow R_H$, we have $v_n \rightarrow 0$ and the observed frequency vanishes. Therefore, there is a radius $r_s > R_H$ such that $\omega_n < \omega_c$, i.e.~there is a black-out.
+
+\section{Black holes}
+
+    The gravitational red-shift implies that a photon would spend all of its energy to escape. Therefore, the Schwarzschild sphere is called the event horizon. No signal can escape from it, in fact for $r > R_H$ there exists both out-going and in-going light conse, for $r \leq R_H$ there exists only in-going (out-going will be stuck on $r=R_H$ or it will contract). The inside is called a black hole. See Table~\eqref{tab:bh}. It is important to highlight that the real singularity is at $r=0$ whereas for the event horizons there is only a coordinate singularity. Black hole can be formed by a collapse of a sphere of dust, via neutron stars or white dwarf.
+
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{c | c | c}
+            Black hole & Charged & Rotation\\
+            \hline
+            Schwarzschild & no & no \\
+            Reissner-Nordstroem & yes & no \\
+            Kerr & no & yes \\
+            Kerr-Newman & yes & yes \\
+        \end{tabular}
+        \caption{A table of all mathematically known black holes.}
+        \label{tab:bh}
+    \end{table}
+
 \chapter{Orbits}
 \chapter{Weak-field}
 \chapter{Interior Schwarzschild metric}

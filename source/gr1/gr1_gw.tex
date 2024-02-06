@@ -197,20 +197,247 @@
     \begin{proof}
         For the equations of motion, we have 
         \begin{equation*}
-            \Box \tilde h^T_{\mu\nu} = \Box \tilde h_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} \Box \tilde h = \Box h_{\mu\nu} + \underbrace{\Box \xi_{\mu,\nu}}_0 + \underbrace{\Box \xi_{\nu,\mu}}_0 - \frac{1}{2} \eta_{\mu\nu} \Box h - \frac{1}{2} \eta_{\mu\nu} \eta^{\mu\nu} \underbrace{\Box \xi_{\mu,\nu}}_0 - \frac{1}{2} \eta_{\mu\nu} \eta^{\mu\nu} \underbrace{\Box \xi_{\nu,\mu}}_0 = \Box h_{\mu\nu}
-            
-            
-            
-            = 0 ~.
+        \begin{aligned}
+            \Box \tilde h^T_{\mu\nu} & = \Box \tilde h_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} \Box \tilde h \\ & = \Box h_{\mu\nu} + \underbrace{\Box \xi_{\mu,\nu}}_0 + \underbrace{\Box \xi_{\nu,\mu}}_0 - \frac{1}{2} \eta_{\mu\nu} \Box h - \frac{1}{2} \eta_{\mu\nu} \eta^{\alpha\beta} \underbrace{\Box \xi_{\alpha,\beta}}_0 - \frac{1}{2} \eta_{\mu\nu} \eta^{\alpha\beta} \underbrace{\Box \xi_{\beta,\alpha}}_0 \\ & = \Box h_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} \Box h = \Box h^T_{\mu\nu} = 0 ~.
+        \end{aligned}
         \end{equation*}
         For the transverse gauge, we have 
         \begin{equation*}
-            \partial^\mu \tilde h^T_{\mu\nu} = \partial^\mu h^T_{\mu\nu} + \partial^\mu \xi_{\mu,\nu} + \partial^\mu \xi_{\mu,\mu} 
+        \begin{aligned}
+            \partial^\mu \tilde h^T_{\mu\nu} & = \partial^\mu \tilde h_{\mu\nu} - \partial^\mu \frac{1}{2} \eta_{\mu\nu} \tilde h \\ & = \partial^\mu h_{\mu\nu} + \partial^\mu \xi_{\mu,\nu} + \partial^\mu \xi_{\nu,\mu} - \partial^\mu \frac{1}{2} \eta_{\mu\nu} h - \partial^\mu \frac{1}{2} \eta_{\mu\nu} \eta^{\alpha\beta} \xi_{\alpha,\beta} - \partial^\mu \frac{1}{2} \eta_{\mu\nu} \eta^{\alpha\beta} \xi_{\beta,\alpha} \\ & = \underbrace{ \partial^\mu h_{\mu\nu} - \partial^\mu \frac{1}{2} \eta_{\mu\nu} h }_0 + \partial^\mu \xi_{\mu,\nu} + \partial^\mu \xi_{\nu,\mu} - \partial^\mu \frac{1}{2} \eta_{\mu\nu} \eta^{\alpha\beta} \xi_{\alpha,\beta} - \partial^\mu \frac{1}{2} \eta_{\mu\nu} \eta^{\alpha\beta} \xi_{\beta,\alpha} \\ & = \partial^\mu \xi_{\mu,\nu} + \partial^\mu \xi_{\nu,\mu} - \partial^\mu \frac{1}{2} \eta_{\mu\nu} \eta^{\alpha\beta} \xi_{\alpha,\beta} - \partial^\mu \frac{1}{2} \eta_{\mu\nu} \eta^{\alpha\beta} \xi_{\beta,\alpha} \\ & = \eta^{\alpha\beta} \Big ( \cancel{\xi_{\beta,\nu\alpha}} + \xi_{\nu,\beta\alpha} -  \cancel{\frac{1}{2} \xi_{\alpha,\beta\nu}} - \cancel{\frac{1}{2} \xi_{\beta,\alpha\nu}} \Big ) = \Box \xi_\nu = 0 ~.
+        \end{aligned}
         \end{equation*}
     \end{proof}
 
+    Now, consider a plane wave ansatz 
+    \begin{equation*}
+        h^T_{\mu\nu} (x) = \epsilon_{\mu\nu} \exp(i k_\alpha x^\alpha) ~,
+    \end{equation*}
+    where $\epsilon_{\mu\nu}$ are the components of a symmetric polarisation tensor
+    \begin{equation*}
+        \epsilon_{\mu\nu} = 
+    \end{equation*}
+    Using the equations of motion, we find the dispersion relation for a massless wave
+    \begin{equation*}
+        k^\alpha k_\alpha = 0 ~,
+    \end{equation*}
+    which shows that gravitational waves travel at the speed of light.
+    \begin{proof}
+        In fact, 
+        \begin{equation*}
+            \Box h^T_{\mu\nu} = - k^\alpha k_\alpha h^T_{\mu\nu} = 0 ~.
+        \end{equation*}
+    \end{proof}
+    Using the transverse gauge, we find the transversality condition 
+    \begin{equation*}
+        k^\mu \epsilon_{\mu\nu} = k^\nu \epsilon_{\mu\nu} = 0 ~.
+    \end{equation*}
+    \begin{proof}
+        In fact, 
+        \begin{equation*}
+            \partial^\mu h^T_{\mu\nu} = i k^\mu \epsilon_\mu \exp(i k^\alpha x_\alpha) = 0 ~.
+        \end{equation*}
+    \end{proof}
+    Consider a plane wave moving along the $z$-axis, with wave vector $k^\mu = (k, 0, 0, k)$. This implies that for a generic vector $v$
+    \begin{equation*}
+        0 = k_\mu v^\mu = k (v^0 - v^3) ~, \quad v^0 = v^3 ~.
+    \end{equation*}
+    Therefore, the components of the polarisation tensor are now 
+    \begin{equation*}
+        \epsilon_{\mu\nu} = \begin{bmatrix}
+            a & b & c & a \\
+            b & e & f & b \\
+            c & f & h & c \\
+            a & b & c & a \\
+        \end{bmatrix} ~,
+    \end{equation*}
+    where we have used $\epsilon_{0 \mu} = \epsilon_{\mu 0} = \epsilon_{3\mu} = \epsilon_{\mu 3}$. However, we still have a residual gauge freedom to satisfies: we choose $3$ degrees of freedom to put $a = b = c = 0$ and the remaining one to set the trace equals to zero $e + f = 0$. Hence 
+    \begin{equation*}
+        \epsilon_{\mu\nu} = \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & e & f & 0 \\
+            0 & f & -e & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} ~.
+    \end{equation*}
+    Putting together, we have 
+    \begin{equation*}
+        h^{TT}_{\mu\nu} = \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & e & f & 0 \\
+            0 & f & -e & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} \exp(- i k t + i k z) ~.
+    \end{equation*}
+    Now, we can write the general gravitational plane wave as linear combination of 
+    \begin{equation*}
+    \begin{aligned}
+        h^{TT}_{\mu\nu} & = \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & e & f & 0 \\
+            0 & f & -e & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} \exp(- i k t + i k z) \\ & = e \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & -1 & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} \exp(- i k t + i k z) + f \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} \exp(- i k t + i k z) \\ & = e \epsilon_+ \exp(- i k t + i k z) + f \epsilon_\times \exp(- i k t + i k z) ~,
+    \end{aligned}
+    \end{equation*}
+    where we have defined the 
+    \begin{equation*}
+        \epsilon_+ = \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & -1 & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} ~, \quad \epsilon_\times = \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} ~.
+    \end{equation*}
+    Now, we take the real part, and we find 
+    \begin{equation*}
+    \begin{aligned}
+        \real h^{TT}_{\mu\nu} & = \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & e \sin(kt - k z) & 0 & 0 \\
+            0 & 0 & - e \sin(k t - k z) & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} + \begin{bmatrix}
+            0 & 0 & 0 & 0 \\
+            0 & 0 & f \sin(k t- k z) & 0 \\
+            0 & f \sin(k t - k z) & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+        \end{bmatrix} \\ & = \real {h^{TT}_{\mu\nu}}_+ + \real {h^{TT}_{\mu\nu}}_\times ~.
+    \end{aligned}
+    \end{equation*}
+    Consider now a free-falling test particle located at $x=0$ in space, we find that a circle will turn into an ellipse along $x$ and $y$
+    \begin{equation*}
+    \begin{aligned}
+        ds^2_+ = (\eta_{\mu\nu} + \real {h^{TT}_{\mu\nu}}_+) dx^\mu dx^\nu = - dt^2 + (1 + e \sin(kt)) dx^2 + (1-e \sin(kt)) dy^2 + dz^2 ~,
+    \end{aligned}
+    \end{equation*}
+    or diagonally
+    \begin{equation*}
+    \begin{aligned}
+        ds^2_\times = (\eta_{\mu\nu} + \real {h^{TT}_{\mu\nu}}_\times) dx^\mu dx^\nu = - dt^2 + dx^2 + dy^2 + 2 f \sin(kt) dxdy + dz^2 ~.
+    \end{aligned}
+    \end{equation*}
 
+    We can show that trajectories at constant $x$, $y$ and $z=0$ are indeed geodesics.
+    \begin{proof}
+        In fact, consider the Lagrangian for a particle of mass $m$ of the metric $g_+$
+        \begin{equation*}
+            L = \frac{m}{2} \Big ( - \dot t^2 + (1 + a \sin(kt)) \dot x^2 + (1 - a \sin(kt)) \dot x^2 \Big) \dot y^2 + \dot z^2 ~.
+        \end{equation*}
+        Since $L$ does not depend on $x$, $y$ and $z$, their momenta are conserved and they can be set to zero with suitable initial conditions. Furthermore, because $L = - m/2$, we have $\dot t^2 = 1$, which solved means $t = \tau + t_0$. We have built a locally inertial reference frame $(t, x, y, z)$.
+    \end{proof}
 
+    However, their velocity does not vanish. 
+    \begin{proof}
+        In fact, for a particle located in $x=l_0$ and $y = z = 0$, we have 
+        \begin{equation*}
+            l = \int_0^{l_0} dx g_{xx} = \int_0^{l_0} dx \sqrt{1 + e \sin(kt)} =\sqrt{1 + e \sin(kt)} l_0 \simeq (1 + \frac{e}{2} \sin(kt) ) l_0 ~,
+        \end{equation*}
+        where we have used $e \ll 1$ for weak field. Therefore, the velocity is 
+        \begin{equation*}
+            v = \dv{l}{t} \simeq \frac{e}{2} k \cos(kt) l_0 ~.
+        \end{equation*}
+    \end{proof}
 
 \section{Production}
+
+    Consider four particles of mass $m$ on the plane $xy$ force to oscillate as a gravitational wave. In locally inertial frame, we have 
+    \begin{equation*}
+        x_1 = - x_2 = l_0 + \Delta l \sin(\omega t) ~,
+    \end{equation*}
+    \begin{equation*}
+        y_3 = - y_4 = l_0 - \Delta l \sin(\omega t) ~,
+    \end{equation*}
+    \begin{equation*}
+        y_1 = y_2 = x_3 = x_4 = 0 ~,
+    \end{equation*}
+    where $i = 1, 2, 3, 4$. The center of mass is fixed and the total mass of the system is $M = 4m$. The total dipole moment is 
+    \begin{equation*}
+        D = m \Big ( \sum_{i=1}^2 x_i (t) + \sum_{i=3}^4 y_i (t)  \Big) = 0 ~,
+    \end{equation*}
+    whereas the quadrupole moment is 
+    \begin{equation*}
+        Q(t) = m \Big ( \sum_{i=1}^2 x_i^2 (t) + \sum_{i=3}^4 y_i^2 (t)  \Big) = M (l_0 + \Delta l \sin(\omega t))^2 ~.
+    \end{equation*}
+    The total kinetic energy is 
+    \begin{equation*}
+        E = \frac{m}{2} \Big ( \sum_{i=1}^2 \dot x_i^2 (t) + \sum_{i=3}^4 \dot y_i^2 (t)  \Big) = \frac{M}{2} \Delta l^2 \omega^2 \cos^2 (\omega t) ~.
+    \end{equation*}
+    Comparing it with the energy of a gravitational wave, we find 
+    \begin{equation*}
+        E_{gw} = \frac{1}{2} (4m) v^2 = \frac{M}{8} l_0^2 a^2 k^2 \sin^2 (kt + t_0) ~,
+    \end{equation*}
+    hence $\omega = k$, $t_0 = \pi / 2$ and the strain is $a \sim \delta l / l_0 \sim \Delta l / l$. 
+
+    Formally, consider the linearised Einstein equation in De Donder gauge 
+    \begin{equation*}
+        - \Box h_{ij}^T = 16 \pi G_N T_{ij} ~.
+    \end{equation*}
+    We can approximate on the center of mass $\underline r$, so that $h^T_{ij} (t, r)$. Outside the source, we can find the solution using the Green function of the d'Alambertian 
+    \begin{equation*}
+        G^T_{ijkl}(t, r, t', r') \sim \frac{\delta(t'-t+r)}{r} ~,
+    \end{equation*}
+    hence 
+    \begin{equation*}
+        h_{ij}^T(t,r) = 16 \pi G_N \int d^3 r' ~ G^T_{ijkl}(t, r, t', r') T^{kl} (t', r') ~,
+    \end{equation*}
+    such that $G_{ijkl} = G_{jikl}$ and $G^i_{\phantom i i k l} = 0$. Noticing that 
+    \begin{equation*}
+        T^{ij} (t', r) \simeq \rho(t', r')\delta \dot r^i (t') \dot r^j (t') ~,
+    \end{equation*}
+    \begin{equation*}
+        \int d^3 r' ~ T^{ij} (t', r') \simeq \int d^3 x ~ \rho (t', \underline r + \underline x)\dot x^i \dot x^j \simeq \dvd{}{t} \int d^3 x ~ \rho (t', \underline r + \underline x) x^i x^j ~,
+    \end{equation*}
+    where we have neglected $\dot \rho$ and $\ddot x^i$, we define the traceless quadrupole 
+    \begin{equation*}
+        I_{ij} \simeq \int d^3 x ~ \rho(\underline r + \underline x) \Big(x^i x^j - \frac{1}{3} \delta_{ij}x^2 \Big ) 
+    \end{equation*}
+    and we find the quadrupole formula 
+    \begin{equation*}
+        h^T_{ij} (t,r) \simeq \frac{16 \pi G_N}{r} \ddot I_{ij} (t-r) ~,
+    \end{equation*}
+    where $t - r$ is the retarded.
+
+    Since gravity is described by the metric, there is no force and therefore no energy. However, we can identify the energy of a gravitational wave by the work done on matter. In our approximation, this is 
+    \begin{equation*}
+        \dot E \sim G_N \dddot I_{ij} \dddot I^{ij} ~.
+    \end{equation*}
+
+    Consider a binary system of orbital radius $R$ and velocity 
+    \begin{equation*}
+        v^2 \sim \frac{G_N M}{R} ~.
+    \end{equation*}
+    The strain is 
+    \begin{equation*}
+        a \sim \frac{\Delta l}{l} \sim \frac{G_N M v^2}{r} \sim \frac{G_N^2 M^2}{r R} 
+    \end{equation*}
+    Furthermore, the frequency is 
+    \begin{equation*}
+        \omega \sim \frac{v}{R} \sim \sqrt{\frac{G_N M}{R^3}} ~.
+    \end{equation*}
+
 \section{Detection}
+
+    We can detect gravitational waves by means of a Michelson-Morley interferometer. Assuming $v \ll c$ and $t \sim l_0 \ll l_0 / v$, we find the maximum travel time 
+    \begin{equation*}
+        \Delta t \simeq 2 (l_0 (1 + a)^{1/2} - l_0 (1 - a)^{1/2} ) \simeq a l_0 ~.
+    \end{equation*}
+    Looking at the interference pattern, we find that it is proportional to the strain 
+    \begin{equation*}
+        a \sim \frac{\Delta l}{l} \simeq \frac{\Delta l}{l} ~.
+    \end{equation*}
