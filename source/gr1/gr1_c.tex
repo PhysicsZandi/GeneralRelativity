@@ -1,1 +1,271 @@
 \part{Cosmology}
+
+\chapter{Friedman-Lemaitre-Robertson-Walker}
+
+\section{Principles}
+
+    Modern cosmology is based on two principles 
+    \begin{princ}[Copernican]
+        There is no preferred observer in the Universe.
+    \end{princ}
+    \begin{princ}[Cosmological]
+        The Universe is homogeneous and isotropic.
+    \end{princ}
+    Isotropy is taken experimentally and homogeneity follows from isotropy of independent of observation. The average distribution of matter of a sampled area is the same in all directions. There exists a time $t$ such that the Universe is homogeneous and isotropic on each time slice. We will consider that galaxies are an homogeneous fluid.
+
+    Using the symmetries, we can define three rotational space-like Killing vectors associated to isotropy and three translational space-like Killing vectors associated to homogeneity. It can be proved that by maximally symmetry, isotropy with respect to an arbitrary point is equivalent to homogeneity. The FWR metric is 
+    \begin{equation*}
+        ds^2 = - dt^2 + a^2 (t) \Big ( \frac{dr^2}{1 - k r^2} + r^2 d\Omega^2 \Big ) = - dt^2 + a^2 (t) d\sigma^2 ~.
+    \end{equation*}
+    The coordinates are $(t, r, \theta, \phi)$. $a$ is the scale factor. $k$ could take any value but with a suitable rescaling of $r$
+    \begin{equation*}
+        dr = \sqrt{|k|} dr ~, \quad a^2 = |k| a^2 ~,
+    \end{equation*}
+    $k$ could be $0, \pm 1$, which means: if $k = 0$, we have a flat universe 
+    \begin{equation*}
+        d \sigma^2 = dr^2 + r^2 d\Omega^2 = dx^2 + dy^2 + dz^2 ~;
+    \end{equation*}
+    if $k = 1$, we have a closed universe for $r = \sin x$ 
+    \begin{equation*}
+        d\sigma^2 = dx^2 + \sin^2 x d\Omega^2  ~;
+    \end{equation*}
+    if $k = - 1$, we have a closed universe for $r = \sinh x$ 
+    \begin{equation*}
+        d\sigma^2 = dx^2 + \sinh^2 x d\Omega^2  ~.
+    \end{equation*}
+    The areal radius is given by 
+    \begin{equation*}
+        r_A = a(t) r ~,
+    \end{equation*}
+    and the proper distance is given by
+    \begin{equation*}
+        dR = a(t) \frac{dr}{\sqrt{1 - k r^2}} ~.
+    \end{equation*}
+    Observations suggest that local length does not change whereas distances increases as the scale factor.
+
+\section{Cosmic fluid}
+
+    We assumed that the Universe is a perfect fluid. The $0$-th components of the energy momentum tensor is 
+    \begin{equation*}
+        - \nabla_\mu T^\mu_{\phantom \mu 0} = \dot \rho + 3H (\rho + p) = 0 ~,
+    \end{equation*}
+    where the Hubble constant $H = \dot a / a$. Therefore, 
+    \begin{equation*}
+        \dv{}{t} (a^3 \rho) = - p \dv{}{t} (a^3) ~.
+    \end{equation*}
+    Assume that $p = \omega \rho$, then 
+    \begin{equation*}
+        \frac{\dot \rho}{\rho} = - 3 (1 + \omega) \frac{\dot a}{a} 
+    \end{equation*}
+    and 
+    \begin{equation*}
+        \rho \propto a^{-3(1+\omega)} ~.
+    \end{equation*}
+    The cosmic fluid can be decomposed in dust, i.e.~non-relativistic particles, and radiation, i.e.~highly-relativistic particles. 
+    For the dust case, we have $\omega = 0$ and $\rho \propto a^{-3}$. Notice that it agrees with $E \sim m_0$ and $V \sim a^3$. Constant lines of $(r, \theta, \phi$) are geodesics.
+    For the radiation case, we have $T = - \rho + 3 p = 0$, therefore $\omega = 1/3$. Then $\rho \propto a^{-4}$. Notice that it agrees with the gravitational red-shift $E \propto a^{-1}$. Furthermore, there is another possible source, compatible with the acceleration of the Universe. We have $\omega =-1$. It is called cosmological constant $\Lambda$ such that 
+    \begin{equation*}
+        \rho = - p = \frac{\Lambda}{8 \pi G_N} ~.
+    \end{equation*}
+
+\section{Friedmann equations}
+
+    Starting from the Einstein equations, we find the two Friedmann equations
+    \begin{equation*}
+        3 \Big ( \Big ( \frac{\dot a}{a} \Big)^2 + \frac{k}{a^2} \Big ) = 8 \pi G_N \rho ~, 
+    \end{equation*}
+    \begin{equation*}
+        3 \frac{\ddot a}{a} = - 4 \pi G_N (\rho + 3 p) ~.
+    \end{equation*}
+    The first one is a constraint which selects the initial conditions. Its time derivative is 
+    \begin{equation*}
+        6 \frac{\dot a}{a} \Big ( \frac{\ddot a}{a} - \frac{\dot a^2}{a^2} - \frac{k}{a^2} \Big ) = 8 \pi G_N \dot \rho ~.
+    \end{equation*}
+    Using the first equation, we find 
+    \begin{equation*}
+        3 \frac{\ddot a}{a} - 8 \pi G_N \rho = - 12 \pi G_N (p + \rho) ~.
+    \end{equation*}
+    Now, we define the deceleration parameter $q = - a \dot a / \dot a^2$ and the density parameter $\Omega = 8 \pi G_N \rho / 3 H^2 = \rho / \rho_{critical}$, where $\rho_{critical} = 3 H^2 / 8 \pi G_N$. The Friedmann equations becomes 
+    \begin{equation*}
+        \Omega - 1 = \frac{k}{H^2 a^2} ~,
+    \end{equation*}
+    which implies that 
+    \begin{enumerate}
+        \item open universe for $\rho < \rho_{critical}$ for $k = -1$ or $\Omega < 1$, 
+        \item flat universe for $\rho = \rho_{critical}$ for $k = 0$ or $\Omega = 1$, 
+        \item closed universe for $\rho > \rho_{critical}$ for $k = 1$ or $\Omega > 1$.
+    \end{enumerate}
+    Observations suggest that $k = 0$. For a matter dominated universe, we have 
+    \begin{equation*}
+        \rho_{dust} \sim \frac{1}{a^3} ~, \quad \frac{\dot a^2}{a^2} \sim \frac{1}{a^3} ~,
+    \end{equation*}
+    \begin{equation*}
+        a \dot a^2 \sim 1 ~, \quad \sqrt{a} da \sim dt ~,
+    \end{equation*}
+    therefore 
+    \begin{equation*}
+        a^{3/2} \sim t ~.
+    \end{equation*}
+    For a radiation dominated universe, we have 
+    \begin{equation*}
+        \rho_{rad} \sim \frac{1}{a^4} ~, \quad \frac{\dot a^2}{a^2} \sim \frac{1}{a^4} ~,
+    \end{equation*}
+    \begin{equation*}
+        a^2 \dot a^2 \sim 1 ~, \quad a da \sim dt ~,
+    \end{equation*}
+    therefore 
+    \begin{equation*}
+        a^2 \sim t ~.
+    \end{equation*}
+    For a matter dominated universe, we have 
+    \begin{equation*}
+        \rho_{\Lambda} \sim \Lambda ~, \quad \frac{\dot a^2}{a^2} \sim \frac{\Lambda}{3} ~,
+    \end{equation*}
+    \begin{equation*}
+        \sqrt{\frac{\Lambda}{3}} \sim \frac{\dot a}{a} = H_0 ~,
+    \end{equation*}
+    therefore 
+    \begin{equation*}
+        a \sim \exp(H_0 t) ~,
+    \end{equation*}
+    where $H_0$ is the true cosmological constant.
+
+    Consider a particle of mass $m$ on the surface of radius $R = r a$. The Newtonian acceleration 
+    \begin{equation*}
+        \ddot R = r \ddot a = - \frac{G_N 4 \pi \rho R^3}{3 R^2} = - \frac{4}{3} \pi G_N \rho r a ~, \quad 3 \frac{\ddot a}{a} = - 4 \pi G_N \rho ~.
+    \end{equation*}
+    Notice that it is different from Einstein, since it is true only if $p = 0$.
+
+\chapter{Expansion of the universe}
+
+\section{Cosmological red-shift}
+
+    Consider a source $r_1$ and a receiver $r_2$ moving along a cosmic fluid. Two emitted signals at times $t_1$ and $t_1 + \delta t_1$ will be received at $t_2$ and $t_2 + \delta t_2$, after 
+    \begin{equation*}
+        \int_{t_1}^{t_2} \frac{d t}{a(t)} = \int_{r_1}^{r_2} \frac{dr}{\sqrt{1 - k r^2}} = \int_{t_1 + \delta t_1}^{t_2 + \delta t_2} \frac{dt}{a(t)} ~,
+    \end{equation*}
+    which implies that 
+    \begin{equation*}
+        \int_{t_1}^{t_1 + \delta t_1} \frac{dt}{a(t)} = \int_{t_2}^{t_2 ì \delta t_2} \frac{dt}{a(t)} ~.
+    \end{equation*}
+    Assuming $\delta t_1$ and $\delta t_2$ are small, then
+    \begin{equation*}
+        \frac{\delta t_1}{a(t_1)} = \frac{\delta t_2}{a(t_2)} ~.
+    \end{equation*}
+    Therefore, 
+    \begin{equation*}
+        \frac{\omega(t_1)}{\omega(t_2)} = \frac{a(t_1)}{a(t_2)} = \frac{a_1}{a_2} ~.
+    \end{equation*}
+    Introducing the red-shift factor
+    \begin{equation*}
+        z = \frac{\lambda_0 - \lambda_s}{\lambda_s} = \frac{a_0}{a_s} - 1 ~,
+    \end{equation*}
+    where $\lambda_0$ is observed and $\lambda_s$ is emitted. The red-shift is caused by the expansion of the Universe. It is important notice that $a$ can be rescaled and therefore is not physical, however its ratio does.
+
+\section{Luminosity-distance relation}
+
+    Consider the flux of energy measured by an observer in Minkowski. Since energy is conserved across a sphere, we can define the intrinsic luminosity $L_0 = E_0 / T_0$. Therefore, the luminosity-distance relation is 
+    \begin{equation*}
+        F = \frac{L}{A} = \frac{L_0}{4 \pi R^2} ~, \quad d_L^2 = R^2 = \frac{L_0}{4 \pi F} ~. 
+    \end{equation*}
+    In the FRW metric, photons are red-shifted by $(1 + z)$. Moreover, the frequency is reduced between observer and emitter by a factor $\delta t$. Therefore, 
+    \begin{equation*}
+        L \simeq \frac{L_0}{(1 + z)^2} ~, \quad F = \frac{L}{A} \simeq \frac{L_0}{4\pi (a_0 r)^2 (1 + z)^2} = \frac{L_0}{4 pi d_L^2} ~,
+    \end{equation*} 
+    and 
+    \begin{equation}
+        d_L = a_0 r (1 + z) \simeq \sqrt{\frac{L_0}{F}} ~.
+    \end{equation}
+    In order to measure the red-shift, we need the emitted frequency. This can be found by observing the period of oscillation of the luminosity and the absolute luminosity. These sources are called standard candle and form cosmic distance ladder. 
+
+\section{Hubble-Lemaitre law}
+
+    A photon is gravitationally red-shifted by 
+    \begin{equation*}
+        z = \frac{a_0}{a_s} - 1 ~,
+    \end{equation*}
+    therefore, along a light ray for $kr^2 \ll 1$, we find
+    \begin{equation*}
+        ds^2 = - dt^2 + \frac{a^2 dr^2}{1 - k r^2} = 0
+    \end{equation*}
+    and 
+    \begin{equation*}
+        \int_{t_s}^{t_0} \frac{dt}{a(t)} = \int_0^r \frac{dr}{\sqrt{1 - kr^2}} \simeq \int_0^r dr = r ~.
+    \end{equation*}
+    Expanding the cosmic factor
+    \begin{equation*}
+        a(t) = a_0 + \dot a_0 (t-t_0) + \frac{\ddot a_0}{2} (t-t_0)^2 
+    \end{equation*}
+    then 
+    \begin{equation*}
+        r = \frac{1}{a_0} \Big ( (t_0 - t) ++ \frac{H_0}{2} (t_0 - t)^2 \Big)
+    \end{equation*}
+    and 
+    \begin{equation*}
+        \frac{1}{1+z} = \frac{a_s}{a_0} = 1 + H_0 (t - t_0) - \frac{1}{2} q_0 H_0^2 (t - t_0)^2 
+    \end{equation*}
+    where 
+    \begin{equation*}
+        q_0 = - \frac{a_0 \ddot a_0}{\dot a_0^2} = \frac{1 + 3\omega}{2} \Omega ~.
+    \end{equation*}
+    For small $H_0 (t - t_0)$, we have
+    \begin{equation*}
+        t_0 - t = \frac{1}{H_0} \Big ( z - \Big ( 1 + \frac{q_0}{2}z^2 \Big ) \Big) ~.
+    \end{equation*}
+    Finally, the Hubble law is 
+    \begin{equation*}
+        d_L = \frac{1}{H_0} \Big (z + \frac{1}{2} (1 - q_0) z^2 \Big) \simeq \frac{z}{H_0} ~.
+    \end{equation*}
+    Physically, it means that galaxies recede from us wit a velocity $z$. 
+
+\chapter{Standard model of cosmology}
+
+\section{CMB and inflation}
+
+    The solutions of the Friedmann equations shows that the Universe must have started from a singularity at $a = 0$ and expands from that. This is the basis of the Hot Big Bang model. Its main adversary is the steady model, in which energy density remains constant. However, the Cosmic Microwave Background radiation shows that the Universe is cooling down. 
+
+    The CMB radiation is an almost relic radiation, generated by the decoupled of radiation from matter on the last scattering surface. Before, photons were in thermal equilibrium with electrons and protons. They only way to understand the physics of that period is through gravitational waves. 
+
+    The light we receive from different direction in the sky should not have the same temperature, because they were not causally connected. In fact 
+    \begin{equation*}
+        ds^2 = 0 ~, \quad dt = a dr ~, \quad dr = \frac{d t}{a} ~.
+    \end{equation*}
+    Suppose we are at $r = 0$ and find 
+    \begin{equation*}
+        r_s = \int_0^{r_s} dr \sim \int_{-t_s}^0 \frac{dt}{a(t)} ~.
+    \end{equation*}
+    For a matter or radiation dominated Universe, we have 
+    \begin{equation*}
+        a(t) \sim t^\alpha ~, \quad r_s \sim t_s^{1 - \alpha} ~,
+    \end{equation*}
+    where $\alpha \in (0, 1)$. The proper distance is 
+    \begin{equation*}
+        R \sim a(-t_s) r_s = t^\alpha_s t^{1-\alpha}_s = t_s ~,
+    \end{equation*}
+    which coincides with Minkowski. Furthermore, 
+    \begin{equation*}
+        \dot a \sim t^{\alpha - 1} ~, \quad H = \frac{\dot a}{a} \sim t^{-1} ~,
+    \end{equation*}
+    and the particle horizon grows with time  
+    \begin{equation}
+        R_H \sim \frac{1}{H(-t_s)} \sim t_s ~.
+    \end{equation}
+    However, in a vacuum dominated Universe 
+    \begin{equation*}
+        a(t) \sim \exp(\exp(H_0 t)) ~, \quad r_s \sim \frac{\exp(-H_0 t)}{H_0} ~,
+    \end{equation*}
+    and the particle horizon is constant
+    \begin{equation*}
+        R \sim \exp(H_o t_s) r_s \sim \frac{1}{H_0} ~.
+    \end{equation*}
+    This can explain CMB homogeneity: the Universe started so small to have all particles in causal connection. Then, there was an inflation phase of rapid expansion. Finally, it ended.
+
+\section{$\Lambda$CDM model}
+
+    Observations lead to a flat Universe with $\Omega \simeq 1$ with density $\rho_0 = \rho_{crit} \simeq 10^{-29} g/cm^3$, identified by three sources 
+    \begin{enumerate}
+        \item massive baryonic matter with $\rho_{mat} / \rho_0 \simeq 5 \%$
+        \item dark matter with $\rho_{DM} / \rho_0 \simeq 25 \%$
+        \item dark energy with $\rho_{DE} / \rho_0 \simeq 70 \%$
+    \end{enumerate}
+    Dark matter is needed to explain the rotation of galaxies.

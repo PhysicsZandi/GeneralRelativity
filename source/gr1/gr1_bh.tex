@@ -569,6 +569,243 @@
         \label{tab:bh}
     \end{table}
 
-\chapter{Orbits}
-\chapter{Weak-field}
+\section{Orbits}
+
+    Notice that if we multiply by $m/2$, the equation of the energy
+    \begin{equation*}
+        \dot r^2 = \frac{2G_N M}{r} + E^2 -1 ~,
+    \end{equation*}
+    we find a Newtonian-like expression
+    \begin{equation*}
+        \frac{m}{2} \dot r^2 - \frac{G_N m M}{r} = \frac{m}{2} (E^2 - 1) ~,
+    \end{equation*}
+    where the Newtonian energy is 
+    \begin{equation*}
+        E_N = \frac{m}{2} (E^2 - 1) ~.
+    \end{equation*}
+    If $E_N < 0$ or $E^2 < 1$, the orbit is bounded. If $E_N = 0$ or $E^2 = 1$, the orbit is radially in-falling. If $E_N > 0$ or $E^2 > 1$, the orbit is unbounded. 
+
+    The equation of radial motion of a test particle is 
+    \begin{equation*}
+        \frac{1}{2} \Big ( \dv{r}{\tau} \Big )^2 + V(r) = \frac{E^2}{2} = \mathcal E ~,
+    \end{equation*}
+    where the potential is 
+    \begin{equation*}
+        V(r) = \frac{\epsilon}{2} \Big ( 1 - \frac{2 G_N M}{r} \Big) + \frac{L^2}{2r^2} - \gamma \frac{G_N M L^2}{r^3} ~,
+    \end{equation*}
+    with $\gamma = 1$ for general relativity and $\gamma = 0$ for Newtonian gravity. $\epsilon = 1$ for massive particles and $\epsilon = 0$ for massless ones. Now, we delve the solution of this $1$-dimensional equation.
+
+    Consider circular orbit, whose radius is given by 
+    \begin{equation*}
+        0 = \dv{V}{r} \Big \vert_{r_c} \sim \epsilon G_N M r_c^2 - L^2 r_c + 3 \gamma G_N M L^2 ~.
+    \end{equation*}
+    This critical radius is stable if they are a minimum, otherwise it is unstable.
+    In Newtonian gravity for $\gamma = 0$, we have for massless particles no circular orbits. Instead, for massive particles, we have
+    \begin{equation*}
+        r_c = \frac{L^2}{G_N M} ~.
+    \end{equation*}
+    In general relativity $\gamma = 1$, we have for massless particles 
+    \begin{equation*}
+        r_c = 3 G_N M ~,
+    \end{equation*}
+    which is unstable. Instead, for massive particles, we have 
+    \begin{equation*}
+        r_\pm = \frac{L^2}{2 G_N M} \Big ( 1 \pm \sqrt{1 - \frac{12 G_N^2 M^2}{L^2}} \Big ) ~.
+    \end{equation*}
+    Hence, for $L > \sqrt{12} G_N M$, the orbit is unstable for $r_-$ and stable for $r_+$. For large $L$, $r_-$ recovers the massless case and $r_+$ recovers the Newtonian case. For small $L$, they coincide for $L = \sqrt{12} G_N M$ with radius $r_c = 6 G_N M$. For $L < \sqrt{12} G_N M$, no circular orbits are possible.
+
+    Non-circular orbits can be viewed as ellipses that precess with $r = r(\phi)$. Substituting $L = r^2 d\phi / dr$ for $\theta = \pi/2$, we have 
+    \begin{equation*}
+        \Big ( \dv{r}{\phi} \Big )^2 = \frac{E^2 - \epsilon}{L^2} r^4 + \frac{2 \epsilon G_N M}{L^2} r^3 - r^2 + 2 \gamma G_N M r  ~,
+    \end{equation*}
+    which becomes for $x = L^2 / G_N M r$
+    \begin{equation*}
+        \Big ( \frac{x}{\phi} \Big)^2 = \frac{L^2 (E^2 - \epsilon)}{G_N^2 M^2} + 2 \epsilon x - x^2 + \gamma \frac{2 G_N^2 M^2}{L^2} x^3 ~,
+    \end{equation*}
+    \begin{equation*}
+        \dvd{x}{\phi} = \epsilon - x + \gamma \frac{3 G_N^2 M^2}{L^2} x^2 ~.
+    \end{equation*}
+    Defining the dimensionless quantities 
+    \begin{equation*}
+        \alpha = \frac{G_N M}{L} ~, \quad \beta = \frac{G_N M}{E L} = \frac{\alpha}{E} ~, \quad \rho = \frac{2 G_N^2 M^2}{L^2} = 2 \alpha^2 ~,
+    \end{equation*}
+    we obtain
+    \begin{equation*}
+        \Big ( \frac{x}{\phi} \Big )^2 = \Big ( \frac{1}{\beta^2} - \frac{\epsilon}{\alpha^2}\Big ) + 2 \epsilon x - x^2 + \gamma \rho x^3 ~,
+    \end{equation*}
+    \begin{equation*}
+        \dvd{x}{\phi} = \epsilon - x + \frac{3}{2} \gamma \rho x^2 ~,
+    \end{equation*}
+
+    For Newtonian gravity $\gamma = 0$, we have
+    \begin{equation*}
+        \Big ( \frac{x}{\phi} \Big)^2 = \Big (\frac{1}{\beta^2} - \frac{\epsilon}{\alpha^2} \Big) = - (x - x_+) (x - x_-) ~,
+    \end{equation*}
+    \begin{equation*}
+        \dvd{x}{\phi} = \epsilon - x ~.
+    \end{equation*}
+    Calling $x_\mp = \epsilon \mp k$, with 
+    \begin{equation*}
+        k = \sqrt{\frac{1}{\beta^2} - \frac{\epsilon}{\alpha^2} + \epsilon^2} ~.
+    \end{equation*}
+    The general solution is 
+    \begin{equation*}
+        x (\phi) = x_- + (x_+ - x_-) \sin^2 (\phi/2 + \delta) = \epsilon è (x_- - \epsilon) \cos(\phi + 2 \delta) ~,
+    \end{equation*}
+    where $\delta$ is an integration constant. The eccentricity is given by 
+    \begin{equation*}
+        e = \frac{x_+ - x_-}{x_+ + x_-} = \frac{k}{\epsilon} ~.
+    \end{equation*}
+    For massive particles, we have: if $x_- > 0$ and $x_- \neq x_+$ then the orbit is an ellipse with $x_-$ perihelion and $x_+$ aphelion; if $x_- = x_+$ or $k=0$ then the orbit is circular; if $x_- = 0$ or $k = 1$ then the orbit is a parabola and $x_2$ is the vertex; if $x_1 < 0$ or $k > 1$ then the orbit is an hyperbola and $x_2$ is the vertex. For massless particles, $x \in [-k, k]$ and the orbit is unbounded.
+
+    In general relativity $\gamma = 1$, we have 
+    \begin{equation*}
+        \Big ( \dv{x}{\phi} \Big)^2 = \rho (x - x_1)(x-x_2)(x-x_3) ~,
+    \end{equation*}
+    with $x_1 + x_2 + x_3 = 1 / \rho$. The general solution is 
+    \begin{equation*}
+        x(\phi) = x_1 + (x_2 - x_1) \sn^2 \Big ( \frac{\phi}{2} \sqrt{\rho (x_3 - x_1)} + \delta, k \Big) ~,
+    \end{equation*}
+    where $sn(z, k)$ is the Jacobi elliptic function with argument $z$ and modulus $k = \sqrt{(x_2 - x_1)/(x_3 - x_1)}$. The roots can be real ($x_1 \leq x_2 \leq x_3$) or one real $x_1$ and two complex. If $x_1 < x_2 < x_3$ all real then 
+    \begin{equation*}
+        \dvd{x}{\phi} = \frac{\rho}{2} \Big ( (x-x_2)(x-x_3) + (x-x_1)(x-x_3) + (x-x_1)(x-x_2) \Big) ~,
+    \end{equation*}
+    which is positive for $x = x_1$ and $x = x_3$ and negative for $x = x_2$. Physically, we have an oscillation between $x_1$ and $x_2$ or move away from $x_3$ to infinity. If $x_1 < 0$, a particle coming from infinity get near the mass and move again to infinity. 
+    If $x_1 < x_2 = x_3$, calling $r_{in} = 1/x_2$, we have $3/2\rho \leq r_{in} \leq r \rho $. Therefore, there are three solutions: spiral approaching the inner radius; circular orbit at the inner radius; spiral down from the inner radius towards the singularity. Fow $k = 1$, we have $\sn (z, 1) = \tanh (z)$ and 
+    \begin{equation*}
+        x(\phi) = x_1 + (x_2 - x_1) \tanh^2 \Big (\frac{\phi}{2} \sqrt{\rho (x_2 - x_1)}+\delta) ~.
+    \end{equation*}
+    If $x_1 = x_2 < x_3$ then the orbit is circular in $r_{out} = 1/x_1$. If $x_2, x_3 \in \mathbb C$, then the particle spirals towards a black hole with finite $\phi$.
+
+\chapter{Weak field phenomena}
+
+\section{Perihelion precession}
+
+    Consider a circular orbit in radius $r_c = L^2 / G_N M$. With $\gamma = \epsilon =1$, we approximate $r = r_c + \delta r(\tau)$. Expanding the potential, we obtain frequency
+    \begin{equation*}
+        \omega_r^2 = V''(r_c) = \frac{G_N^4 M^4}{L^6} - \frac{6 G_N^6 M^6}{L^8} = \omega_N \Big ( 1 - \frac{6 G_N^2 M^2}{L^2} \Big)
+    \end{equation*}
+    where $\omega_N$ is the Newtonian frequency. Therefore, 
+    \begin{equation*}
+        \delta \phi_T \simeq \frac{2\pi}{\omega_r} - \frac{2\pi}{\omega_N} \simeq \frac{6 \pi G_N^2 M^2}{L^2} \simeq \frac{6 \pi G_N M}{r_c} ~.
+    \end{equation*}
+    Generalising for elliptic orbits, we have 
+    \begin{equation*}
+        \delta \phi_T \simeq \frac{6 \pi G_N M}{a (1 - e^2)} ~.
+    \end{equation*}
+
+\section{Light deflection}
+
+    Consider a trajectory of light passing near the Sun with $\epsilon = 0$ and 
+    \begin{equation*}
+        \Big ( \frac{r}{\phi} \Big )^2 = \frac{E^2}{L^2} r^4 - r^2 + 2 \gamma G_N M r ~.
+    \end{equation*}
+    In Newtonian gravity, $\gamma = 0$, light travels in straight line with impact parameter $b = L / E$. Therefore 
+    \begin{equation*}
+        \dv{\phi}{r} = \pm \frac{1}{r^2} \Big ( \frac{1}{b^2} - \frac{1}{r^2} \Big ( 1 - \frac{\gamma 2 G_N M }{r} \Big )\Big )^{-1/2}
+    \end{equation*}
+    which becomes for $u = 1 / r$ 
+    \begin{equation*}
+        \dv{\phi}{u} = \Big ( \frac{1}{b^2} - u^2 + 2 \gamma G_N M u^3 \Big )^{-1/2} ~.
+    \end{equation*}
+    For $\gamma = 0$, the solution is 
+    \begin{equation*}
+        r \sin \phi = b ~.
+    \end{equation*}
+    For $\gamma = 1$ and $G_N M /b \ll 1$, we define $u = u (1 - G_N M u)$ and expand 
+    \begin{equation*}
+        \dv{\phi}{y} \simeq \frac{1 + 2 G_N M y}{\sqrt{1 / b^2 - y^2}} ~,
+    \end{equation*}
+    which is solved by 
+    \begin{equation*}
+        \phi \simeq \arcsin (by) + \frac{2 G_N M}{b} - 2 G_N M \sqrt{1 / b^2 - y^2} ~.
+    \end{equation*}
+    At the minimum $y = 1 / b$, we have 
+    \begin{equation*}
+        \phi_b = \frac{\pi}{2} + \frac{2 G_N M}{b} 
+    \end{equation*}
+    and 
+    \begin{equation*}
+        \delta \phi = 2 \phi_b - \pi \simeq \frac{4 G_N M}{b} ~.
+    \end{equation*}
+
 \chapter{Interior Schwarzschild metric}
+
+\section{Metric}
+
+    Consider a static spherical metric in the form 
+    \begin{equation*}
+        ds^2 = - \exp(\nu) dt^2 + \exp(\lambda) dr^2 + r^2 d\Omega^2 ~.
+    \end{equation*}
+    Suppose we are dealing with a perfect fluid with density $\rho (r)$ and pressure $p (r)$. The Einstein equations reads 
+    \begin{equation*}
+        G^0_{\phantom 00} = - \exp(-\lambda) \Big (\frac{\lambda'}{r} - \frac{1}{r^2}) + \frac{1}{r^2} = - 8 \pi G_N \rho ~,
+    \end{equation*}
+    \begin{equation*}
+        G^1_{\phantom 11} = \exp(-\lambda) \Big (\frac{\nu'}{r} + \frac{1}{r^2}) + \frac{1}{r^2} = 8 \pi G_N p ~,
+    \end{equation*}
+    \begin{equation*}
+        G^2_{\phantom 22} = G^3_{\phantom 33} = - \exp(-\lambda) \Big ( \frac{\lambda''}{2} + \frac{(\nu')^2}{4} - \frac{\nu' \lambda'}{4} + \frac{\nu' - \lambda'}{2 r} \Big) = 8 \pi G_N p ~,
+    \end{equation*}
+    From the first, we have 
+    \begin{equation*}
+        g^{rr} = \exp(- \lambda) = 1 - \frac{2 G_N m(r)}{r} ~,
+    \end{equation*}
+    where the Misner-Sharp-Hernandez mass function is 
+    \begin{equation*}
+        m(r) = 4 \pi \int_0^r dx x^2 \rho(x) ~.
+    \end{equation*}
+    Physically, it is the total mass star for $r = R_s$. Notice the continuity condition
+    \begin{equation*}
+        g^{rr} (r \rightarrow R_s^-) = g^{rr} (r \rightarrow R_s^+) ~.
+    \end{equation*}
+    Homogeneity means $\rho(r) = \rho = \rho_0$ for $r \in [0, R_s]$. Therefore 
+    \begin{equation*}
+        m = \frac{4}{3} \pi r^3 \rho_0
+    \end{equation*}
+    and 
+    \begin{equation*}
+        \exp(-\lambda) = 1 - \frac{8}{3} \pi G_N \rho r^2 = 1 - \frac{2 G_N M r^2}{R_s^3} ~.
+    \end{equation*}
+    Solving the remaining, we obtain 
+    \begin{equation*}
+        - g_{tt} = \exp(\nu) = \frac{1}{4} \Big ( 3 \sqrt{1 - \frac{2 G_N M}{R_s}} - \sqrt{1 - \frac{2 G_N M}{R_s} } \Big )^2 ~.
+    \end{equation*}
+    Therefore, the pressure is 
+    \begin{equation*}
+        p = \rho \frac{\sqrt{1 - 2 G_N M / R_s} - \sqrt{1 - 2 G_N M r^2/R_s^3}}{\sqrt{1 - 2 G_N M r^2 / R_s^2 } - 3 \sqrt{1 - 2 G_N M / R_s}} ~.
+    \end{equation*}
+    Notice that it is again continuous 
+    \begin{equation*}
+        g^{tt} (r \rightarrow R_s^-) = g^{tt} (r \rightarrow R_s^+) ~.
+    \end{equation*}
+    A consequence of the Birkhoff theorem states that pressure must vanish across $R_s$ since it vanishes outside and we use the same coordinates. However, this does not hold for energy, since it is at first order differential.
+
+\section{TOV equation} 
+
+    The Bianchi identity implies that 
+    \begin{equation*}
+        \nabla_\mu T^\mu_{\phantom \mu 1} = p' + \frac{\nu'}{2} (p + \rho) = 0 ~,
+    \end{equation*}
+    which implies that 
+    \begin{equation*}
+        p' = - (\rho + p) \frac{G_N}{r^2} (m + 4\pi r^3 p) \Big ( 1- \frac{2G_N m}{r} \Big)^{-1} ~.
+    \end{equation*}
+    In the non-relativistic limit it becomes 
+    \begin{equation*}
+        p' \simeq \rho(r) \frac{G_N m}{r^2} = - \rho(r) V'_N(r) ~.
+    \end{equation*}
+    As equation of state for a polytropes, we use 
+    \begin{equation*}
+        p = p_0 \Big ( \frac{\rho }{\rho_0} \Big)^{1 + 1/n} ~,
+    \end{equation*}
+    where $n$ is the polytropic index.
+    The pressure is maximal at $r=0$ 
+    \begin{equation*}
+        p (0) = \rho_0 \frac{\sqrt{1 - 2 G_N M / R_s} - 1}{1 - 3 \sqrt{1 - 2 G_N M / R_s}}
+    \end{equation*}
+    and diverges for 
+    \begin{equation*}
+        R_S = \frac{9}{4} G_N M = \frac{9}{8} R_H ~.
+    \end{equation*}
+    Physically, it means that for $R < R_s$, the star is not in equilibrium.
