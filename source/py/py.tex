@@ -1,277 +1,137 @@
-\documentclass[11pt]{article}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{pythontex} 
-\usepackage{nopageno} 
-\usepackage{amsmath} 
-\usepackage{mathtools} 
+\documentclass[a4paper, 12pt]{memoir}
+
+\input{../packages.tex}
+
+\title{general relativity}
+\date{\today}
+
+\newcommand{\subt}{python computations.}
+
 \begin{document}
 
-\begin{pycode}
+\frontmatter
 
-import sympy as sp
-import numpy as np
-from pprint import pprint
+\input{../titlepage.tex}
 
-sp.init_printing()
+\tableofcontents
 
-G = sp.Symbol('G')
-M = sp.Symbol('M')
-t = sp.Symbol('t')
-r = sp.Symbol('r')
-theta = sp.Symbol("theta") 
-phi = sp.Symbol('phi') 
-x = [t,r,theta,phi]
+\mainmatter
 
-def metric(g):
-    met = sp.zeros(4, 4)
-    for i in range(4):
-        for j in range(4):
-            met[i,j] = sp.simplify(g[i,j])
-    return met
+\input{pypy.tex}
 
-def Christoffel(g):
-    g_inv = g.inv()
-    c = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
-    for i in range(4):
-        for j in range(4):
-            for k in range(4):
-                for l in range(4):
-                    c[k][i,j] += 1/2 * g_inv[k,l] * (sp.diff(g[i,l], x[j]) + sp.diff(g[j,l], x[i])-sp.diff(g[i,j], x[l]))
-                    c[k][i,j] = sp.simplify(c[k][i,j])
-    return c
+\chapter*{Abstract}
 
-def Riemann(c):
-    riemann1 = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
-    riemann2 = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
-    riemann3 = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
-    riemann4 = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
-    riemann = [riemann1, riemann2, riemann3, riemann4]
-    for i in range(4):
-        for j in range(4):
-            for k in range(4):
-                for l in range(4):
-                    for a in range(4):
-                        riemann[i][j][k,l] += sp.diff(c[i][j,l], x[k]) - sp.diff(c[i][j,k], x[l]) + c[a][j,l] * c[i][a,k] - c[a][j,k] * c[i][a,l] 
-                        riemann[i][j][k,l] = sp.simplify(riemann[i][j][k,l])
-    return riemann
+    In these notes, we will compute general relativity with the help of python.
 
-def Ricci(c): 
-    ricci = sp.zeros(4, 4)
-    for i in range(4):
-        for j in range(4):
-            for k in range(4):
-                for a in range(4):
-                    ricci[i,j] += sp.diff(c[k][i,j], x[k]) - sp.diff(c[k][i,k], x[j]) + c[a][i,j] * c[k][a,k] - c[a][i,k] * c[k][a,j]
-                    ricci[i,j] = sp.simplify(ricci[i,j])
-    return ricci
-
-def RicciScalar(g, r):
-    scalar = 0
-    g_inv=g.inv()
-    for i in range(4):
-        scalar += g_inv[i,i] * r[i,i]
-    scalar = sp.simplify(scalar)
-    return scalar
-
-def Einstein(g, r, rsc): 
-    einstein = sp.zeros(4, 4)
-    for i in range(4):
-        for j in range(4):
-            einstein[i,j] += r[i,j] + 0.5 * g[i,j] * rsc
-            einstein[i,j] = sp.simplify(einstein[i,j])
-    return einstein
-
-l = sp.Function('lambda')(r)
-nu = sp.Function('nu')(r)
-g1 = sp.zeros(4, 4)
-g1[0,0] = - sp.exp(nu)
-g1[1,1] = sp.exp(l)
-g1[2,2] = r**2
-g1[3,3] = r**2 * sp.sin(theta)**2
-
-m1 = metric(g1)
-c1 = Christoffel(g1)
-rr1 = Riemann(c1)
-r1 = Ricci(c1)
-sc1 = RicciScalar(g1, r1)
-e1 = Einstein(g1, r1, sc1)
-
-def met1():
-    count = 0
-    print(r'g =', sp.latex(m1), '~, \quad')
-    print(r'\end{equation*}\begin{equation*}')
-
-def chri1():
-    count = 0
-    for i in range(4):
-        for j in range(4):
-            for k in range(4):
-                print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(c1[i][j,k]), '~, \quad')
-                count += 1
-                if count % 4 == 0: 
-                    print(r'\end{equation*}\begin{equation*}')
-
-def ric1():
-    count = 0
-    for i in range(4):
-        for j in range(4):
-            print(r'R_{', i, j,'} = ', sp.latex(r1[i,j]), '~, \quad')
-            count += 1
-            if count % 1 == 0: 
-                print(r'\end{equation*}\begin{equation*}')
-
-def riem1():
-    count = 0
-    for i in range(4):
-        for j in range(4):
-            for k in range(4):
-                for l in range(4):
-                    print(r'R^{', i, '}_{', j, k, l, '} = ', sp.latex(rr1[i][j][k,l]), '~, \quad')
-                    count += 1
-                    if count % 4 == 0: 
-                        print(r'\end{equation*}\begin{equation*}')
-
-def scal1():
-    print(r'R = ', sp.latex(sc1))
-
-
-def ein1():
-    count = 0
-    for i in range(4):
-        for j in range(4):
-            print(r'G_{', i, j,'} = ', sp.latex(e1[i,j]), '~, \quad')
-            count += 1
-            if count % 1 == 0: 
-                print(r'\end{equation*}\begin{equation*}')
-
-A = sp.Function('A')(r)
-B = sp.Function('B')(r)
-g2 = sp.zeros(4, 4)
-g2[0,0] = - A
-g2[1,1] = B 
-g2[2,2] = r**2
-g2[3,3] = r**2 * sp.sin(theta)**2
-
-m2 = metric(g2)
-c2 = Christoffel(g2)
-rr2 = Riemann(c2)
-r2 = Ricci(c2)
-sc2 = RicciScalar(g2, r2)
-e2 = Einstein(g2, r2, sc2)
-
-def met2():
-    count = 0
-    print(r'g =', sp.latex(m2), '~, \quad')
-    print(r'\end{equation*}\begin{equation*}')
-
-def chri2():
-    count = 0
-    for i in range(4):
-        for j in range(4):
-            for k in range(4):
-                print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(c2[i][j,k]), '~, \quad')
-                count += 1
-                if count % 4 == 0: 
-                    print(r'\end{equation*}\begin{equation*}')
-
-def ric2():
-    count = 0
-    for i in range(4):
-        for j in range(4):
-            print(r'R_{', i, j,'} = ', sp.latex(r2[i,j]), '~, \quad')
-            count += 1
-            if count % 1 == 0: 
-                print(r'\end{equation*}\begin{equation*}')
-
-def riem2():
-    count = 0
-    for i in range(4):
-        for j in range(4):
-            for k in range(4):
-                for l in range(4):
-                    print(r'R^{', i, '}_{', j, k, l, '} = ', sp.latex(rr2[i][j][k,l]), '~, \quad')
-                    count += 1
-                    if count % 4 == 0: 
-                        print(r'\end{equation*}\begin{equation*}')
-
-def scal2():
-    print(r'R = ', sp.latex(sc2))
-
-
-def ein2():
-    count = 0
-    for i in range(4):
-        for j in range(4):
-            print(r'G_{', i, j,'} = ', sp.latex(e2[i,j]), '~, \quad')
-            count += 1
-            if count % 1 == 0: 
-                print(r'\end{equation*}\begin{equation*}')
-
-\end{pycode} 
-
-\section{Exterior Schwarschild metric}
+\chapter{Exterior Schwarschild metric}
 
     The metric is 
     \begin{equation*}
-        \pyc{met2()}
+        \pyc{ES.printmet()} ~.
     \end{equation*}
 
-    Its Christoffel symbols are 
+\section{Christoffel symbols}
+    The Christoffel symbols are 
     \begin{equation*}
-        \pyc{chri2()}
+        \pyc{ES.printchri()} ~.
     \end{equation*}
 
-    The Riemann tensor is 
+\section{Riemann tensor}
+    The Riemann tensor is
     \begin{equation*}
-        \pyc{riem2()}
+        \pyc{ES.printriem()} ~.
     \end{equation*}
 
-    The Ricci tensor is 
+\section{Ricci tensor}
+    The Ricci tensor is
     \begin{equation*}
-        \pyc{ric2()}
+        \pyc{ES.printric()} ~.
     \end{equation*}
 
-    The Ricci scalar is 
+\section{Ricci scalar}
+    The Ricci scalar is
     \begin{equation*}
-        \pyc{scal2()}
+        \pyc{ES.printscal()} ~.
     \end{equation*}
 
-    The Einstein tensor is 
+\section{Einstein tensor}
+    The Einstein tensor is
     \begin{equation*}
-        \pyc{ein2()}
+        \pyc{ES.printein()} ~.
     \end{equation*}
 
-\section{Interior Schwarschild metric}
+\chapter{Interior Schwarschild metric}
 
     The metric is 
     \begin{equation*}
-        \pyc{met1()}
+        \pyc{IS.printmet()} ~.
     \end{equation*}
 
-    Its Christoffel symbols are 
+\section{Christoffel symbols}
+    The Christoffel symbols are 
     \begin{equation*}
-        \pyc{chri1()}
+        \pyc{IS.printchri()} ~.
     \end{equation*}
 
-    The Riemann tensor is 
+\section{Riemann tensor}
+    The Riemann tensor is
     \begin{equation*}
-        \pyc{riem1()}
+        \pyc{IS.printriem()} ~.
     \end{equation*}
 
-    The Ricci tensor is 
+\section{Ricci tensor}
+    The Ricci tensor is
     \begin{equation*}
-        \pyc{ric1()}
+        \pyc{IS.printric()} ~.
     \end{equation*}
 
-    The Ricci scalar is 
+\section{Ricci scalar}
+    The Ricci scalar is
     \begin{equation*}
-        \pyc{scal1()}
+        \pyc{IS.printscal()} ~.
     \end{equation*}
 
-    The Einstein tensor is 
+\section{Einstein tensor}
+    The Einstein tensor is
     \begin{equation*}
-        \pyc{ein1()}
+        \pyc{ES.printein()} ~.
+    \end{equation*}
+    
+\chapter{FRW metric}
+
+    The metric is 
+    \begin{equation*}
+        \pyc{FRW.printmet()} ~.
+    \end{equation*}
+    
+\section{Christoffel symbols}
+    The Christoffel symbols are 
+    \begin{equation*}
+        \pyc{FRW.printchri()} ~.
+    \end{equation*}
+
+\section{Riemann tensor}
+    The Riemann tensor is
+    \begin{equation*}
+        \pyc{FRW.printriem()} ~.
+    \end{equation*}
+
+\section{Ricci tensor}
+    The Ricci tensor is
+    \begin{equation*}
+        \pyc{FRW.printric()} ~.
+    \end{equation*}
+
+\section{Ricci scalar}
+    The Ricci scalar is
+    \begin{equation*}
+        \pyc{FRW.printscal()} ~.
+    \end{equation*}
+
+\section{Einstein tensor}
+    The Einstein tensor is
+    \begin{equation*}
+        \pyc{FRW.printein()} ~.
     \end{equation*}
 
 \end{document}

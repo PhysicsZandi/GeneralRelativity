@@ -1,0 +1,151 @@
+\begin{pycode}
+
+import sympy as sp
+import numpy as np
+
+sp.init_printing()
+
+class Manifold: 
+    def __init__(self):
+        self.g = sp.zeros(4, 4)
+        self.c = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
+        riemann1 = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
+        riemann2 = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
+        riemann3 = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
+        riemann4 = [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]
+        self.riemann = [riemann1, riemann2, riemann3, riemann4]
+        self.ric = sp.zeros(4, 4)
+        self.scal = 0
+        self.ein = sp.zeros(4, 4)
+
+    def setmetric(self, g00, g11, g22, g33):
+        self.g[0,0] = sp.simplify(g00)
+        self.g[1,1] = sp.simplify(g11)
+        self.g[2,2] = sp.simplify(g22)
+        self.g[3,3] = sp.simplify(g33)
+
+    def printmet(self):
+        print(r'g =', sp.latex(self.g), '~, \quad')
+        print(r'\end{equation*}\begin{equation*}')
+
+    def setchri(self):
+        g_inv = self.g.inv()
+        for i in range(4):
+            for j in range(4):
+                for k in range(4):
+                    for l in range(4):
+                        self.c[k][i,j] += 1/2 * g_inv[k,l] * (sp.diff(self.g[i,l], x[j]) + sp.diff(self.g[j,l], x[i])-sp.diff(self.g[i,j], x[l]))
+                        self.c[k][i,j] = sp.simplify(self.c[k][i,j])
+
+    def printchri(self):
+        for i in range(4):
+            for j in range(4):
+                for k in range(4):
+                    print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(self.c[i][j,k]), '~, \quad')
+                    print(r'\end{equation*}\begin{equation*}')
+            
+    def setriem(self):
+        g_inv = self.g.inv()
+        for i in range(4):
+            for j in range(4):
+                for k in range(4):
+                    for l in range(4):
+                        self.riemann[i][j][k,l] += sp.diff(self.c[i][j,l], x[k]) - sp.diff(self.c[i][j,k], x[l])
+                        for a in range(4):
+                            self.riemann[i][j][k,l] += self.c[a][j,l] * self.c[i][a,k] - self.c[a][j,k] * self.c[i][a,l] 
+                        self.riemann[i][j][k,l] = sp.simplify(self.riemann[i][j][k,l])
+
+    def printriem(self):
+        for i in range(4):
+            for j in range(4):
+                for k in range(4):
+                    for l in range(4):
+                        print(r'R^{', i, '}_{', j, k, l, '} = ', sp.latex(self.riemann[i][j][k,l]), '~, \quad')
+                        print(r'\end{equation*}\begin{equation*}')
+
+    def setric(self): 
+        for i in range(4):
+            for j in range(4):
+                for k in range(4):
+                    self.ric[i,j] += sp.diff(self.c[k][i,j], x[k]) - sp.diff(self.c[k][i,k], x[j])
+                    for a in range(4):
+                        self.ric[i,j] += self.c[a][i,j] * self.c[k][a,k] - self.c[a][i,k] * self.c[k][a,j]
+                    self.ric[i,j] = sp.simplify(self.ric[i,j])
+
+    def printric(self):
+        for i in range(4):
+            for j in range(4):
+                print(r'R_{', i, j,'} = ', sp.latex(self.ric[i,j]), '~, \quad')
+                print(r'\end{equation*}\begin{equation*}')
+
+    def setscal(self):
+        g_inv = self.g.inv()
+        for i in range(4):
+            self.scal += g_inv[i,i] * self.ric[i,i]
+            self.scal = sp.simplify(self.scal)
+
+    def printscal(self):
+        print(r'R = ', sp.latex(self.scal))
+
+    def setein(self): 
+        for i in range(4):
+            for j in range(4):
+                self.ein[i,j] += self.ric[i,j] + 0.5 * self.g[i,j] * self.scal
+                self.ein[i,j] = sp.simplify(self.ein[i,j])
+
+    def printein(self):
+        for i in range(4):
+            for j in range(4):
+                print(r'G_{', i, j,'} = ', sp.latex(self.ein[i,j]), '~, \quad')
+                print(r'\end{equation*}\begin{equation*}')
+
+
+t = sp.Symbol('t')
+r = sp.Symbol('r')
+theta = sp.Symbol("theta") 
+phi = sp.Symbol('phi') 
+x = [t,r,theta,phi]
+k = sp.Symbol('k')
+G = sp.Symbol('G')
+M = sp.Symbol('M')
+
+A = sp.Function('A')(r)
+B = sp.Function('B')(r)
+a = sp.Function('a')(t)
+l = sp.Function('lambda')(r)
+nu = sp.Function('nu')(r)
+
+ES = Manifold() 
+ES.setmetric(-A, B, r**2, r**2 * sp.sin(theta)**2)
+ES.setchri()
+ES.setriem()
+ES.setric()
+ES.setscal()
+ES.setein()
+
+IS = Manifold() 
+IS.setmetric(- sp.exp(nu), sp.exp(l), r**2, r**2 * sp.sin(theta)**2)
+IS.setchri()
+IS.setriem()
+IS.setric()
+IS.setscal()
+IS.setein()
+
+FRW = Manifold() 
+FRW.setmetric(-1, a**2 / (1 - k * r**2), a**2 * r**2, a**2 * r**2 * sp.sin(theta)**2)
+FRW.setchri()
+FRW.setriem()
+FRW.setric()
+FRW.setscal()
+FRW.setein()
+
+T = Manifold() 
+T.setmetric(- ( 1 - 2 * G * M / r), 1 / ( 1 - 2 * G * M / r), r**2, r**2 * sp.sin(theta)**2)
+T.setchri()
+T.setriem()
+T.setric()
+T.setscal()
+T.setein()
+
+\end{pycode} 
+
