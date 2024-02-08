@@ -115,12 +115,4 @@ def limit(x, f, point):
     lim = sy.limit(f, x, point) 
     return sy.latex(lim)
 
-def plotmetric(fig):
-    for i in range(5):
-    array = np.array()
-    xaxis = np.array([2, 8])
-    yaxis = np.array([4, 9])
-    plt.plot(xaxis, yaxis)
-    plt.savefig(f'fig/fig{fig}.pgf')
-    print(r'\input{fig/fig'+ rf'{fig}' + r'.pgf}')
 \end{pycode}

@@ -384,10 +384,146 @@
     \end{equation*}
     hence $\omega = k$, $t_0 = \pi / 2$ and the strain is $a \sim \delta l / l_0 \sim \Delta l / l$. 
 
-    Formally, consider the linearised Einstein equation in De Donder gauge 
+\section{Quadrupole formula}
+
+    We can make this analysis more formally. Consider the linearised Einstein equation in transverse gauge
     \begin{equation*}
-        - \Box h_{ij}^T = 16 \pi G_N T_{ij} ~.
+        - \Box h_{\mu\nu}^T = 16 \pi G_N T_{\mu\nu} ~.
     \end{equation*}
+    The solution for this equation can be obtained by means of the Green function $G (x - y)$, which satisfies the Green equation 
+    \begin{equation*}
+        \Box_x G (x - y) = \delta^4 (x - y) ~,
+    \end{equation*}
+    where $x$ and $y$ are spacetime $4$-vectors.
+    The general solution of the Einstein equations is given by
+    \begin{equation*}
+        h_{\mu\nu}^T = - 16 \pi G_N \int d^4 y ~ G  (x - y) T_{\mu \nu} (y) ~.
+    \end{equation*}
+    where we have ignored the factor $\sqrt{-g}$ since we are linear. Green function depends on the boundary conditions. We choose the retarded Green function, since we want to study the effects of signal after it is propagated in the past. The Green function of the d'Alambertian is given by 
+    \begin{equation*}
+        G (x - y) = - \frac{1}{4\pi |\underline x - \underline y|} \theta (x^0 - y^0) \delta (|\underline x - \underline y| - (x^0 - y^0)) ~.
+    \end{equation*}
+    Therefore, 
+    \begin{equation*}
+    \begin{aligned}
+        h_{\mu\nu}^T & = - 16 \pi G_N \int d^4 y ~ G (x - y) T_{\mu\nu} (y) \\ & = - 16 \pi G_N \int d^4 y ~T_{\mu\nu} (y) \Big (- \frac{1}{4\pi |\underline x - \underline y|} \theta (x^0 - y^0) \delta (|\underline x - \underline y| - (x^0 - y^0)) \Big ) \\ & = 4 G_N \int d^3 y ~ \frac{1}{|\underline x - \underline y|} T_{\mu\nu} (t_r, \underline y) ~,
+    \end{aligned}
+    \end{equation*}
+    where $t_r = t - |\underline x - \underline y|$ is the retarded time. Physically, it means that the effect of the gravitational disturbance at a point $t, \underline x$ can be traced back to points on the past light cone $(t_r, \underline x - \underline y)$. Now, we take the Fourier transform of the metric perturbation 
+    \begin{equation*}
+    \begin{aligned}
+        \tilde h^T_{\mu\nu} (\omega, \underline x) & = \int \frac{dt}{(2\pi)^{1/2}} \exp(i \omega t)  h^T_{\mu\nu} (t, \underline x) \\ & = 4 G_N \int \frac{dt}{(2\pi)^{1/2}} d^3 y ~ \exp(i \omega t) \frac{1}{|\underline x - \underline y|} T_{\mu\nu} (t_r, \underline y)
+    \end{aligned}
+    \end{equation*}
+    We make a change of variable into $t_r$ and we find 
+    \begin{equation*}
+    \begin{aligned}
+        \tilde h^T_{\mu\nu} (\omega, \underline x) & = 4 G_N \int \frac{dt_r}{(2\pi)^{1/2}} d^3 y ~ \exp(i \omega (t_r + |\underline x - \underline y|)) \frac{1}{|\underline x - \underline y|} T_{\mu\nu} (t_r, \underline y) \\ & = 4 G_N \underbrace{\int \frac{dt_r}{(2\pi)^{1/2}} ~ \exp(i \omega t_r) T_{\mu\nu} (t_r, \underline y) }_{\tilde T_{\mu\nu} (\omega, \underline{y})} \int d^3 y \exp(i \omega |\underline x - \underline y|) \frac{1}{|\underline x - \underline y|} \\ & = 4 G_N \int d^3 y ~ \exp(i \omega |\underline x - \underline y|) \frac{1}{|\underline x - \underline y|}  \tilde T_{\mu\nu} (\omega, \underline{y}) ~.
+    \end{aligned}
+    \end{equation*}
+
+    So far, we have made exact computations. Now, we consider gravitational waves emitted by a non-relativistic isolated far-away source. We individuate the size of the source to be $r + \delta r$ which low frequency of emission $\delta r \ll 1 / \omega$. Physically, it means that light travels faster than the components of the source. This means that
+    \begin{equation*}
+        \frac{\exp(i \omega |\underline x - \underline y|)}{|\underline x - \underline y|} \simeq \frac{\exp(i \omega r)}{r} ~, 
+    \end{equation*}
+    hence 
+    \begin{equation*}
+        \tilde h^T_{\mu\nu} (\omega, \underline x) \simeq 4 G_N \frac{\exp(i \omega r)}{r} \int d^3 y ~ \tilde T_{\mu\nu} (\omega, \underline{y}) ~.
+    \end{equation*}
+    Using the transverse gauge, we need only to find the spatial components. In fact, we have 
+    \begin{equation*}
+        \partial^\mu \tilde h_{\mu\nu} (t, \mathbf x) = 0~, \quad \tilde h^T_{0 \nu} = - \frac{i}{\omega} \partial^i \tilde h_{i \nu} ~.
+    \end{equation*}
+    Let us restrict ourselves to the spatial components. Notice that 
+    \begin{equation*}
+        0 = \int d^3 y ~ \partial_k (y^i \tilde T^{kj}) = \int d^3 y ~ y^i \partial_k (\tilde T^{kj}) + \int d^3 y ~ \tilde T^{ij} ~,
+    \end{equation*}
+    because it is a boundary term. Therefore, we have
+    \begin{equation}\label{proof5}
+        \int d^3 y ~ \tilde T^{ij} = - \int d^3 y ~ y^i \partial_k (\tilde T^{kj}) ~.
+    \end{equation}
+    Using the continuity equation, we find 
+    \begin{equation*}
+        \partial^\mu \tilde T_{\mu \nu} = 0 ~, \quad - \partial_k \tilde T^{k \nu} = i \omega T^{0 \nu} ~.
+    \end{equation*}
+    Therefore, 
+    \begin{equation*}
+    \begin{aligned}
+        \int d^3 y ~ T^{ij} (\omega, \underline y) & = - \int d^3 y ~ y^i \partial_k (\tilde T^{kj}) = i \omega \int d^3 y ~ y^i \tilde T^{0j} \\ & = \frac{i \omega}{2} \int d^3 y ~ (y^i \tilde T^{0j} + y^j \tilde T^{0i}) 
+    \end{aligned}
+    \end{equation*}
+    where we have symmetrised, since $T$ is symmetric. Exploiting again~\eqref{proof5}, we find
+    \begin{equation*}
+        \int d^3 y ~ T^{ij} (\omega, \underline y)= \frac{i \omega}{2} \int d^3 y ~ (\partial_l (y^i y^l \tilde T^{0j}) - y^i y^j \partial_l \tilde T^{0l}) = - \frac{\omega^2}{2} \int d^3 y ~ y^i y^j \tilde T^{00} ~.
+    \end{equation*}
+    We define the quadrupole moment tensor of the energy density of the source
+    \begin{equation*}
+        I^{ij} (t) = \int d^3 y ~ y^i y^j T^{00} ~.
+    \end{equation*}
+    Putting together, we obtain
+    \begin{equation*}
+        \int d^3 y ~ T^{ij} (\omega, \underline y) = - \frac{\omega^2}{2} \int d^3 y ~ y^i y^j \tilde T^{00} = - \frac{\omega^2}{2} I^{ij} ~,
+    \end{equation*}
+    \begin{equation*}
+    \begin{aligned}
+        \tilde h^T_{ij} (\omega, \underline x) & \simeq 4 G_N \frac{\exp(i \omega r)}{r} \int d^3 y ~ \tilde T_{ij} (\omega, \underline{y}) \\ & = - \frac{\omega^2}{2} \frac{\exp(i \omega r)}{r} 4 G_N I^{ij} = - 2 G_N \omega^2 \frac{\exp(i \omega r)}{r} \tilde I_{ij} (\omega) ~.
+    \end{aligned}
+    \end{equation*}
+    Finally, we find the quadrupole formula by an inverse Fourier transform 
+    \begin{equation*}
+    \begin{aligned}
+        h^T_{ij} (t, \underline x) & = \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde h^T_{ij} (\omega, \underline x) \\ & = - 2 G_N \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \omega^2 \frac{\exp(i \omega r)}{r} \tilde I_{ij} (\omega) \\ & = - \frac{2 G_N}{r} \int \frac{d\omega}{(2\pi)^{1/2}} \omega^2 \exp(- i \omega (t - r)) \tilde I_{ij} \\ & = - \frac{2 G_N}{r} \dvd{}{t} I_{ij} (t_r) ~,
+    \end{aligned}
+    \end{equation*}
+    where we have used the Feynman technique and 
+    \begin{equation*}
+        I_{ij} (t_r) = \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t_r) I_{ij} (\omega) ~.
+    \end{equation*}
+    Physically, it means that the gravitational wave produced is proportional to the second derivative of the quadrupole moment of energy density.
+
+\section{Binary system}
+
+    Consider the gravitational wave emitted by a binary system composed by two stars of equal mass $M$ orbiting around their center of mass $R$ in the plane $x^1-x^2$. Using the Newtonian-Keplerian approximation, we can find the angular frequency of the orbit 
+    \begin{equation*}
+        \Omega = \Big ( \frac{G_N M}{4 R^3} \Big)^{1/2} ~.
+    \end{equation*} 
+    \begin{proof}
+        Equating the centrigual force with the gravitational one 
+        \begin{equation*}
+            \frac{G_N M}{(2 R)^2} = \frac{M v^2}{R} ~, \quad v = \Big ( \frac{G_N M}{4 R} \Big)^{1/2} ~.
+        \end{equation*}
+        The frequency is given by 
+        \begin{equation*}
+            \Omega = \frac{2\pi}{T} = \frac{2 \pi v}{2 \pi R} = \Big ( \frac{G_N M}{4 R^3} \Big)^{1/2} ~.
+        \end{equation*}
+    \end{proof}
+    The explicit path is given by 
+    \begin{equation*}
+        x^1_a = R \cos (\Omega t) ~, \quad x^2_a = R \sin (\Omega t) ~, \quad x^1_b = - R \cos (\Omega t) ~, \quad x^2_b = - R \sin (\Omega t) ~,
+    \end{equation*}
+    where $a$ and $b$ are different stars. The energy density is given by 
+    \begin{equation*}
+        T^{00} (t, \underline x) = M \delta^3 (x^3) (\delta(x^1 - R \cos (\Omega t))\delta(x^2 - R \sin (\Omega t)) + \delta(x^1 + R \cos (\Omega t))\delta(x^2 + R \sin (\Omega t))) ~.
+    \end{equation*}
+    The quadrupole tensor is 
+    \begin{equation*}
+        I_{ij} = \begin{bmatrix}
+            M R^2 (1 + \cos (2 \Omega t)) & M R^2 \sin (2 \Omega t) & 0 \\
+            M R^2 \sin (2 \Omega t) & M R^2 (1 - \cos (2 \Omega t)) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix} ~.
+    \end{equation*}
+    \begin{proof}
+        In fact 
+        \begin{equation*}
+            I_{11} = \int d^3 y ~ T^{00} (t, \underline y) y^1 y^1 = \int d^3 y ~ M \delta^3 (x^3) (\delta(x^1 - R \cos (\Omega t))\delta(x^2 - R \sin (\Omega t)) + \delta(x^1 + R \cos (\Omega t))\delta(x^2 + R \sin (\Omega t))) 
+        \end{equation*}
+    \end{proof}
+
+
+    \hfill 
+
+
     We can approximate on the center of mass $\underline r$, so that $h^T_{ij} (t, r)$. Outside the source, we can find the solution using the Green function of the d'Alambertian 
     \begin{equation*}
         G^T_{ijkl}(t, r, t', r') \sim \frac{\delta(t'-t+r)}{r} ~,
