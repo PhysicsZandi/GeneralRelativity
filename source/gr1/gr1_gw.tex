@@ -503,7 +503,7 @@
     \end{equation*}
     where $a$ and $b$ are different stars. The energy density is given by 
     \begin{equation*}
-        T^{00} (t, \underline x) = M \delta^3 (x^3) (\delta(x^1 - R \cos (\Omega t))\delta(x^2 - R \sin (\Omega t)) + \delta(x^1 + R \cos (\Omega t))\delta(x^2 + R \sin (\Omega t))) ~.
+        T^{00} (t, \underline x) = M \delta (x^3) (\delta(x^1 - R \cos (\Omega t))\delta(x^2 - R \sin (\Omega t)) + \delta(x^1 + R \cos (\Omega t))\delta(x^2 + R \sin (\Omega t))) ~.
     \end{equation*}
     The quadrupole tensor is 
     \begin{equation*}
@@ -516,7 +516,9 @@
     \begin{proof}
         In fact 
         \begin{equation*}
-            I_{11} = \int d^3 y ~ T^{00} (t, \underline y) y^1 y^1 = \int d^3 y ~ M \delta^3 (x^3) (\delta(x^1 - R \cos (\Omega t))\delta(x^2 - R \sin (\Omega t)) + \delta(x^1 + R \cos (\Omega t))\delta(x^2 + R \sin (\Omega t))) 
+        \begin{aligned}
+            I_{11} & = \int d^3 y ~ T^{00} (t, \underline y) y_1 y_1 \\ & = \int d^3 y ~ M \delta^3 (y^3) \Big (\delta(y^1 - R \cos (\Omega t))\delta(y^2 - R \sin (\Omega t)) + \delta(y^1 + R \cos (\Omega t))\delta(y^2 + R \sin (\Omega t)) \Big ) y_1 y_1 \\ & = M \int dy^1 ~ y_1 y_1 \delta (y_1 - R \cos (\Omega t)) \int dy_2 ~ \delta (y_2 - R \sin (\Omega t)) \int d y_3 \delta (y_3) 
+        \end{aligned}
         \end{equation*}
     \end{proof}
 
