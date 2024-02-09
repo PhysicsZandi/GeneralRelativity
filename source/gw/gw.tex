@@ -1,0 +1,395 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper, top = 4cm, bottom = 4cm, left = 3cm, right = 3cm]{geometry}
+
+\usepackage[backend=bibtex, sorting=none]{biblatex}
+\addbibresource{../bibliography.bib}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks, linkcolor={black}, citecolor={black}, urlcolor={black}}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{mathtools}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+
+\newcommand{\dv}[2]{\frac{d#1}{d#2}}
+\newcommand{\dvin}[3]{\frac{d#1}{d#2}\Big\vert_{#3}}
+\newcommand{\dvd}[2]{\frac{d^2#1}{d#2^2}}
+\newcommand{\dvt}[2]{\frac{d^3#1}{d#2^3}}
+\newcommand{\dvf}[2]{\frac{\delta #1}{\delta #2}}
+\newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\pdvd}[3]{\frac{\partial^2 #1}{\partial#2 \partial#3}}
+\newcommand{\pdvdu}[2]{\frac{\partial^2 #1}{\partial#2^2}}
+\newcommand{\integ}[3]{\int_{#1}^{#2}d#3~}
+\newcommand{\poi}[2]{[#1,~#2]}
+\newcommand{\poiexp}[2]{\pdv{#1}{q^i} \pdv{#2}{p_i} - \pdv{#2}{q^i} \pdv{#1}{p_i}}
+
+\newcommand{\comm}[2]{[#1,~#2]}
+\newcommand{\set}[2]{\{#1\colon#2\}}
+\newcommand{\inner}[2]{\langle#1,~#2\rangle}
+\newcommand{\av}[1]{\langle#1\rangle}
+\newcommand{\avp}[2]{\langle#1\rangle_{#2}}
+\newcommand{\ket}[1]{\vert#1\rangle}
+\newcommand{\bra}[1]{\langle#1\vert}
+\newcommand{\braket}[2]{\langle#1\vert#2\rangle}
+\renewcommand\qedsymbol{q.e.d.}
+\DeclareMathOperator{\tr}{tr}
+
+\title{On production of gravitational waves: binary system\\\linespread{1.5}
+\small Dissertation for the General Relativity I exam}
+\author{Matteo Zandi}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    In the present dissertation, we will derive the quadrupole formula explicitly, starting from the linearised Einstein field equation and apply it to the simple case of two orbiting stars. Furthermore, we will use the quadrupole moment of this system to find the power radiated by such system.
+\end{abstract}
+
+\section{Introduction}
+
+    It was the year 1916 when Albert Einstein predicted waves solutions, called gravitational waves, for its field equation~\cite{einstein1}. It was thought before that a gravitational equivalent of the electromagnetic wave should exist, but a mathematical derivation of that was impossible because they were no gravity equations. Therefore, only after Einstein derived its famous field equations for the general theory of relativity, it was possible to see that they are indeed a mathematical solution. However, proving that they were physical it was something else. In fact, Einstein, together with one of its collaborator, claimed mistakenly that gravitational waves do not exist in 1936~\cite{einstein2}. It was only in 1974 that the first indirect evidence of gravitational waves was discovered: Hulse and Taylor studied a binary system composed by a neutron star and a pulsar orbiting around their center of mass, called PSR B1913+16, and they find that the experimental observations and theoretical prediction coincide. Needless to say that this discovery allowed them to earn the Nobel prize. Since then, technology has been improved so much that in 2015 a direct evidence has been found: by means of a Michelson-Morley kind of interferometer, a gravitational wave has been observed. In the next sections, we will study how to find the perturbation of the metric and the power irradiated by a far away source.
+
+\section{Quadrupole formula}
+
+    Our starting point is the linearised Einstein equation in transverse gauge
+    \begin{equation*}
+        \Box h_{\mu\nu}  (x) = - 16 \pi G_N T_{\mu\nu} (x) ~.
+    \end{equation*}
+    The solution for these equations can be obtained by means of the Green function $G (x - y)$, which satisfies the Green equation 
+    \begin{equation*}
+        \Box_x G (x - y) = \delta^4 (x - y) ~.
+    \end{equation*}
+    The most general solution can be written as a sum of the homogeneous solution $h^{(0)}_{\mu\nu} $, which satisfies the homogeneous equation $\Box h_{\mu\nu}^{(0)}  = 0$, and the inhomogeneous one, given by the Green function
+    \begin{equation*}
+        h_{\mu\nu} (x)  = h^{(0)}_{\mu\nu} (x)  - 16 \pi G_N \int d^4 y ~ G (x - y) T_{\mu \nu} (y) ~.
+    \end{equation*}
+    In fact, if we compute the D'Alambertian operator on the solution, we find
+    \begin{equation*}
+    \begin{aligned}
+        \Box_x h_{\mu\nu}  (x) & = \underbrace{\Box h_{\mu\nu (0)} }_0 - 16 \pi G_N \int d^4 y ~ \underbrace{\Box_x G (x - y)}_{\delta^4 (x - y)} T_{\mu \nu} (y) \\ & = - 16 \pi G_N \int d^4 y ~ \delta^4 (x - y) T_{\mu \nu} (y) = - 16 \pi G_N T_{\mu\nu} (x) ~,
+    \end{aligned}
+    \end{equation*}
+    where we have used the properties of the Dirac delta function.
+    Now, let us focus on the inhomogeneous part and neglect the homogeneous one. It is known that the Green function is not unique because it depends on boundary conditions. Since we are interested in the effects of a signal that has propagated in the past, we choose the retarded Green function of the D'Alambertian
+    \begin{equation*}
+        G (x - y) = - \frac{1}{4\pi |\vec x - \vec y|} \theta (t - y^0) \delta (|\vec x - \vec y| - (t - y^0)) ~,
+    \end{equation*}
+    Therefore, the solution becomes
+    \begin{equation*}
+    \begin{aligned}
+        h_{\mu\nu}  (x) & = - 16 \pi G_N \int d^4 y ~ T_{\mu\nu} (y) G (x - y)  \\ & = - 16 \pi G_N \int d^3 y \int d y^0 ~T_{\mu\nu} (y) \Big (- \frac{1}{4\pi |\vec x - \vec y|} \theta ( t - y^0) \delta (|\vec x - \vec y| - (t - y^0)) \Big ) \\ & = 4 G_N \int d^3 y ~ T_{\mu\nu} (t - |\vec x - \vec y|, \vec y) \frac{1}{|\vec x - \vec y|} = 4 G_N \int d^3 y ~ T_{\mu\nu} (t_r, \vec y) \frac{1}{|\vec x - \vec y|}~,
+    \end{aligned}
+    \end{equation*}
+    where $t_r = t - |\vec x - \vec y|$ is the retarded time. Physically, it means that the effect of the gravitational disturbance at a point $(t, \vec x)$ can be traced back to points on the past light cone $(t_r, \vec x - \vec y)$. In order to solve this integral, we take the Fourier transform of the metric perturbation 
+    \begin{equation*}
+    \begin{aligned}
+        \tilde h_{\mu\nu} (\omega, \vec x) & = \int \frac{dt}{(2\pi)^{1/2}} \exp(i \omega t)  h _{\mu\nu} (t, \vec x) \\ & = 4 G_N \int \frac{dt}{(2\pi)^{1/2}} \exp(i \omega t) \int d^3 y ~ \frac{1}{|\vec x - \vec y|} T_{\mu\nu} (t_r, \vec y) ~,
+    \end{aligned}
+    \end{equation*}
+    which can be developed with a change of variable into $t \rightarrow t_r$ with $t = t_r + |\vec x - \vec y|$ 
+    \begin{equation*}
+    \begin{aligned}
+        \tilde h _{\mu\nu} (\omega, \vec x) & = 4 G_N \int \frac{dt_r}{(2\pi)^{1/2}} d^3 y ~ \exp(i \omega (t_r + |\vec x - \vec y|)) \frac{1}{|\vec x - \vec y|} T_{\mu\nu} (t_r, \vec y) \\ & = 4 G_N \underbrace{\int \frac{dt_r}{(2\pi)^{1/2}} ~ \exp(i \omega t_r) T_{\mu\nu} (t_r, \vec y) }_{\tilde T_{\mu\nu} (\omega, \vec{y})} \int d^3 y ~  \frac{\exp(i \omega |\vec x - \vec y|)}{|\vec x - \vec y|} \\ & = 4 G_N \int d^3 y ~ \tilde T_{\mu\nu} (\omega, \vec{y}) \frac{\exp(i \omega |\vec x - \vec y|)}{|\vec x - \vec y|} ~,
+    \end{aligned}
+    \end{equation*}
+    where we have extracted the Fourier transform of the energy-momentum tensor.
+
+    So far, we have made exact computations. Now, we consider gravitational waves emitted by a non-relativistic isolated far-away source. We individuate the size of the source to be $r + \delta r$, where $r$ is the (constant) distance of the source, with low frequency of emission $\delta r \ll 1 / \omega$. Physically, it means that light travels faster than the components of the source and then we can make the following approximation
+    \begin{equation*}
+        \frac{\exp(i \omega |\vec x - \vec y|)}{|\vec x - \vec y|} \simeq \frac{\exp(i \omega r)}{r} ~, 
+    \end{equation*}
+    hence, the metric perturbation becomes
+    \begin{equation}\label{pr1}
+        \tilde h_{\mu\nu} (\omega, \vec x) \simeq 4 G_N \frac{\exp(i \omega r)}{r} \int d^3 y ~ \tilde T_{\mu\nu} (\omega, \vec{y}) ~.
+    \end{equation}
+
+    Using the transverse gauge $\partial^\mu h_{\mu\nu} (t, \vec x) = 0$, we need only to find the spatial components. In fact, using the inverse Fourier transform, we have 
+    \begin{equation*}
+    \begin{aligned}
+        0 & = \partial^\mu h_{\mu\nu} (t, \vec x) = \partial^\mu \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde h_{\mu\nu} (\omega, \vec x) \\ & = \partial^0 \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde h_{0\nu} (\omega, \vec x) + \partial^i \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde h_{i\nu} (\omega, \vec x) \\ & = - i \omega \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde h_{0\nu} (\omega, \vec x) + \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \partial^i \tilde h_{i\nu} (\omega, \vec x) ~,
+    \end{aligned}
+    \end{equation*}
+    which implies that 
+    \begin{equation*}
+        \tilde h_{0\nu} = - \frac{i}{\omega} \partial^i \tilde h_{i \nu} ~.
+    \end{equation*}
+    This means that we only need to find the spatial components and then the temporal components are easily found by this equation. Henceforth, let us restrict ourselves to the spatial components. Our next goal is to find an usable expression for~\eqref{pr1}
+    \begin{equation*}
+        \tilde h_{ij} (\omega, \vec x) \simeq 4 G_N \frac{\exp(i \omega r)}{r} \int d^3 y ~ \tilde T_{ij} (\omega, \vec{y}) ~,
+    \end{equation*}
+    in particular we need to expand 
+    \begin{equation*}
+        \int d^3 y ~ \tilde T_{ij} (\omega, \vec{y}) ~.
+    \end{equation*}
+    In order to do so, we notice the boundary term
+    \begin{equation*}
+        0 = \int d^3 y ~ \partial_k (y^i \tilde T^{kj}) = \int d^3 y ~ y^i \partial_k (\tilde T^{kj}) + \int d^3 y ~ \tilde T^{ij}
+    \end{equation*}
+    and we find an useful identity
+    \begin{equation}\label{proof5}
+        \int d^3 y ~ \tilde T^{ij} = - \int d^3 y ~ y^i \partial_k (\tilde T^{kj}) ~.
+    \end{equation}
+    Furthermore, we use the continuity equation $\partial^\mu T_{\mu \nu} = 0$ and the inverse Fourier transform, so that 
+    \begin{equation*}
+    \begin{aligned}
+        0 & = \partial^\mu  T_{\mu\nu} (t, \vec x) = \partial^\mu \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde  T_{\mu\nu} (\omega, \vec x) \\ & = \partial^0 \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde  T_{0\nu} (\omega, \vec x) + \partial^i \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde  T_{i\nu} (\omega, \vec x) \\ & = - i \omega \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde  T_{0\nu} (\omega, \vec x) + \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \partial^i \tilde  T_{i\nu} (\omega, \vec x) ~,
+    \end{aligned}
+    \end{equation*}
+    which implies that 
+    \begin{equation}\label{pr3}
+        - \partial_i \tilde T^{i \nu} = i \omega T^{0 \nu} ~.
+    \end{equation}
+    Therefore, by means of~\eqref{proof5} and~\eqref{pr3}, we find 
+    \begin{equation*}
+    \begin{aligned}
+        \int d^3 y ~ T^{ij} (\omega, \vec y) & = - \int d^3 y ~ y^i \partial_k (\tilde T^{kj}) (\omega, \vec y) = i \omega \int d^3 y ~ y^i \tilde T^{0j} (\omega, \vec y) \\ & = \frac{i \omega}{2} \int d^3 y ~ (y^i \tilde T^{0j} (\omega, \vec y) + y^j \tilde T^{0j} (\omega, \vec y)) 
+    \end{aligned}
+    \end{equation*}
+    where we have symmetrised the right-handed side, since the left-hand side $T_{ij}$ is symmetric. Exploiting again~\eqref{proof5}, we find
+    \begin{equation*}
+        \int d^3 y ~ T^{ij} (\omega, \vec y) = \frac{i \omega}{2} \int d^3 y ~ \Big (\partial_l (y^i y^l \tilde T^{0j} (\omega, \vec y) ) - y^i y^j \partial_l \tilde T^{0l} (\omega, \vec y) \Big ) = - \frac{\omega^2}{2} \int d^3 y ~ y^i y^j \tilde T^{00} (\omega, \vec y) ~.
+    \end{equation*}
+    Now, we define the quadrupole moment tensor of the energy density of the source to be
+    \begin{equation}\label{ququ}
+        I^{ij} (t_r) = \int d^3 y ~ y^i y^j T^{00} (t_r, \vec y) ~,
+    \end{equation}
+    and we evaluate the searched expression
+    \begin{equation*}
+        \int d^3 y ~ T^{ij} (\omega, \vec y) = - \frac{\omega^2}{2} \int d^3 y ~ y^i y^j \tilde T^{00} = - \frac{\omega^2}{2} \tilde I^{ij} (\omega) ~,
+    \end{equation*}
+    where $\tilde I_{ij}$ is the Fourier transform of the quadrupole moment. Therefore, the Fourier transform of the metric perturbation is
+    \begin{equation*}
+    \begin{aligned}
+        \tilde h _{ij} (\omega, \vec x) & \simeq 4 G_N \frac{\exp(i \omega r)}{r} \int d^3 y ~ \tilde T_{ij} (\omega, \vec{y})  = - \frac{\omega^2}{2} \frac{\exp(i \omega r)}{r} 4 G_N \tilde I^{ij} \\ & = - 2 G_N \omega^2 \frac{\exp(i \omega r)}{r} \tilde I_{ij} (\omega) ~.
+    \end{aligned}
+    \end{equation*}
+    Hence, by the inverse Fourier transform, we obtain
+    \begin{equation*}
+    \begin{aligned}
+        h _{ij} (t, \vec x) & = \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \tilde h _{ij} (\omega, \vec x) = - 2 G_N \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t) \omega^2 \frac{\exp(i \omega r)}{r} \tilde I_{ij} (\omega) \\ & = - \frac{2 G_N}{r} \int \frac{d\omega}{(2\pi)^{1/2}} \omega^2 \exp(- i \omega (t - r)) \tilde I_{ij} (\omega) = - \frac{2 G_N}{r} \int \frac{d\omega}{(2\pi)^{1/2}} \omega^2 \exp(- i \omega t_r) \tilde I_{ij} (\omega) ~.
+    \end{aligned}
+    \end{equation*}
+    Finally, using the Feynman technique
+    \begin{equation*}
+        \dvd{}{t} I_{ij} (t_r) = \dvd{}{t} \int \frac{d\omega}{(2\pi)^{1/2}} \exp(- i \omega t_r) \tilde I_{ij} (\omega) = - \int \frac{d\omega}{(2\pi)^{1/2}} \omega^2 \exp(- i \omega t_r) \tilde I_{ij} (\omega) ~,
+    \end{equation*}
+    we find the so-called quadrupole formula
+    \begin{equation}\label{quadquad}
+        h_{ij} (t, \vec x) = \frac{2 G_N}{r} \dvd{}{t} I_{ij} (t_r) ~.
+    \end{equation}
+    It means that the gravitational wave produced is proportional to the second derivative of the quadrupole moment of energy density, measured at a retarded time $t_r$. It was found by Einstein in 1918~\cite{einstein3}. Notice that it is different from the electromagnetic case, in which dipole moment is necessary to produce an electromagnetic wave. In order to comprehend this, consider four particles of mass $m$ in the plane $xy$ forced to oscillate with frequency $\omega$ and positions
+    \begin{equation*}
+        x_1 = l_0 + \Delta l \sin(\omega t) ~, \quad y_1 = 0 ~, 
+    \end{equation*}
+    \begin{equation*}
+        x_2 = - l_0 - \Delta l \sin(\omega t) ~, \quad y_2 = 0 ~, 
+    \end{equation*}
+    \begin{equation*}
+        x_3 = 0 ~, \quad y_3 = l_0 - \Delta l \sin(\omega t) ~, 
+    \end{equation*}
+    \begin{equation*}
+        x_4 = 0 ~, \quad y_3 = - l_0 + \Delta l \sin(\omega t)  ~.
+    \end{equation*}
+    The center of mass is fixed at the origin and the total mass is $M = 4m$. Unlikely in the electromagnetic case, the total dipole moment in the $z$-axis vanishes 
+    \begin{equation*}
+    \begin{aligned}
+        D & = m \Big ( \sum_{i=1}^4 x_i (t) + \sum_{i=1}^4 y_i (t) \Big) \\ & = m \Big ( l_0 + \Delta l \sin(\omega t) - l_0 - \Delta l \sin(\omega t) + l_0 - \Delta l \sin(\omega t) - l_0 + \Delta l \sin(\omega t) \Big ) = 0 ~,
+    \end{aligned}
+    \end{equation*}
+    whereas the quadrupole moment in the $z$-axis does not 
+    \begin{equation*}
+    \begin{aligned}
+        Q & = m \Big ( \sum_{i=1}^4 x_i^2 (t) + \sum_{i=1}^4 y_i^2 (t) \Big) = m \Big ( 2 (l_0 + \Delta l \sin(\omega t))^2 + 2 (l_0 - \Delta l \sin(\omega t))^2 \Big ) \\ & = m (2 l_0^2 + 2 \Delta l^2 \sin^2 (\omega t) + 4 l_0 \Delta l \sin (\omega t) + 2 l_0^2 + 2 \Delta l^2 \sin^2 (\omega t) - 4 l_0 \Delta l \sin (\omega t) ) \\ & = 4 m (l_0^2 + \Delta l^2) = M (l_0^2 + \Delta l^2) \neq 0 ~.
+    \end{aligned}
+    \end{equation*}
+
+\section{Binary system}
+
+    In order to use the formulae that we have calculated, consider two point-like stars of equal mass $m$ orbiting around their center of mass $R$ in the plane $xy$. The orbit is circular and can be treated using the Newtonian approximation. Equating the centrifugal force with the gravitational one
+    \begin{equation*}
+        \frac{G_N M}{(2 R)^2} = \frac{M v^2}{R} ~, 
+    \end{equation*}
+    we find the tangential velocity
+    \begin{equation*}
+        v = \Big ( \frac{G_N M}{4 R} \Big)^{1/2} ~,
+    \end{equation*}
+    which can be used to calculate the angular frequency of the orbit
+    \begin{equation}\label{freq}
+        \Omega = \frac{2\pi}{T} = \frac{2 \pi v}{2 \pi R} = \Big ( \frac{G_N M}{4 R^3} \Big)^{1/2} ~.
+    \end{equation}
+    Therefore, the explicit path is given by 
+    \begin{equation*}
+        x_a = R \cos (\Omega t) ~, \quad y_a = R \sin (\Omega t) ~, \quad x_b = - R \cos (\Omega t) ~, \quad y_b = - R \sin (\Omega t) ~,
+    \end{equation*}
+    where $a$ and $b$ are label to indicate the two different stars. The energy density of the system is given by 
+    \begin{equation*}
+        T^{00} (t, \vec x) = M \delta (z) (\delta(x - R \cos (\Omega t))\delta(y - R \sin (\Omega t)) + \delta(x + R \cos (\Omega t))\delta(y + R \sin (\Omega t))) ~.
+    \end{equation*}
+    This formula is justified by the fact that we are dealing with point-like object and all the energy (mass) is located only at a point, mathematically defined by the Dirac delta. The Dirac delta of $z$ constrained the motion on the $xy$-plane Now, we need to calculate explicitly the quadrupole tensor. The components that contain $z$ are zero because of the factor $\delta^3 (z)$. By symmetry, the other components are
+    \begin{equation*}
+    \begin{aligned}
+        I_{11} (t) & = \int d^3 x ~ T^{00} (t, \vec x) x^2 \\ & = \int d^3 x ~ M \delta (z) \Big (\delta(x - R \cos (\Omega t))\delta(y - R \sin (\Omega t)) \\ & \qquad + \delta(x + R \cos (\Omega t))\delta(y + R \sin (\Omega t)) \Big ) x^2 \\ & = M \Big ( \underbrace{\int dx ~ x^2 \delta (x - R \cos (\Omega t))}_{R^2 \cos^2 (\Omega t)} \underbrace{\int dy ~ \delta (y - R \sin (\Omega t))}_1 \underbrace{\int d z ~ \delta (z)}_1 \\ & \qquad + \underbrace{\int dx ~ x^2 \delta (x + R \cos (\Omega t))}_{R^2 \cos^2(\Omega t)}\underbrace{\int dy ~ \delta (y + R \sin (\Omega t))}_1 \underbrace{\int d z ~ \delta (z)}_1 \Big ) \\ & = 2 M R^2 \cos^2 (\Omega t) = M R^2 (1 + \cos (2 \Omega t)) ~,
+    \end{aligned}
+    \end{equation*}
+    \begin{equation*}
+    \begin{aligned}
+        I_{12} (t) & = I_{21} (t) = \int d^3 x ~ T^{00} (t, \vec x) xy \\ & = \int d^3 x ~ M \delta (z) \Big (\delta(x - R \cos (\Omega t))\delta(y - R \sin (\Omega t)) \\ & \qquad + \delta(x + R \cos (\Omega t))\delta(y + R \sin (\Omega t)) \Big ) x y \\ & = M \Big ( \underbrace{\int dx ~ x \delta (x - R \cos (\Omega t))}_{R \cos (\Omega t)} \underbrace{\int dy ~ y \delta (y - R \sin (\Omega t))}_{R \sin (\Omega t)} \underbrace{\int d z ~ \delta (z)}_1 \\ & \qquad + \underbrace{\int dx ~ x \delta (x + R \cos (\Omega t))}_{- R \cos(\Omega t)}\underbrace{\int dy ~ y \delta (y + R \sin (\Omega t))}_{- R \sin (\Omega t)} \underbrace{\int d z ~ \delta (z)}_1 \Big ) \\ & = 2 M R^2 \cos (\Omega t) \sin (\Omega t) = M R^2 \sin (2 \Omega t) ~,
+    \end{aligned}
+    \end{equation*}
+    \begin{equation*}
+    \begin{aligned}
+        I_{22} (t) & = \int d^3 x ~ T^{00} (t, \vec x) y^2 \\ & = \int d^3 x ~ M \delta (z) \Big (\delta(x - R \cos (\Omega t))\delta(y - R \sin (\Omega t)) \\ & \qquad + \delta(x + R \cos (\Omega t))\delta(y + R \sin (\Omega t)) \Big ) y^2 \\ & = M \Big ( \underbrace{\int dx ~ \delta (x - R \cos (\Omega t))}_{1} \underbrace{\int dy ~ y^2 \delta (y - R \sin (\Omega t))}_{R^2 \sin^2 (\Omega t)} \underbrace{\int d z ~ \delta (z)}_1 \\ & \qquad + \underbrace{\int dx ~ \delta (x + R \cos (\Omega t))}_{1}\underbrace{\int dy ~ \delta (y + R \sin (\Omega t))}_{R^2 \sin^2(\Omega t)} \underbrace{\int d z ~ \delta (z)}_1 \Big ) \\ & = 2 M R^2 \sin^2 (\Omega t) = M R^2 (1 - \cos (2 \Omega t)) ~.
+    \end{aligned}
+    \end{equation*}
+    Therefore, the quadrupole tensor is 
+    \begin{equation}\label{quad}
+        I_{ij} (t) = MR^2 \begin{bmatrix}
+            (1 + \cos (2 \Omega t)) & \sin (2 \Omega t) & 0 \\
+            \sin (2 \Omega t) & (1 - \cos (2 \Omega t)) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix} ~.
+    \end{equation}
+    Its second derivative is 
+    \begin{equation*}
+    \begin{aligned}
+        \dv{}{t} \dv{}{t} I_{ij} (t) & = \dv{}{t} 2 \Omega MR^2 \begin{bmatrix}
+            - \sin (2 \Omega t) & \cos (2 \Omega t) & 0 \\
+            \cos (2 \Omega t) & \sin (2 \Omega t) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix} \\ & = 4 \Omega^2 MR^2 \begin{bmatrix}
+            - \cos (2 \Omega t) & -\sin (2 \Omega t) & 0 \\
+            -\sin (2 \Omega t) & \cos (2 \Omega t) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix}~.
+    \end{aligned}
+    \end{equation*}
+    Finally, the metric perturbation~\eqref{quadquad} becomes 
+    \begin{equation}\label{met}
+    \begin{aligned}
+        h_{ij} (t, \vec x) & = \frac{2 G_N}{r} 4 \Omega^2 MR^2 \begin{bmatrix}
+            - \cos (2 \Omega t_r) & -\sin (2 \Omega t_r) & 0 \\
+            -\sin (2 \Omega t_r) & \cos (2 \Omega t_r) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix} \\ & = \frac{8 G_N M}{r} \Omega^2 R^2 \begin{bmatrix}
+            - \cos (2 \Omega t_r) & -\sin (2 \Omega t_r) & 0 \\
+            -\sin (2 \Omega t_r) & \cos (2 \Omega t_r) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix} ~.
+    \end{aligned}
+    \end{equation}
+
+\section{Power radiated}
+
+    Now, we want to calculate the power radiated by the system. However, energy in general relativity is difficult to be defined. We need to find a suitable energy-momentum tensor. By analogy with electromagnetism, the energy-momentum tensor is quadratic in the fields. Therefore, we need to expand at the second order in $\epsilon h_{\mu\nu}$ in order to find what we are looking for. We will not derive here, but the gravitational wave energy-momentum tensor in the transverse traceless gauge is given by
+    \begin{equation*}
+        t_{\mu\nu} = \frac{1}{32 \pi G_N} \av{\partial_\mu h^{\alpha \beta} \partial_\nu h_{\alpha \beta}} ~.
+    \end{equation*}
+    Since it is in the transverse traceless gauge, we need to introduce the reduced quadrupole moment 
+    \begin{equation*}
+        J_{ij} = I_{ij} - \frac{1}{3} \tr I ~,
+    \end{equation*}
+    and the quadrupole formula becomes 
+    \begin{equation*}
+        h_{ij}^{TT} (t, \vec x) = \frac{2G_N}{r} \dvd{}{t} J_{ij} (t_r) ~.
+    \end{equation*}
+    After some other manipulations, it is possible to prove that the power emitted by the system is given by 
+    \begin{equation}\label{pow}
+        P = - \frac{G_N}{5} \av{\dvt{}{t} J_{ij} \dvt{}{t} J^{ij}} ~.
+    \end{equation}
+
+    Now, let us calculate the power emitted by our binary system. The trace of the quadrupole moment~\eqref{quad} is 
+    \begin{equation*}
+        \tr I = \tr MR^2 \begin{bmatrix}
+            1 + \cos (2 \Omega t) & \sin (2 \Omega t) & 0 \\
+            \sin (2 \Omega t) & 1 - \cos (2 \Omega t) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix} = 2 MR^2 ~.
+    \end{equation*}
+    Therefore, the reduced quadrupole moment is 
+    \begin{equation*}
+    \begin{aligned}
+        J_{ij} & = I_{ij} - \frac{1}{3} \tr I = MR^2 \begin{bmatrix}
+            1 + \cos (2 \Omega t) & \sin (2 \Omega t) & 0 \\
+            \sin (2 \Omega t) & 1 - \cos (2 \Omega t) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix}  - \frac{2}{3} M R^2 \\ & = MR^2 \begin{bmatrix}
+            1 + \cos (2 \Omega t) - 2 / 3 & \sin (2 \Omega t) & 0 \\
+            \sin (2 \Omega t) & 1 - \cos(2 \Omega t) - 2/3 & 0 \\
+            0 & 0 & -2 /3
+        \end{bmatrix} \\ & = MR^2 \begin{bmatrix}
+            1 / 3 + \cos (2 \Omega t) & \sin (2 \Omega t) & 0 \\
+            \sin (2 \Omega t) & 1 / 3 - \cos(2 \Omega t) & 0 \\
+            0 & 0 & -2 / 3
+        \end{bmatrix} ~.
+    \end{aligned}
+    \end{equation*}
+    Its third derivative is 
+    \begin{equation}
+    \begin{aligned}
+        \dv{}{t} \dv{}{t} \dv{}{t} J_{ij} (t) & = \dv{}{t} \dv{}{t} 2 \Omega MR^2 \begin{bmatrix}
+            - \sin (2 \Omega t) & \cos (2 \Omega t) & 0 \\
+            \cos (2 \Omega t) & \sin(2 \Omega t) & 0 \\
+            0 & 0 & 0
+        \end{bmatrix} \\ & = \dv{}{t} 4 \Omega^2 MR^2 \begin{bmatrix}
+            - \cos (2 \Omega t) & - \sin (2 \Omega t) & 0 \\
+            - \sin (2 \Omega t) & \cos(2 \Omega t) & 0 \\
+            0 & 0 & 0
+        \end{bmatrix} \\ & = 8 \Omega^3 MR^2 \begin{bmatrix}
+            \sin (2 \Omega t) & - \cos (2 \Omega t) & 0 \\
+            - \cos (2 \Omega t) & - \sin(2 \Omega t) & 0 \\
+            0 & 0 & 0
+        \end{bmatrix} ~.
+    \end{aligned}
+    \end{equation}
+    An useful intermediary formula is 
+    \begin{equation*}
+    \begin{aligned}
+        \dddot J_{ij} \dddot J^{ij} & = 64 \Omega^6 M^2 R^4 \Big ( \dddot J_{11}^2 + 2 \dddot J_{12}^2 + \dddot J_{22}^2 \Big) \\ & = 64 \Omega^6 M^2 R^4 \Big ( \sin^2 (2 \Omega t) + 2 \cos^2 (2 \Omega t) + \sin^2 (2 \Omega t) \Big) \\ & = 128 \Omega^6 M^2 R^4 (\cos^2 (2 \Omega t) + \sin^2 (2 \Omega t)) = 128 \Omega^6 M^2 R^4 ~.
+    \end{aligned}
+    \end{equation*}
+    Finally, the power radiated~\eqref{pow} is
+    \begin{equation}\label{pow2}
+    \begin{aligned}
+        P & = - \frac{G_N}{5} \av{\dvt{}{t} J_{ij} \dvt{}{t} J^{ij}} = - \frac{128}{5} G_N \Omega^6 M^2 R^4  \\ & = - \frac{128}{5} G_N \Big (\frac{G_N M}{4 R^3} \Big)^3 M^2 R^4 = - \frac{128}{320} \frac{G_N^4 M^5}{R^5} = - \frac{2}{5} \frac{G_N^4 M^5}{R^5} ~,
+    \end{aligned}
+    \end{equation}
+    where we have used the angular frequency~\eqref{freq}. 
+
+\section{Conclusion}
+
+    We conclude the dissertation with a summary about our calculations. The quadrupole formula~\eqref{quadquad} is given by
+    \begin{equation*}
+        h_{ij} (t, \vec x) = \frac{2 G_N}{r} \dvd{}{t} I_{ij} (t_r) ~.
+    \end{equation*}
+    For our binary system, the quadrupole moment is~\eqref{quad}
+    \begin{equation*}
+        I_{ij} (t) = MR^2 \begin{bmatrix}
+            (1 + \cos (2 \Omega t)) & \sin (2 \Omega t) & 0 \\
+            \sin (2 \Omega t) & (1 - \cos (2 \Omega t)) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix} 
+    \end{equation*}
+    and the metric perturbation~\eqref{met} is
+    \begin{equation*}
+        h_{ij} (t, \vec x) = \frac{8 G_N M}{r} \Omega^2 R^2 \begin{bmatrix}
+            - \cos (2 \Omega t_r) & -\sin (2 \Omega t_r) & 0 \\
+            -\sin (2 \Omega t_r) & \cos (2 \Omega t_r) & 0 \\
+            0 & 0 & 0 \\
+        \end{bmatrix} ~.
+    \end{equation*}
+    Finally, the power radiated~\eqref{pow2} is
+    \begin{equation*}
+        P = - \frac{2}{5} \frac{G_N^4 M^5}{R^5} ~.
+    \end{equation*}
+
+\nocite{casadio}
+\nocite{carroll}
+\nocite{schutz}
+
+\printbibliography
+
+\end{document}

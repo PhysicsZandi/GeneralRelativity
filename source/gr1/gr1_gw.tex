@@ -506,26 +506,99 @@
         T^{00} (t, \underline x) = M \delta (x^3) (\delta(x^1 - R \cos (\Omega t))\delta(x^2 - R \sin (\Omega t)) + \delta(x^1 + R \cos (\Omega t))\delta(x^2 + R \sin (\Omega t))) ~.
     \end{equation*}
     The quadrupole tensor is 
-    \begin{equation*}
+    \begin{equation}\label{quad}
         I_{ij} = \begin{bmatrix}
             M R^2 (1 + \cos (2 \Omega t)) & M R^2 \sin (2 \Omega t) & 0 \\
             M R^2 \sin (2 \Omega t) & M R^2 (1 - \cos (2 \Omega t)) & 0 \\
             0 & 0 & 0 \\
         \end{bmatrix} ~.
-    \end{equation*}
+    \end{equation}
     \begin{proof}
         In fact 
         \begin{equation*}
         \begin{aligned}
-            I_{11} & = \int d^3 y ~ T^{00} (t, \underline y) y_1 y_1 \\ & = \int d^3 y ~ M \delta^3 (y^3) \Big (\delta(y^1 - R \cos (\Omega t))\delta(y^2 - R \sin (\Omega t)) + \delta(y^1 + R \cos (\Omega t))\delta(y^2 + R \sin (\Omega t)) \Big ) y_1 y_1 \\ & = M \int dy^1 ~ y_1 y_1 \delta (y_1 - R \cos (\Omega t)) \int dy_2 ~ \delta (y_2 - R \sin (\Omega t)) \int d y_3 \delta (y_3) 
+            I_{11} & = \int d^3 y ~ T^{00} (t, \underline y) y_1 y_1 \\ & = \int d^3 y ~ M \delta^3 (y^3) \Big (\delta(y^1 - R \cos (\Omega t))\delta(y^2 - R \sin (\Omega t)) \\ & \qquad + \delta(y^1 + R \cos (\Omega t))\delta(y^2 + R \sin (\Omega t)) \Big ) y_1 y_1 \\ & = M \Big ( \int dy^1 ~ y_1 y_1 \delta (y_1 - R \cos (\Omega t)) \int dy_2 ~ \delta (y_2 - R \sin (\Omega t)) \int d y_3 ~ \delta (y_3) \\ & \qquad + \int dy^1 ~ y_1 y_1 \delta (y_1 + R \cos (\Omega t)) \int dy_2 ~ \delta (y_2 + R \sin (\Omega t)) \int d y_3 ~ \delta (y_3) \Big ) \\ & = 2 M R^2 \cos^2 (\Omega t) = M R^2 (1 + \cos (2 \Omega t)) ~,
+        \end{aligned}
+        \end{equation*}
+        \begin{equation*}
+        \begin{aligned}
+            I_{12} = I_{21} & = \int d^3 y ~ T^{00} (t, \underline y) y_1 y_2 \\ & = \int d^3 y ~ M \delta^3 (y^3) \Big (\delta(y^1 - R \cos (\Omega t))\delta(y^2 - R \sin (\Omega t)) \\ & \qquad + \delta(y^1 + R \cos (\Omega t))\delta(y^2 + R \sin (\Omega t)) \Big ) y_1 y_2 \\ & = M \Big ( \int dy^1 ~ y_1 \delta (y_1 - R \cos (\Omega t)) \int dy_2 ~ y_2 \delta (y_2 - R \sin (\Omega t)) \int d y_3 ~ \delta (y_3) \\ & \qquad + \int dy^1 ~ y_1 \delta (y_1 + R \cos (\Omega t)) \int dy_2 ~ y_2 \delta (y_2 + R \sin (\Omega t)) \int d y_3 ~ \delta (y_3) \Big ) \\ & = 2 M R^2 \sin (\Omega t) \cos (\Omega t)  = M R^2 \sin (2 \Omega t) ~,
+        \end{aligned}
+        \end{equation*}
+        \begin{equation*}
+        \begin{aligned}
+            I_{22} & = \int d^3 y ~ T^{00} (t, \underline y) y_2 y_2 \\ & = \int d^3 y ~ M \delta^3 (y^3) \Big (\delta(y^1 - R \cos (\Omega t))\delta(y^2 - R \sin (\Omega t)) \\ & \qquad + \delta(y^1 + R \cos (\Omega t))\delta(y^2 + R \sin (\Omega t)) \Big ) y_2 y_2 \\ & = M \Big ( \int dy^1 ~ \delta (y_1 - R \cos (\Omega t)) \int dy_2 ~ y_2 y_2 \delta (y_2 - R \sin (\Omega t)) \int d y_3 ~ \delta (y_3) \\ & \qquad + \int dy^1 ~ \delta (y_1 + R \cos (\Omega t)) \int dy_2 ~ y_2 y_2 \delta (y_2 + R \sin (\Omega t)) \int d y_3 ~ \delta (y_3) \Big ) \\ & = 2 M R^2 \sin^2 (\Omega t) = M R^2 (1 - \cos (2 \Omega t)) ~.
         \end{aligned}
         \end{equation*}
     \end{proof}
 
-
     \hfill 
 
+    The gravitational wave energy-momentum tensor in the transverse traceless gauge is given by 
+    \begin{equation*}
+        t_{\mu\nu} = \frac{1}{32 \pi G_N} \av{\partial_\mu h^{TT \alpha \beta} \partial_\nu h^{TT}_{\alpha \beta}} ~.
+    \end{equation*}
+    Since it is in the transverse traceless gauge, we need to introduce the reduced quadrupole moment 
+    \begin{equation*}
+        I^{TT}_{ij} = I_{ij} - \frac{1}{3} \delta_{ij} \delta^{kl} I_{kl} ~,
+    \end{equation*}
+    and the quadrupole formula becomes 
+    \begin{equation*}
+        h_{ij}^{TT} = \frac{2G_N}{r} \dvd{}{t} I^{TT}_{ij} (t_r) ~.
+    \end{equation*}
+    The power emitted by the system is given by 
+    \begin{equation*}
+        P = - \frac{G_N}{5} \av{\dvt{}{t} I^{TT}_{ij} \dvt{}{t} I^{TT ij}} ~.
+    \end{equation*}
 
+    In our binary merge case, we have the reduced quadrupole moment to be 
+    \begin{equation*}
+        I^{TT}_{ij} = \frac{M R^2}{3} \begin{bmatrix}
+            1 + 3 \cos (2 \Omega t) & 3 \sin (2 \Omega t) & 0 \\
+            3 \sin (2 \Omega t) & 1 - 3 \cos(2 \Omega t) & 0 \\
+            0 & 0 & -2 
+        \end{bmatrix} ~.
+    \end{equation*}
+    \begin{proof}
+        In fact, the trace of~\eqref{quad} is 
+        \begin{equation*}
+            \delta^{ij} I_{ij} = 2 M R^2 ~.
+        \end{equation*}
+        The reduced quadrupole moment is 
+        \begin{equation*}
+        \begin{aligned}
+            I^{TT}_{ij} & = I_{ij} - \frac{1}{3} \delta_{ij} \delta^{kl} I_{kl} \\ & = \begin{bmatrix}
+                M R^2 (1 + \cos (2 \Omega t)) & M R^2 \sin (2 \Omega t) & 0 \\
+                M R^2 \sin (2 \Omega t) & M R^2 (1 - \cos (2 \Omega t)) & 0 \\
+                0 & 0 & 0 \\
+            \end{bmatrix}  - \frac{2}{3} M R^2 \\ & = \frac{M R^2}{3} \begin{bmatrix}
+                1 + 3 \cos (2 \Omega t) & 3 \sin (2 \Omega t) & 0 \\
+                3 \sin (2 \Omega t) & 1 - 3 \cos(2 \Omega t) & 0 \\
+                0 & 0 & -2 
+            \end{bmatrix}
+        \end{aligned}
+        \end{equation*}
+    \end{proof}
+    Finally, the power radiated is 
+    \begin{equation*}
+        P = - \frac{2}{5} \frac{G_N^4 M^5}{R^5} ~.
+    \end{equation*}
+    \begin{proof}
+        The third derivative is 
+        \begin{equation*}
+            8 M R^2 \Omega^3 \begin{bmatrix}
+                \sin (2 \Omega t) & - \cos(2 \Omega t) & 0 \\
+                - \cos (2 \Omega t) & - \sin(2 \Omega t) & 0 \\
+                0 & 0 & 0 \\
+            \end{bmatrix} ~.
+        \end{equation*}
+        Therefore, the power is 
+        \begin{equation*}
+            P = - \frac{128}{5} G_N M^2 R^4 \Omega^6 = - \frac{2}{5} \frac{G_N^4 M^5}{R^5} ~.
+        \end{equation*}
+    \end{proof}
+
+\section{BOH}
     We can approximate on the center of mass $\underline r$, so that $h^T_{ij} (t, r)$. Outside the source, we can find the solution using the Green function of the d'Alambertian 
     \begin{equation*}
         G^T_{ijkl}(t, r, t', r') \sim \frac{\delta(t'-t+r)}{r} ~,

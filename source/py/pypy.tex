@@ -17,6 +17,7 @@ class Manifold:
         self.ric = sp.zeros(4, 4)
         self.scal = 0
         self.ein = sp.zeros(4, 4)
+        self.einup = sp.zeros(4, 4)
 
     def setmetric(self, g00, g11, g22, g33):
         self.g[0,0] = sp.simplify(g00)
@@ -60,7 +61,7 @@ class Manifold:
             for j in range(4):
                 for k in range(4):
                     for l in range(4):
-                        print(r'R^{', i, '}_{', j, k, l, '} = ', sp.latex(self.riemann[i][j][k,l]), '~, \quad')
+                        print(r'R^{', i, '}_{ \phantom ', i, j, k, l, '} = ', sp.latex(self.riemann[i][j][k,l]), '~, \quad')
                         print(r'\end{equation*}\begin{equation*}')
 
     def setric(self): 
@@ -90,13 +91,25 @@ class Manifold:
     def setein(self): 
         for i in range(4):
             for j in range(4):
-                self.ein[i,j] += self.ric[i,j] + 0.5 * self.g[i,j] * self.scal
+                self.ein[i,j] += self.ric[i,j] - 0.5 * self.g[i,j] * self.scal
                 self.ein[i,j] = sp.simplify(self.ein[i,j])
 
     def printein(self):
         for i in range(4):
             for j in range(4):
                 print(r'G_{', i, j,'} = ', sp.latex(self.ein[i,j]), '~, \quad')
+                print(r'\end{equation*}\begin{equation*}')
+
+    def seteinup(self): 
+        for i in range(4):
+            for j in range(4):
+                self.einup[i,j] += self.ric[i,j] - 0.5 * self.g[i,j] * self.scal
+                self.einup[i,j] = sp.simplify(self.einup[i,j])
+
+    def printeinup(self):
+        for i in range(4):
+            for j in range(4):
+                print(r'G_{', i, j,'} = ', sp.latex(self.einup[i,j]), '~, \quad')
                 print(r'\end{equation*}\begin{equation*}')
 
 
