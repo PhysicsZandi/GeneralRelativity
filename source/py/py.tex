@@ -17,11 +17,11 @@
 
 \mainmatter
 
-\input{pypy.tex}
+\input{python_gr.tex}
 
 \chapter*{Abstract}
 
-    In these notes, we will compute general relativity with the help of python.
+    In these notes, we will compute general relativity with the help of python. We will take the exterior Schwarschild metric, the interior Schwarschild metric and the Friedmann-Robertson-Walker metric. We will calculate the Christoffel symbols, the Riemann tensor, the Ricci tensor and the Einstein tensor.
 
 \chapter{Exterior Schwarschild metric}
 
@@ -30,22 +30,33 @@
         \pyc{ES.printmet()} ~.
     \end{equation*}
 
+    Its inverse is 
+    \begin{equation*}
+        \pyc{ES.printmetinv()} ~.
+    \end{equation*}
+
 \section{Christoffel symbols}
-    The Christoffel symbols are 
+    The non-vanishing components of the Christoffel symbols are
     \begin{equation*}
         \pyc{ES.printchri()} ~.
     \end{equation*}
 
 \section{Riemann tensor}
-    The Riemann tensor is
+    The non-vanishing components of the Riemann tensor are
     \begin{equation*}
         \pyc{ES.printriem()} ~.
     \end{equation*}
 
-\section{Ricci tensor}
-    The Ricci tensor is
+\section{$(0,2)$ Ricci tensor}
+    The non-vanishing components of the $(0,2)$ Ricci tensor are
     \begin{equation*}
         \pyc{ES.printric()} ~.
+    \end{equation*}
+
+\section{$(1,1)$ Ricci tensor}
+    The non-vanishing components of the $(1,1)$ Ricci tensor are
+    \begin{equation*}
+        \pyc{ES.printricup()} ~.
     \end{equation*}
 
 \section{Ricci scalar}
@@ -54,10 +65,16 @@
         \pyc{ES.printscal()} ~.
     \end{equation*}
 
-\section{Einstein tensor}
-    The Einstein tensor is
+\section{$(0,2)$ Einstein tensor}
+    The non-vanishing components of the $(0,2)$ Einstein tensor are
     \begin{equation*}
         \pyc{ES.printein()} ~.
+    \end{equation*}
+
+\section{$(1,1)$ Einstein tensor}
+    The non-vanishing components of the $(1,1)$ Einstein tensor are
+    \begin{equation*}
+        \pyc{ES.printeinup()} ~.
     \end{equation*}
 
 \chapter{Interior Schwarschild metric}
@@ -67,22 +84,33 @@
         \pyc{IS.printmet()} ~.
     \end{equation*}
 
+    Its inverse is 
+    \begin{equation*}
+        \pyc{IS.printmetinv()} ~.
+    \end{equation*}
+
 \section{Christoffel symbols}
-    The Christoffel symbols are 
+    The non-vanishing components of the Christoffel symbols are
     \begin{equation*}
         \pyc{IS.printchri()} ~.
     \end{equation*}
 
 \section{Riemann tensor}
-    The Riemann tensor is
+    The non-vanishing components of the Riemann tensor are
     \begin{equation*}
         \pyc{IS.printriem()} ~.
     \end{equation*}
 
-\section{Ricci tensor}
-    The Ricci tensor is
+\section{$(0,2)$ Ricci tensor}
+    The non-vanishing components of the $(0,2)$ Ricci tensor are
     \begin{equation*}
         \pyc{IS.printric()} ~.
+    \end{equation*}
+
+\section{$(1,1)$ Ricci tensor}
+    The non-vanishing components of the $(1,1)$ Ricci tensor are
+    \begin{equation*}
+        \pyc{IS.printricup()} ~.
     \end{equation*}
 
 \section{Ricci scalar}
@@ -91,10 +119,16 @@
         \pyc{IS.printscal()} ~.
     \end{equation*}
 
-\section{Einstein tensor}
-    The Einstein tensor is
+\section{$(0,2)$ Einstein tensor}
+    The non-vanishing components of the $(0,2)$ Einstein tensor are
     \begin{equation*}
         \pyc{IS.printein()} ~.
+    \end{equation*}
+
+\section{$(1,1)$ Einstein tensor}
+    The non-vanishing components of the $(1,1)$ Einstein tensor are
+    \begin{equation*}
+        \pyc{IS.printeinup()} ~.
     \end{equation*}
     
 \chapter{FRW metric}
@@ -103,23 +137,34 @@
     \begin{equation*}
         \pyc{FRW.printmet()} ~.
     \end{equation*}
+
+    Its inverse is 
+    \begin{equation*}
+        \pyc{FRW.printmetinv()} ~.
+    \end{equation*}
     
 \section{Christoffel symbols}
-    The Christoffel symbols are 
+    The non-vanishing components of the Christoffel symbols are
     \begin{equation*}
         \pyc{FRW.printchri()} ~.
     \end{equation*}
 
 \section{Riemann tensor}
-    The Riemann tensor is
+    The non-vanishing components of the Riemann tensor are
     \begin{equation*}
         \pyc{FRW.printriem()} ~.
     \end{equation*}
 
-\section{Ricci tensor}
-    The Ricci tensor is
+\section{$(0,2)$ Ricci tensor}
+    The non-vanishing components of the $(0,2)$ Ricci tensor are
     \begin{equation*}
         \pyc{FRW.printric()} ~.
+    \end{equation*}
+
+\section{$(1,1)$ Ricci tensor}
+    The non-vanishing components of the $(1,1)$ Ricci tensor are
+    \begin{equation*}
+        \pyc{FRW.printricup()} ~.
     \end{equation*}
 
 \section{Ricci scalar}
@@ -128,10 +173,22 @@
         \pyc{FRW.printscal()} ~.
     \end{equation*}
 
-\section{Einstein tensor}
-    The Einstein tensor is
+\section{$(0,2)$ Einstein tensor}
+    The non-vanishing components of the $(0,2)$ Einstein tensor are
     \begin{equation*}
         \pyc{FRW.printein()} ~.
     \end{equation*}
+
+\section{$(1,1)$ Einstein tensor}
+    The non-vanishing components of the $(1,1)$ Einstein tensor are
+    \begin{equation*}
+        \pyc{FRW.printeinup()} ~.
+    \end{equation*}
+
+\nocite{python}
+
+\clearpage
+\phantomsection
+\printbibliography
 
 \end{document}

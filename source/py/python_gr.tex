@@ -1,7 +1,6 @@
 \begin{pycode}
 
 import sympy as sp
-import numpy as np
 
 sp.init_printing()
 
@@ -18,6 +17,7 @@ class Manifold:
         self.scal = 0
         self.ein = sp.zeros(4, 4)
         self.einup = sp.zeros(4, 4)
+        self.ricup = sp.zeros(4, 4)
 
     def setmetric(self, g00, g11, g22, g33):
         self.g[0,0] = sp.simplify(g00)
@@ -26,7 +26,12 @@ class Manifold:
         self.g[3,3] = sp.simplify(g33)
 
     def printmet(self):
-        print(r'g =', sp.latex(self.g), '~, \quad')
+        print(r'g =', sp.latex(self.g), '~,')
+        print(r'\end{equation*}\begin{equation*}')
+
+    def printmetinv(self):
+        g_inv = self.g.inv()
+        print(r'g =', sp.latex(g_inv), '~,')
         print(r'\end{equation*}\begin{equation*}')
 
     def setchri(self):
@@ -42,9 +47,21 @@ class Manifold:
         for i in range(4):
             for j in range(4):
                 for k in range(4):
-                    print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(self.c[i][j,k]), '~, \quad')
-                    print(r'\end{equation*}\begin{equation*}')
-            
+                    if self.c[i][j,k] != 0:
+                        print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(self.c[i][j,k]), '~,')
+                        print(r'\end{equation*}\begin{equation*}')
+
+    def printchrinon(self):
+        count = 0
+        for i in range(4):
+            for j in range(4):
+                for k in range(4):
+                    if self.c[i][j,k] != 0:
+                        print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(self.c[i][j,k]), '~, \quad')
+                        count += 1
+                        if count % 2 == 0: 
+                            print(r'\end{equation*}\begin{equation*}') 
+
     def setriem(self):
         g_inv = self.g.inv()
         for i in range(4):
@@ -61,8 +78,9 @@ class Manifold:
             for j in range(4):
                 for k in range(4):
                     for l in range(4):
-                        print(r'R^{', i, '}_{ \phantom ', i, j, k, l, '} = ', sp.latex(self.riemann[i][j][k,l]), '~, \quad')
-                        print(r'\end{equation*}\begin{equation*}')
+                        if self.riemann[i][j][k,l] != 0:
+                            print(r'R^{', i, '}_{ \phantom ', i, j, k, l, '} = ', sp.latex(self.riemann[i][j][k,l]), '~,')
+                            print(r'\end{equation*}\begin{equation*}')
 
     def setric(self): 
         for i in range(4):
@@ -72,12 +90,28 @@ class Manifold:
                     for a in range(4):
                         self.ric[i,j] += self.c[a][i,j] * self.c[k][a,k] - self.c[a][i,k] * self.c[k][a,j]
                     self.ric[i,j] = sp.simplify(self.ric[i,j])
+    
+    def setricup(self): 
+        g_inv = self.g.inv()
+        for i in range(4):
+            for j in range(4):
+                for a in range(4):
+                    self.ricup[i,j] += g_inv[i,a] * self.ric[a,j]
+                self.ricup[i,j] = sp.simplify(self.ricup[i,j])
 
     def printric(self):
         for i in range(4):
             for j in range(4):
-                print(r'R_{', i, j,'} = ', sp.latex(self.ric[i,j]), '~, \quad')
-                print(r'\end{equation*}\begin{equation*}')
+                if self.ric[i,j] != 0:
+                    print(r'R_{', i, j,'} = ', sp.latex(self.ric[i,j]), '~,')
+                    print(r'\end{equation*}\begin{equation*}')
+
+    def printricup(self):
+        for i in range(4):
+            for j in range(4):
+                if self.ricup[i,j] != 0:
+                    print(r'R^{', i, '}_{\phantom', i, j,'} = ', sp.latex(self.ricup[i,j]), '~,')
+                    print(r'\end{equation*}\begin{equation*}')
 
     def setscal(self):
         g_inv = self.g.inv()
@@ -94,24 +128,27 @@ class Manifold:
                 self.ein[i,j] += self.ric[i,j] - 0.5 * self.g[i,j] * self.scal
                 self.ein[i,j] = sp.simplify(self.ein[i,j])
 
+    def seteinup(self): 
+        g_inv = self.g.inv()
+        for i in range(4):
+            for j in range(4):
+                for a in range(4):
+                    self.einup[i,j] += g_inv[i,a] * self.ein[a,j]
+                self.einup[i,j] = sp.simplify(self.einup[i,j])
+
     def printein(self):
         for i in range(4):
             for j in range(4):
-                print(r'G_{', i, j,'} = ', sp.latex(self.ein[i,j]), '~, \quad')
-                print(r'\end{equation*}\begin{equation*}')
-
-    def seteinup(self): 
-        for i in range(4):
-            for j in range(4):
-                self.einup[i,j] += self.ric[i,j] - 0.5 * self.g[i,j] * self.scal
-                self.einup[i,j] = sp.simplify(self.einup[i,j])
+                if self.ein[i,j] != 0:
+                    print(r'G_{', i, j,'} = ', sp.latex(self.ein[i,j]), '~,')
+                    print(r'\end{equation*}\begin{equation*}')
 
     def printeinup(self):
         for i in range(4):
             for j in range(4):
-                print(r'G_{', i, j,'} = ', sp.latex(self.einup[i,j]), '~, \quad')
-                print(r'\end{equation*}\begin{equation*}')
-
+                if self.einup[i,j] != 0:
+                    print(r'G^{', i, '}_{\phantom',i,j,'} = ', sp.latex(self.einup[i,j]), '~,')
+                    print(r'\end{equation*}\begin{equation*}')
 
 t = sp.Symbol('t')
 r = sp.Symbol('r')
@@ -133,32 +170,45 @@ ES.setmetric(-A, B, r**2, r**2 * sp.sin(theta)**2)
 ES.setchri()
 ES.setriem()
 ES.setric()
+ES.setricup()
 ES.setscal()
 ES.setein()
+ES.seteinup()
 
 IS = Manifold() 
 IS.setmetric(- sp.exp(nu), sp.exp(l), r**2, r**2 * sp.sin(theta)**2)
 IS.setchri()
 IS.setriem()
 IS.setric()
+IS.setricup()
 IS.setscal()
 IS.setein()
+IS.seteinup()
 
 FRW = Manifold() 
 FRW.setmetric(-1, a**2 / (1 - k * r**2), a**2 * r**2, a**2 * r**2 * sp.sin(theta)**2)
 FRW.setchri()
 FRW.setriem()
 FRW.setric()
+FRW.setricup()
 FRW.setscal()
 FRW.setein()
+FRW.seteinup()
 
-T = Manifold() 
-T.setmetric(- ( 1 - 2 * G * M / r), 1 / ( 1 - 2 * G * M / r), r**2, r**2 * sp.sin(theta)**2)
-T.setchri()
-T.setriem()
-T.setric()
-T.setscal()
-T.setein()
+def plot3(x, f, g, h, rangex, rangey, fig, leg, negx, negy):
+    rangexx = rangex
+    rangeyy = rangey
+    if negx == True:
+        rangexx = 0
+    if negy == True:
+        rangeyy = 0
+    x = sp.Symbol('x')
+    p = sp.plot((f, (x, -rangexx, rangex)), (g, (x, -rangexx, rangex)), (h, (x, -rangexx, rangex)), ylim=[-rangeyy, rangey], legend= leg, show=False, line_color='#00AFB3')
+    p[0].line_color='red'
+    p[1].line_color='violet'
+    p[2].line_color='blue'
+    p.save(f'fig/fig{fig}.pgf')
+    print(r'\input{fig/fig'+ rf'{fig}' + r'.pgf}')
 
 \end{pycode} 
 
