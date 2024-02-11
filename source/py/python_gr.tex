@@ -44,14 +44,6 @@ class Manifold:
                         self.c[k][i,j] = sp.simplify(self.c[k][i,j])
 
     def printchri(self):
-        for i in range(4):
-            for j in range(4):
-                for k in range(4):
-                    if self.c[i][j,k] != 0:
-                        print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(self.c[i][j,k]), '~,')
-                        print(r'\end{equation*}\begin{equation*}')
-
-    def printchrinon(self):
         count = 0
         for i in range(4):
             for j in range(4):
@@ -59,7 +51,7 @@ class Manifold:
                     if self.c[i][j,k] != 0:
                         print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(self.c[i][j,k]), '~, \quad')
                         count += 1
-                        if count % 2 == 0: 
+                        if count % 3 == 0: 
                             print(r'\end{equation*}\begin{equation*}') 
 
     def setriem(self):
@@ -207,6 +199,20 @@ def plot3(x, f, g, h, rangex, rangey, fig, leg, negx, negy):
     p[0].line_color='red'
     p[1].line_color='violet'
     p[2].line_color='blue'
+    p.save(f'fig/fig{fig}.pgf')
+    print(r'\input{fig/fig'+ rf'{fig}' + r'.pgf}')
+    
+def plot2(x, f, g, rangex, rangey, fig, leg, negx, negy):
+    rangexx = rangex
+    rangeyy = rangey
+    if negx == True:
+        rangexx = 0
+    if negy == True:
+        rangeyy = 0
+    x = sp.Symbol('x')
+    p = sp.plot((f, (x, -rangexx, rangex)), (g, (x, -rangexx, rangex)), ylim=[-rangeyy, rangey], legend= leg, show=False, line_color='#00AFB3')
+    p[0].line_color='red'
+    p[1].line_color='blue'
     p.save(f'fig/fig{fig}.pgf')
     print(r'\input{fig/fig'+ rf'{fig}' + r'.pgf}')
 
