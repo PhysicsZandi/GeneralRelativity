@@ -51,7 +51,7 @@ class Manifold:
                     if self.c[i][j,k] != 0:
                         print(r'\Gamma^{', i, '}_{', j, k,'} = ', sp.latex(self.c[i][j,k]), '~, \quad')
                         count += 1
-                        if count % 3 == 0: 
+                        if count % 2 == 0: 
                             print(r'\end{equation*}\begin{equation*}') 
 
     def setriem(self):
@@ -156,6 +156,9 @@ B = sp.Function('B')(r)
 a = sp.Function('a')(t)
 l = sp.Function('lambda')(r)
 nu = sp.Function('nu')(r)
+h = sp.Function('h')(r)
+f = sp.Function('f')(r)
+m = sp.Function('m')(r)
 
 ES = Manifold() 
 ES.setmetric(-A, B, r**2, r**2 * sp.sin(theta)**2)
@@ -176,6 +179,26 @@ IS.setricup()
 IS.setscal()
 IS.setein()
 IS.seteinup()
+
+IS2 = Manifold() 
+IS2.setmetric(- sp.exp(h) * f, 1 / f, r**2, r**2 * sp.sin(theta)**2)
+IS2.setchri()
+IS2.setriem()
+IS2.setric()
+IS2.setricup()
+IS2.setscal()
+IS2.setein()
+IS2.seteinup()
+
+IS3 = Manifold() 
+IS3.setmetric(- sp.exp(h) * (1 - 2 * G * m / r), 1 / (1 - 2 * G * m / r), r**2, r**2 * sp.sin(theta)**2)
+IS3.setchri()
+IS3.setriem()
+IS3.setric()
+IS3.setricup()
+IS3.setscal()
+IS3.setein()
+IS3.seteinup()
 
 FRW = Manifold() 
 FRW.setmetric(-1, a**2 / (1 - k * r**2), a**2 * r**2, a**2 * r**2 * sp.sin(theta)**2)

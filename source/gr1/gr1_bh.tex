@@ -128,7 +128,9 @@
 
     The deviation of the Schwarzschild potential from the Newtonian one can be found by looking at the harmonic gauge. In fact, $t$ satisfies the Donder gauge $\Box t = 0$, but the spatial coordinates not. However, with a change of coordinates into $\tilde r = r - G_N M$, it is possbile to satisfy the gauge. In the Newtonian limit for $r \gg G_N M$, we have the expansion for $x = G_N M / \tilde r \ll 1$ and $\tilde r \simeq r$
     \begin{equation*}
-        V = \frac{1 + g_{tt}}{2} = - \frac{G_N M}{r} = - \frac{G_N M}{\tilde r + G_N M} = - \frac{G_N M}{\tilde r + G_N M} = - \frac{x}{1 + x} \simeq - x + x^2 - x^3 = - \frac{G_N M}{\tilde r} +  \frac{G_N^2 M^2}{\tilde r^2} - \frac{G_N^3 M^3}{\tilde r^3} ~,
+    \begin{aligned}
+        V & = \frac{1 + g_{tt}}{2} = - \frac{G_N M}{r} = - \frac{G_N M}{\tilde r + G_N M} = - \frac{G_N M}{\tilde r + G_N M} = - \frac{x}{1 + x} \simeq - x + x^2 - x^3 \\ & = - \frac{G_N M}{\tilde r} +  \frac{G_N^2 M^2}{\tilde r^2} - \frac{G_N^3 M^3}{\tilde r^3} ~,
+    \end{aligned}
     \end{equation*}
     where we have used the expansion 
     \begin{equation*}
@@ -138,7 +140,7 @@
 
     \begin{figure}
         \centering
-        \scalebox{0.7}{\pyc{plot2('x', '- 1 / x', '- 1 / x + 1 / x**2 - 1 / x**3', 10, 2, 1, True, True, True)}}
+        \scalebox{0.7}{\pyc{plot2('x', '- 1 / x', '- 1 / x + 1 / x**2 - 1 / x**3', 10, 2, 1, True, True, False)}}
         \caption{Comparison between the Newtonian (in red) and the Schwarzschild (in blue) potential.}
         \label{fig:pot}
     \end{figure}
@@ -510,75 +512,170 @@
 
     Together with the exterior metric, Schwarzschild himself provided a solution for the interior of a star. In this chapter, we will study what happens inside a star: interior metric, equation of equilibrium for a spherical symmetric object, called the Tolman-Oppenheimer-Volkov (TOV) equation, Buchdahl limit.
 
+\section{Computations}
+
+    It is convenient to write down the static spherical symmetric employing exponentials 
+    \begin{equation*}
+        ds^2 = - \exp(h(r)) f(r) dt^2 + f^{-1}(r) dr^2 + r^2 d\Omega^2 ~.
+    \end{equation*}
+    In order to find the exterior metric at the radius of the source $r = R_s$, it is reasonable to assume that 
+    \begin{equation*}
+        f(r) = 1 - \frac{2 G_N}{r} m(r) ~,
+    \end{equation*}
+    where $m(r)$ it the Misner-Sharp-Hernandez mass function, such that $m(R_s) = M$. 
+    In matrix notation, the metric takes the form 
+    \begin{equation*}
+        \pyc{IS2.printmet()} ~.
+    \end{equation*}
+    The non-vanishing Christoffel symbols are 
+    \begin{equation*}
+        \pyc{IS2.printchri()} ~.
+    \end{equation*}
+    The non-vanishing Einstein tensor components are 
+    \begin{equation*}
+        \pyc{IS2.printeinup()} ~,
+    \end{equation*}
+    or in terms of $m$
+    \begin{equation*}
+        \pyc{IS3.printeinup()} ~.
+    \end{equation*}
+
 \section{Interior metric}
 
-    Consider a static spherical metric in the form 
+    Suppose we are dealing with a perfect fluid with energy density $\rho (r)$ and pressure $p(r)$. The Einstein field equations reads as
     \begin{equation*}
-        ds^2 = - \exp(\nu) dt^2 + \exp(\lambda) dr^2 + r^2 d\Omega^2 ~.
-    \end{equation*}
-    Suppose we are dealing with a perfect fluid with density $\rho (r)$ and pressure $p (r)$. The Einstein equations reads 
-    \begin{equation*}
-        G^0_{\phantom 00} = - \exp(-\lambda) \Big (\frac{\lambda'}{r} - \frac{1}{r^2}) + \frac{1}{r^2} = - 8 \pi G_N \rho ~,
+        G^0_{\phantom 00} = - \frac{2 G_N m'}{r^2} = - 8 \pi G_N \rho ~,
     \end{equation*}
     \begin{equation*}
-        G^1_{\phantom 11} = \exp(-\lambda) \Big (\frac{\nu'}{r} + \frac{1}{r^2}) + \frac{1}{r^2} = 8 \pi G_N p ~,
+        G^1_{\phantom 11} = \frac{f h'}{r} + \frac{f'}{r} +\frac{f}{r} - \frac{1}{r^2} = 8 \pi G_N p ~.
     \end{equation*}
+    The first Einstein field equation is solved by
     \begin{equation*}
-        G^2_{\phantom 22} = G^3_{\phantom 33} = - \exp(-\lambda) \Big ( \frac{\lambda''}{2} + \frac{(\nu')^2}{4} - \frac{\nu' \lambda'}{4} + \frac{\nu' - \lambda'}{2 r} \Big) = 8 \pi G_N p ~,
+        m'(r) = 4 \pi \rho (r) r^2 ~, \quad m(r) = 4 \pi \int_0^r dr ~ \rho (r) r^2 ~.
     \end{equation*}
-    From the first, we have 
+    Another assumption that we make is homogeneity, i.e.~the energy density is constant inside the star for $r \in [0, R_s]$
     \begin{equation*}
-        g^{rr} = \exp(- \lambda) = 1 - \frac{2 G_N m(r)}{r} ~,
+        \rho (r) = \rho_0 = \frac{3 M}{4 \pi R_s^3} ~.
     \end{equation*}
-    where the Misner-Sharp-Hernandez mass function is 
+    Therefore, the mass function becomes 
     \begin{equation*}
-        m(r) = 4 \pi \int_0^r dx x^2 \rho(x) ~.
-    \end{equation*}
-    Physically, it is the total mass star for $r = R_s$. Notice the continuity condition
-    \begin{equation*}
-        g^{rr} (r \rightarrow R_s^-) = g^{rr} (r \rightarrow R_s^+) ~.
-    \end{equation*}
-    Homogeneity means $\rho(r) = \rho = \rho_0$ for $r \in [0, R_s]$. Therefore 
-    \begin{equation*}
-        m = \frac{4}{3} \pi r^3 \rho_0
+        m(r) = 4 \pi \int_0^r dr ~ \rho_0 r^2 = 4 \pi \frac{3 M}{4 \pi R_s^3} \int_0^r dr ~ r^2 = \frac{M r^3 }{R_s^3} 
     \end{equation*}
     and 
     \begin{equation*}
-        \exp(-\lambda) = 1 - \frac{8}{3} \pi G_N \rho r^2 = 1 - \frac{2 G_N M r^2}{R_s^3} ~.
+        f(r) = 1 - \frac{2 G_N}{r} m(r) = 1 - \frac{2 G_N r^2}{R_s^3} ~, \quad f' (r) = \frac{4 G_N r}{R_s^3} ~.
     \end{equation*}
-    Solving the remaining, we obtain 
+    Now, notice that if we subtract the second to the first, we obtain
     \begin{equation*}
-        - g_{tt} = \exp(\nu) = \frac{1}{4} \Big ( 3 \sqrt{1 - \frac{2 G_N M}{R_s}} - \sqrt{1 - \frac{2 G_N M}{R_s} } \Big )^2 ~.
+        \frac{f h'}{r} = 8 \pi G_N (p + \rho) ~, \quad h' = 8 \pi G_N r f^{-1} (p + \rho) ~.
     \end{equation*}
-    Therefore, the pressure is 
-    \begin{equation*}
-        p = \rho \frac{\sqrt{1 - 2 G_N M / R_s} - \sqrt{1 - 2 G_N M r^2/R_s^3}}{\sqrt{1 - 2 G_N M r^2 / R_s^2 } - 3 \sqrt{1 - 2 G_N M / R_s}} ~.
-    \end{equation*}
-    Notice that it is again continuous 
-    \begin{equation*}
-        g^{tt} (r \rightarrow R_s^-) = g^{tt} (r \rightarrow R_s^+) ~.
-    \end{equation*}
-    A consequence of the Birkhoff theorem states that pressure must vanish across $R_s$ since it vanishes outside and we use the same coordinates. However, this does not hold for energy, since it is at first order differential.
+    However, it is difficult to solve this equation since also the pressure is unknown. In the next section, we find a way to determine that by means of the continuity equation.
 
 \section{TOV equation} 
 
-    The Bianchi identity implies that 
+    Using the Christoffel symbols calculated before, the Bianchi identity reads as
     \begin{equation*}
-        \nabla_\mu T^\mu_{\phantom \mu 1} = p' + \frac{\nu'}{2} (p + \rho) = 0 ~,
+    \begin{aligned}
+        0 = \nabla_\mu T^\mu_{\phantom \mu 1} & = \partial_\mu T^{\mu}_{\phantom \mu 1} + \Gamma^{\mu}_{\nu\mu} T^{\nu}_{\phantom \nu 1} - \Gamma^{\nu}_{1\mu} T^{\mu}_{\phantom \mu \nu} \\ & = p' + \Gamma^0_{01} p + \Gamma^1_{11} p + \Gamma^2_{21} p + \Gamma^3_{31} p + \Gamma^0_{01} \rho - \Gamma^1_{11} p - \Gamma^2_{21} p - \Gamma^3_{31} p \\ & = p' + \Gamma^0_{01} (\rho + p) = p' + \frac{1}{2} \Big ( h' + \frac{f'}{f} \Big) (\rho + p) ~,
+    \end{aligned}
     \end{equation*}
-    which implies that 
+    which implies that, using the expressions 
     \begin{equation*}
-        p' = - (\rho + p) \frac{G_N}{r^2} (m + 4\pi r^3 p) \Big ( 1- \frac{2G_N m}{r} \Big)^{-1} ~.
+        f = 1 - \frac{2 G_N}{r} m ~, \quad h' = 8 \pi G_N r f^{-1} (p + \rho) ~,
     \end{equation*}
-    In the non-relativistic limit it becomes 
+    \begin{equation*}
+        f' = - \frac{2 G_N}{r} m' + \frac{2 G_N}{r^2} m  = - \frac{2 G_N}{r} 4 \pi \rho r^2 + \frac{2 G_N}{r^2} m = - 8 \pi G_N r \rho + \frac{2 G_N}{r^2} m ~,
+    \end{equation*}
+    that
+    \begin{equation*}
+    \begin{aligned}
+        p' & = - \frac{1}{2} \Big ( 8 \pi G_N r f^{-1} (p + \rho) + \frac{1}{f} (- 8 \pi G_N r \rho + \frac{2 G_N}{r^2} m ) \Big) (\rho + p) \\ & = - f^{-1} ( 4 \pi G_N r p + \frac{G_N}{r^2} m ) (\rho + p) \\ & = - \frac{G_N}{r^2} \Big (1 - \frac{2 G_N m}{r} \Big )^{-1} (m + 4 \pi r^3 p) (\rho + p) ~,
+    \end{aligned}
+    \end{equation*}
+    which is the so-called TOV equation. 
+    Notice that in the non-relativistic limit, it becomes the Newtonian hydrostatic equilibrium equation
     \begin{equation*}
         p' \simeq \rho(r) \frac{G_N m}{r^2} = - \rho(r) V'_N(r) ~.
     \end{equation*}
-    As equation of state for a polytropes, we use 
+    In our homogeneous case, the pressure becomes 
     \begin{equation*}
-        p = p_0 \Big ( \frac{\rho }{\rho_0} \Big)^{1 + 1/n} ~,
+    \begin{aligned}
+        p' & = - \frac{G_N}{r^2} \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{-1} ( \frac{M r^3 }{R_s^3} + 4 \pi r^3 p) (\rho_0 + p) \\ & = - 4 \pi G_N r \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{-1} ( \frac{\rho}{3} + p) (\rho_0 + p) \\ & = - \frac{4}{3} \pi G_N r \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{-1} (\rho + 3 p) (\rho_0 + p) ~,
+    \end{aligned}
     \end{equation*}
-    where $n$ is the polytropic index.
+    \begin{equation*}
+        - \frac{4}{3} \pi G_N r \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{-1} = \frac{p'}{( \rho + 3p) (\rho_0 + p)} ~,
+    \end{equation*}
+    \begin{equation*}
+        \frac{1}{4\rho_0} \dv{}{r} \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big ) = \frac{1}{2 \rho_0} \dv{}{r} \ln \frac{\rho_0 + 3 p}{\rho + p} ~,
+    \end{equation*}
+    \begin{equation*}
+        \frac{1}{4\rho_0} \dv{}{r} \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big ) = \frac{1}{2 \rho_0} \dv{}{r} \ln \frac{\rho_0 + 3 p}{\rho_0 + p} ~,
+    \end{equation*}
+    \begin{equation*}
+        \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2} = C \frac{\rho_0 + 3p}{\rho_0 + p}  ~,
+    \end{equation*}
+    \begin{equation*}
+        \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2} \rho_0 + \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2} p = C \rho_0 + 3C p ~,
+    \end{equation*}
+    \begin{equation*}
+        (\Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2} - 3C )p = (C - \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2}) \rho_0 ~.
+    \end{equation*}
+    \begin{equation*}
+        p = \rho_0 (C - \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2}) (\Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2} - 3C )^{-1} ~.
+    \end{equation*}
+    Finally, imposing initial conditions $p(R_s) = 0$, we find
+    \begin{equation*}
+        (C - \Big (1 - \frac{2 G_N M}{R_s}  \Big )^{1/2}) (\Big (1 - \frac{2 G_N M}{R_s}  \Big )^{1/2} - 3C )^{-1} = 0 ~,
+    \end{equation*}
+    \begin{equation*}
+        C = \Big (1 - \frac{2 G_N M}{R_s}  \Big )^{1/2} ~.
+    \end{equation*}
+    Hence, we obtain
+    \begin{equation*}
+    \begin{aligned}
+        p (r) & = \rho_0 (\Big (1 - \frac{2 G_N M}{R_s}  \Big )^{1/2} - \Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2}) (\Big (1 - \frac{2 G_N M r^2}{R_s^3}  \Big )^{1/2} - 3 \Big (1 - \frac{2 G_N M}{R_s}  \Big )^{1/2})^{-1} \\ & = \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - (1 - 2 G_N M r^2/R_s^3 )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} \\ &~.
+    \end{aligned}
+    \end{equation*}
+
+    %Now, we can explicitly solve the Einstein field equations. Using the continuity equation 
+    %\begin{equation*}
+    %    0 = p' + \frac{1}{2} \Big ( h' + \frac{f'}{f} \Big) (\rho + p)
+    %\end{equation*}
+    %we can extract a derivative 
+    %\begin{equation*}
+    %    (h + \ln f)' = - \frac{2 p'}{p + \rho} ~,
+    %\end{equation*}
+    %and integrate
+    %\begin{equation*}
+    %    \int d (h + \ln f) = - \int \frac{2 dp}{p + \rho} ~, \quad h + \ln f = - 2 \ln (p + \rho) ~,
+    %\end{equation*}
+    %\begin{equation*}
+    %    \exp(h / 2) f^{1/2} = \frac{C}{p + \rho} ~.
+    %\end{equation*}
+    %Now, we set $C$ by suitable initial conditions $h(R_s) = 0$, and we notice
+    %\begin{equation*}
+    %\begin{aligned}
+    %    p + \rho_0 & = \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - (1 - 2 G_N M r^2/R_s^3 )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} + \rho_0 \\ & =  \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - (1 - 2 G_N M r^2/R_s^3 )^{1/2} + (1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}  \\ & = \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} \\ & = - \rho_0 \frac{2 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} ~. 
+    %\end{aligned}
+    %\end{equation*}
+    %Hence, we find 
+    %\begin{equation*}
+    %    \exp(h / 2) = (1 - 2 G_N M r^2/R_s^3 )^{-1/2} \frac{C}{\rho_0} \frac{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{2 (1 - 2 G_N M/R_s )^{1/2}} ~,
+    %\end{equation*}
+    %where $C$ can be determined by 
+    %\begin{equation*}
+    %    1 = (1 - 2 G_N M / R_s )^{-1/2} \frac{C}{\rho_0} \frac{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{2 (1 - 2 G_N M/R_s )^{1/2}} ~,
+    %\end{equation*}
+    %\begin{equation*}
+    %    C = \rho_0 \frac{2 (1 - 2 G_N M/R_s )}{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}  ~,
+    %\end{equation*}
+    %Finally,
+    %\begin{equation*}
+    %    \exp(h / 2) = (1 - 2 G_N M r^2/R_s^3 )^{-1/2} \frac{(1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} \frac{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{1} ~.
+    %\end{equation*}
+
+\section{Buchdahl limit}
     The pressure is maximal at $r=0$ 
     \begin{equation*}
         p (0) = \rho_0 \frac{\sqrt{1 - 2 G_N M / R_s} - 1}{1 - 3 \sqrt{1 - 2 G_N M / R_s}}
