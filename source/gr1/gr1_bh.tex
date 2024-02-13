@@ -638,42 +638,42 @@
     \end{aligned}
     \end{equation*}
 
-    %Now, we can explicitly solve the Einstein field equations. Using the continuity equation 
-    %\begin{equation*}
-    %    0 = p' + \frac{1}{2} \Big ( h' + \frac{f'}{f} \Big) (\rho + p)
-    %\end{equation*}
-    %we can extract a derivative 
-    %\begin{equation*}
-    %    (h + \ln f)' = - \frac{2 p'}{p + \rho} ~,
-    %\end{equation*}
-    %and integrate
-    %\begin{equation*}
-    %    \int d (h + \ln f) = - \int \frac{2 dp}{p + \rho} ~, \quad h + \ln f = - 2 \ln (p + \rho) ~,
-    %\end{equation*}
-    %\begin{equation*}
-    %    \exp(h / 2) f^{1/2} = \frac{C}{p + \rho} ~.
-    %\end{equation*}
-    %Now, we set $C$ by suitable initial conditions $h(R_s) = 0$, and we notice
-    %\begin{equation*}
-    %\begin{aligned}
-    %    p + \rho_0 & = \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - (1 - 2 G_N M r^2/R_s^3 )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} + \rho_0 \\ & =  \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - (1 - 2 G_N M r^2/R_s^3 )^{1/2} + (1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}  \\ & = \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} \\ & = - \rho_0 \frac{2 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} ~. 
-    %\end{aligned}
-    %\end{equation*}
-    %Hence, we find 
-    %\begin{equation*}
-    %    \exp(h / 2) = (1 - 2 G_N M r^2/R_s^3 )^{-1/2} \frac{C}{\rho_0} \frac{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{2 (1 - 2 G_N M/R_s )^{1/2}} ~,
-    %\end{equation*}
-    %where $C$ can be determined by 
-    %\begin{equation*}
-    %    1 = (1 - 2 G_N M / R_s )^{-1/2} \frac{C}{\rho_0} \frac{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{2 (1 - 2 G_N M/R_s )^{1/2}} ~,
-    %\end{equation*}
-    %\begin{equation*}
-    %    C = \rho_0 \frac{2 (1 - 2 G_N M/R_s )}{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}  ~,
-    %\end{equation*}
-    %Finally,
-    %\begin{equation*}
-    %    \exp(h / 2) = (1 - 2 G_N M r^2/R_s^3 )^{-1/2} \frac{(1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} \frac{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{1} ~.
-    %\end{equation*}
+    Now, we can explicitly solve the Einstein field equations. Using the continuity equation 
+    \begin{equation*}
+        0 = p' + \frac{1}{2} \Big ( h' + \frac{f'}{f} \Big) (\rho + p)
+    \end{equation*}
+    we can extract a derivative 
+    \begin{equation*}
+        (h + \ln f)' = - \frac{2 p'}{p + \rho} ~,
+    \end{equation*}
+    and integrate
+    \begin{equation*}
+        \int d (h + \ln f) = - \int \frac{2 dp}{p + \rho} ~, \quad h + \ln f = - 2 \ln (p + \rho) ~,
+    \end{equation*}
+    \begin{equation*}
+        \exp(h / 2) f^{1/2} = \frac{C}{p + \rho} ~.
+    \end{equation*}
+    Now, we set $C$ by suitable initial conditions $h(R_s) = 0$, and we notice
+    \begin{equation*}
+    \begin{aligned}
+        p + \rho_0 & = \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - (1 - 2 G_N M r^2/R_s^3 )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} + \rho_0 \\ & =  \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - (1 - 2 G_N M r^2/R_s^3 )^{1/2} + (1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}  \\ & = \rho_0 \frac{(1 - 2 G_N M/R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} \\ & = - \rho_0 \frac{2 (1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} ~. 
+    \end{aligned}
+    \end{equation*}
+    Hence, we find 
+    \begin{equation*}
+        \exp(h / 2) = (1 - 2 G_N M r^2/R_s^3 )^{-1/2} \frac{C}{\rho_0} \frac{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{2 (1 - 2 G_N M/R_s )^{1/2}} ~,
+    \end{equation*}
+    where $C$ can be determined by 
+    \begin{equation*}
+        1 = (1 - 2 G_N M / R_s )^{-1/2} \frac{C}{\rho_0} \frac{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{2 (1 - 2 G_N M/R_s )^{1/2}} ~,
+    \end{equation*}
+    \begin{equation*}
+        C = \rho_0 \frac{2 (1 - 2 G_N M/R_s )}{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}  ~,
+    \end{equation*}
+    Finally,
+    \begin{equation*}
+        \exp(h / 2) = (1 - 2 G_N M r^2/R_s^3 )^{-1/2} \frac{(1 - 2 G_N M/R_s )^{1/2}}{(1 - 2 G_N M /R_s )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}} \frac{(1 - 2 G_N M r^2/R_s^3 )^{1/2} - 3 (1 - 2 G_N M/R_s )^{1/2}}{1} ~.
+    \end{equation*}
 
 \section{Buchdahl limit}
     The pressure is maximal at $r=0$ 
