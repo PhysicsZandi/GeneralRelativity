@@ -4,8 +4,12 @@ In this repository, you will find a python implementation to compute geometrical
 
 # Schwarzschild metric
 
-1. in [Schwarzschild](https://github.com/PhysicsZandi/IsingModel/blob/main/Schwarzschild.ipynb), you will find an example with the Schwarzschild metric.
+1. in [Schwarzschild](https://github.com/PhysicsZandi/GeneralRelativity/blob/main/Schwarzschild.ipynb), you will find computations for the Schwarzschild metric;
 
 # FRW metric
 
-2. in [FRW](https://github.com/PhysicsZandi/IsingModel/blob/main/FRW.ipynb), you will find an example with the FRW metric.
+2. in [FRW](https://github.com/PhysicsZandi/GeneralRelativity/blob/main/FRW.ipynb), you will find computations for the FRW metric;
+
+# RN metric
+
+3. in [RN](https://github.com/PhysicsZandi/GeneralRelativity/blob/main/RN.ipynb), you will find computations for the RN metric.
