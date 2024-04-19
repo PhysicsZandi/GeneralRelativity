@@ -8,7 +8,7 @@ class Manifold:
         self.coordinates = coordinates
         self.metric = metric
         self.inverse_metric = metric.inv()
-
+        
         self.compute_christoffel()
         self.compute_riemann()
         self.compute_kretschmann()
@@ -41,6 +41,29 @@ class Manifold:
                             self.riemann[i][j][k,l] += self.christoffel[a][j,l] * self.christoffel[i][a,k] - self.christoffel[a][j,k] * self.christoffel[i][a,l] 
                         self.riemann[i][j][k,l] = sp.simplify(self.riemann[i][j][k,l])
 
+    def compute_ricci(self):
+        self.ricci = sp.zeros(4, 4)
+        for i in range(4):
+            for j in range(4):
+                for k in range(4):
+                    self.ricci[i,j] += sp.diff(self.christoffel[k][i,j], self.coordinates[k]) - sp.diff(self.christoffel[k][i,k], self.coordinates[j])
+                    for a in range(4):
+                        self.ricci[i,j] += self.christoffel[a][i,j] * self.christoffel[k][a,k] - self.christoffel[a][i,k] * self.christoffel[k][a,j]
+                self.ricci[i,j] = sp.simplify(self.ricci[i,j])
+
+    def compute_scalar(self):
+        self.scalar = 0
+        for i in range(4):
+            self.scalar += self.inverse_metric[i,i] * self.ricci[i,i]
+            self.scalar= sp.simplify(self.scalar)
+
+    def compute_einstein(self): 
+        self.einstein = sp.zeros(4, 4)
+        for i in range(4):
+            for j in range(4):
+                self.einstein[i,j] += self.ricci[i,j] - 0.5 * self.metric[i,j] * self.scalar
+                self.einstein[i,j] = sp.simplify(self.einstein[i,j])
+
     def compute_kretschmann(self):
         self.riemann_down = [[sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)], [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)], [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)], [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]]
         self.riemann_up = [[sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)], [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)], [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)], [sp.zeros(4, 4),  sp.zeros(4, 4), sp.zeros(4, 4), sp.zeros(4, 4)]]
@@ -67,29 +90,6 @@ class Manifold:
                     for l in range(4):
                         self.kretschmann += self.riemann_up[i][j][k,l] * self.riemann_down[i][j][k,l]
         self.kretschmann = sp.simplify(self.kretschmann) 
-
-    def compute_ricci(self):
-        self.ricci = sp.zeros(4, 4)
-        for i in range(4):
-            for j in range(4):
-                for k in range(4):
-                    self.ricci[i,j] += sp.diff(self.christoffel[k][i,j], self.coordinates[k]) - sp.diff(self.christoffel[k][i,k], self.coordinates[j])
-                    for a in range(4):
-                        self.ricci[i,j] += self.christoffel[a][i,j] * self.christoffel[k][a,k] - self.christoffel[a][i,k] * self.christoffel[k][a,j]
-                self.ricci[i,j] = sp.simplify(self.ricci[i,j])
-
-    def compute_scalar(self):
-        self.scalar = 0
-        for i in range(4):
-            self.scalar += self.inverse_metric[i,i] * self.ricci[i,i]
-            self.scalar= sp.simplify(self.scalar)
-
-    def compute_einstein(self): 
-        self.einstein = sp.zeros(4, 4)
-        for i in range(4):
-            for j in range(4):
-                self.einstein[i,j] += self.ricci[i,j] - 0.5 * self.metric[i,j] * self.scalar
-                self.einstein[i,j] = sp.simplify(self.einstein[i,j])
 
     # Check symmetries
     def check_metric(self):
